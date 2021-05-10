@@ -1,17 +1,17 @@
 module Payrix
   module Resource
-    class Sessions < Base
+    class TerminalTxnMetadatas < Base
 
       include Mixin::UpdateDisabled
+      include Mixin::DeleteDisabled
       def initialize(params)
         super(params, ATTRS)
 
-        @resource_name = 'sessions'
+        @resource_name = 'terminalTxnMetadatas'
       end
 
       ATTRS = [:id, :created, :modified, :creator, :modifier, 
-               :login, :key, :public, :inactive, :frozen, 
-               :token, :sso, :effectiveRoles]
+               :terminalTxn, :type, :field, :value]
 
       attr_accessor *ATTRS
 

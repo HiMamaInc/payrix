@@ -16,7 +16,7 @@ module Payrix
                :tcDate, :tcIp, :tcAcceptDate, :tcAcceptIp, :custom, 
                :inactive, :frozen, :tinStatus, :reserved, :checkStage, 
                :public, :customerPhone, :locations, :industry, :displayName, 
-               :totalCreditDisbursements]
+               :totalCreditDisbursements, :payoutSecondaryDescriptor, :einType, :irsFilingName]
 
       attr_accessor *ATTRS
 

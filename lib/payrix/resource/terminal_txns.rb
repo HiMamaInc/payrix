@@ -20,7 +20,7 @@ module Payrix
                :email, :address1, :address2, :city, :state, 
                :zip, :country, :phone, :status, :reserved, 
                :checkStage, :inactive, :frozen, :forterminalTxn, :token, 
-               :binType, :tip, :payment]
+               :binType, :tip, :paymentNumber, :paymentMethod, :payment]
 
       attr_accessor *ATTRS
 

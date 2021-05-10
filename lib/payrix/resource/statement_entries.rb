@@ -14,7 +14,7 @@ module Payrix
       ATTRS = [:id, :created, :modified, :creator, :modifier, 
                :onentity, :billing, :statement, :fee, :profitShare, 
                :event, :eventId, :description, :amount, :deductedFromBalance, 
-               :entity, :forentity]
+               :entity, :forentity, :originalEventId, :originalEvent]
 
       attr_accessor *ATTRS
 

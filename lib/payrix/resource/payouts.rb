@@ -12,7 +12,8 @@ module Payrix
                :login, :account, :entity, :payoutFlow, :name, 
                :description, :schedule, :scheduleFactor, :start, :currency, 
                :um, :amount, :minimum, :float, :skipOffDays, 
-               :inactive, :frozen, :sameDay, :maximum, :billing]
+               :inactive, :frozen, :sameDay, :maximum, :billing, 
+               :secondaryDescriptor]
 
       attr_accessor *ATTRS
 

@@ -25,7 +25,8 @@ module Payrix
                :traceNumber, :cvvStatus, :unauthReason, :fee, :fundingCurrency, 
                :authentication, :authenticationId, :cofType, :copyReason, :originalApproved, 
                :currencyConversion, :serviceCode, :authTokenCustomer, :debtRepayment, :statement, 
-               :convenienceFee, :surcharge, :channel, :funded, :fundingEnabled]
+               :convenienceFee, :surcharge, :channel, :funded, :fundingEnabled, 
+               :requestSequence, :processedSequence]
 
       attr_accessor *ATTRS
 

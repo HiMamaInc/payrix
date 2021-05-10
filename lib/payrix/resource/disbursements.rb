@@ -16,7 +16,7 @@ module Payrix
                :status, :processed, :currency, :payment, :expiration, 
                :sameDay, :returnedAmount, :statement, :settlement, :lastNegativeEntry, 
                :lastNegativePendingEntry, :lastPositiveReserveEntry, :disbursementEntriesStatus, :lastPositiveEntry, :lastPositivePendingEntry, 
-               :lastNegativeReserveEntry]
+               :lastNegativeReserveEntry, :fundingStatus, :secondaryDescriptor]
 
       attr_accessor *ATTRS
 

@@ -13,7 +13,8 @@ module Payrix
                :ssn, :dob, :dl, :dlstate, :ownership, 
                :email, :fax, :phone, :country, :zip, 
                :state, :city, :address2, :address1, :primary, 
-               :inactive, :frozen, :timezone, :gender]
+               :inactive, :frozen, :timezone, :gender, :significantResponsibility, 
+               :politicallyExposed, :citizenship]
 
       attr_accessor *ATTRS
 

@@ -11,7 +11,7 @@ module Payrix
       ATTRS = [:id, :created, :modified, :creator, :modifier, 
                :entity, :name, :description, :username, :password, 
                :connectUsername, :connectPassword, :integration, :type, :inactive, 
-               :frozen]
+               :frozen, :secret]
 
       attr_accessor *ATTRS
 

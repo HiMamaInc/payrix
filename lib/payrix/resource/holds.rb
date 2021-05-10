@@ -12,7 +12,7 @@ module Payrix
       ATTRS = [:id, :created, :modified, :creator, :modifier, 
                :login, :txn, :verification, :action, :released, 
                :reviewed, :inactive, :frozen, :entity, :terminalTxn, 
-               :decisionAction, :account]
+               :decisionAction, :account, :verificationRef]
 
       attr_accessor *ATTRS
 

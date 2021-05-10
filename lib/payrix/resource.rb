@@ -94,6 +94,8 @@ module Payrix
     autoload :Teams, 'payrix/resource/teams'
     autoload :Terminals, 'payrix/resource/terminals'
     autoload :TerminalTxnDatas, 'payrix/resource/terminal_txn_datas'
+    autoload :TerminalTxnMetadatas, 'payrix/resource/terminal_txn_metadatas'
+    autoload :TerminalTxnRefs, 'payrix/resource/terminal_txn_refs'
     autoload :TerminalTxnResults, 'payrix/resource/terminal_txn_results'
     autoload :TerminalTxns, 'payrix/resource/terminal_txns'
     autoload :Tokens, 'payrix/resource/tokens'

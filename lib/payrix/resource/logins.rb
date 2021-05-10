@@ -14,7 +14,7 @@ module Payrix
                :country, :zip, :state, :city, :address2, 
                :address1, :confirmed, :roles, :division, :inactive, 
                :frozen, :allowedResources, :restrictedResources, :parentDivision, :portalAccess, 
-               :effectiveRoles]
+               :ssoId, :effectiveRoles]
 
       attr_accessor *ATTRS
 
