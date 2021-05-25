@@ -12,7 +12,7 @@ module Payrix
                :login, :payoutLogin, :org, :entity, :trigger, 
                :schedule, :scheduleFactor, :um, :amount, :minimum, 
                :payoutInactive, :skipOffDays, :inactive, :frozen, :division, 
-               :secondaryDescriptor, :billing]
+               :secondaryDescriptor, :billing, :start]
 
       attr_accessor *ATTRS
 
