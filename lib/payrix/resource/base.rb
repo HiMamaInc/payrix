@@ -115,9 +115,14 @@ module Payrix
         
         headers = build_headers
         headers['Content-Type'] = "application/json"
+        query_params = []
+        if request_options
+          query_params << request_options.expand if request_options.expand
+        end
+
         method = 'post'
         url = Payrix.configuration.url
-        endpoint = "#{@resource_name}"
+        endpoint = "#{@resource_name}?#{query_params.join('&')}"
         data = to_json
 
         body, status = Payrix::Http::Request.instance.send_http(method, url, endpoint, data, headers)

@@ -26,7 +26,7 @@ module Payrix
                :authentication, :authenticationId, :cofType, :copyReason, :originalApproved, 
                :currencyConversion, :serviceCode, :authTokenCustomer, :debtRepayment, :statement, 
                :convenienceFee, :surcharge, :channel, :funded, :fundingEnabled, 
-               :requestSequence, :processedSequence]
+               :requestSequence, :processedSequence, :txnResults, :payment]
 
       attr_accessor *ATTRS
 
