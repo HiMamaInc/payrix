@@ -3,6 +3,7 @@ module Payrix
     class Txns < Base
 
       include Mixin::DeleteDisabled
+      include Mixin::AttrCasters
       def initialize(params)
         super(params, ATTRS)
 
@@ -29,6 +30,7 @@ module Payrix
                :requestSequence, :processedSequence, :txnResults, :payment]
 
       attr_accessor *ATTRS
+      attr_cast_to_integer :status
 
     end
   end
