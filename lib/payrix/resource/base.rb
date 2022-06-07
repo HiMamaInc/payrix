@@ -27,7 +27,6 @@ module Payrix
              if @attrs.include? k
                public_send("#{k}=", v) if respond_to? "#{k}="
              else
-               self.class.send(:attr_accessor, k)
                self.instance_variable_set("@#{k}", v);
              end
            end
