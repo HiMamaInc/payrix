@@ -111,7 +111,7 @@ module Payrix
 
       def create(params = {})
         set(params)
-        
+
         headers = build_headers
         headers['Content-Type'] = "application/json"
         query_params = []
@@ -133,14 +133,14 @@ module Payrix
       def update(params = {})
         set(params)
 
-        if !id 
+        if !id
           if Payrix.configuration.exception_enabled
             raise Payrix::Exceptions::InvalidRequest.new('ID is required for this action')
           else
             return false
           end
         end
-        
+
         headers = build_headers
         headers['Content-Type'] = "application/json"
         method = 'put'
@@ -157,7 +157,7 @@ module Payrix
       def delete(params = {})
         set(params)
 
-        if !id 
+        if !id
           if Payrix.configuration.exception_enabled
             raise Payrix::Exceptions::InvalidRequest.new('ID is required for this delete')
           else
@@ -196,7 +196,7 @@ module Payrix
 
         headers
       end
-      
+
       def build_search(values = {})
         values
           .delete_if { |k, v| v.nil? || v.empty? }
@@ -207,7 +207,7 @@ module Payrix
       def validate_response
         if @response.has_errors?
           if Payrix.configuration.exception_enabled
-            raise Payrix::Exceptions::ApiError.new('There are errors in the response')
+            raise Payrix::Exceptions::ApiError.new("There are errors in the response, #{@response.errors}")
           end
 
           false

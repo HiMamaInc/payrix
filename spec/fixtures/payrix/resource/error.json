@@ -1,0 +1,16 @@
+{
+  "response": {
+    "data": [],
+    "details": {
+      "requestId": 1
+    },
+    "errors": [
+      {
+        "code": 13,
+        "severity": 4,
+        "msg": "No such action and/or resource",
+        "errorCode": "invalid_resource"
+      }
+    ]
+  }
+}
