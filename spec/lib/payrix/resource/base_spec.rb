@@ -9,6 +9,15 @@ RSpec.describe Payrix::Resource::Base do
 
   let(:resource) { Payrix::Resource::Tests.new(status: '1', amount: '500') }
 
+  before do
+    fixture_base_path = File.join('spec', 'fixtures', 'payrix', 'resource')
+    fixture_file_path = File.join(fixture_base_path, 'error.json')
+
+    WebMock
+      .stub_request(:post, 'https://test-api.payrix.com/test')
+      .to_return(body: File.read(fixture_file_path), status: 200)
+  end
+
   it 'raises Payrix::Exceptions::ApiError with the message which includes the errors payload' do
     expect { resource.create }
       .to raise_error(Payrix::Exceptions::ApiError)
