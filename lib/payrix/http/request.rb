@@ -2,7 +2,7 @@ require 'singleton'
 require 'json'
 
 require 'faraday'
-require 'faraday_middleware'
+require 'faraday/follow_redirects'
 
 module Payrix
   module Http
@@ -14,7 +14,7 @@ module Payrix
 
       def send_http(method, base_url, endpoint, data = {}, headers = {}, timeout = 30)
         conn = Faraday.new(url: base_url) do |conn|
-          conn.use FaradayMiddleware::FollowRedirects, limit: 3
+          conn.response :follow_redirects, limit: 3
 
           conn.headers = headers
           conn.options.timeout = timeout
