@@ -19,6 +19,10 @@ module Payrix
 
           expand = id_or_hash[:expand]
 
+          if expand.class != Array
+            raise ArgumentError, "Expand key must be an array"
+          end
+
           formatted_expand =
             expand
               .map { |field| "expand[#{field}][]" }
