@@ -42,6 +42,31 @@ module Payrix
       end
     end
 
+    def inspect
+      attributes = @key_mapping.keys.sort.map do |key|
+        value = @data[@key_mapping[key]]
+
+        case value
+          when NilClass
+            "#{key}: nil"
+          when String
+            "#{key}: \"#{value}\""
+          when Hash
+            id = value['id']
+
+            if id
+              "#{key}: \"#{id}\""
+            else
+              "#{key}: #{value}"
+            end
+          else
+            "#{key}: #{value}"
+        end
+      end
+
+      "<#{self.class}:#{'0x0000%x' % (object_id << 1)} #{attributes.join(', ')}>"
+    end
+
     private
 
     def snake_case(string)
