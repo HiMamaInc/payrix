@@ -5,6 +5,7 @@ require "payrix/http"
 require "payrix/resource"
 
 require "payrix/base_resource"
+require "payrix/resources/merchant"
 
 module Payrix
   class << self
