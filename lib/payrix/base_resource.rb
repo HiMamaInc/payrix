@@ -19,6 +19,10 @@ module Payrix
 
       response = Http::Response.new(json, status, self)
 
+      if response.data.first.nil?
+        raise Payrix::Exceptions::ResourceNotFound.new(self, id)
+      end
+
       new(response.data.first)
     end
 
