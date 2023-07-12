@@ -42,7 +42,7 @@ module Payrix
       response = Http::Response.new(json, status, self)
 
       if response.data.first.nil?
-        raise Payrix::Exceptions::ResourceNotFound.new(self, id)
+        raise Payrix::Exceptions::ResourceNotFound, "Couldn't find #{self} with id='#{resource_id}'"
       end
 
       new(response.data.first)
