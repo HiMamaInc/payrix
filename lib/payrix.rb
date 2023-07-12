@@ -4,6 +4,8 @@ require "payrix/exceptions"
 require "payrix/http"
 require "payrix/resource"
 
+require "payrix/base_resource"
+
 module Payrix
   class << self
     attr_writer :configuration
