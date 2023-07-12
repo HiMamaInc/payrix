@@ -2,9 +2,21 @@ module Payrix
   class BaseResource
     attr_reader :data
 
-    def self.retrieve(id, credentials = {})
+    def self.retrieve(id_or_hash, credentials = {})
+      resource_id = nil
       api_key = credentials[:api_key] || Payrix.configuration.api_key
       api_endpoint = self::RESOURCE_ENDPOINT
+
+      case id_or_hash
+        when String
+          resource_id = id_or_hash
+        when Hash
+          resource_id = id_or_hash[:id]
+
+          # Raise error if :id not present
+        else
+          # Raise error
+      end
 
       json, status = Http::Request.instance.send_http(
         'get',
@@ -14,7 +26,7 @@ module Payrix
         {
           'Content-Type' => 'application/json',
           'APIKEY' => api_key,
-          'SEARCH' => "id[equals]=#{id}",
+          'SEARCH' => "id[equals]=#{resource_id}",
         }
       )
 
