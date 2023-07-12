@@ -59,6 +59,8 @@ module Payrix
 
       # Create dynamic snake-cased methods.
       @key_mapping.keys.each do |key|
+        next if respond_to?(key)
+
         self.class.define_method(key) { @data[@key_mapping[key]] }
       end
     end
@@ -89,6 +91,26 @@ module Payrix
     end
 
     private
+
+    def self.define_expansion(attribute, type)
+      define_method(attribute) do
+        ivar = "@#{attribute}"
+
+        return instance_variable_get(ivar) if instance_variable_defined?(ivar)
+
+        existing_data = @data[@key_mapping[attribute.to_s]]
+
+        result =
+          case existing_data
+            when String
+              type.retrieve(existing_data)
+            when Hash
+              type.new(existing_data)
+          end
+
+        instance_variable_set(ivar, result)
+      end
+    end
 
     def snake_case(string)
       string.gsub(/(.)([A-Z])/, '\1_\2').downcase
