@@ -29,6 +29,23 @@ module Payrix
 
     def initialize(data = {})
       @data = data
+      @key_mapping = {}
+
+      # Create a key mapping so we can associate snake-cased keys with camel-cased equivalent.
+      @data.keys.each do |key|
+        @key_mapping[snake_case(key)] = key
+      end
+
+      # Create dynamic snake-cased methods.
+      @key_mapping.keys.each do |key|
+        self.class.define_method(key) { @data[@key_mapping[key]] }
+      end
+    end
+
+    private
+
+    def snake_case(string)
+      string.gsub(/(.)([A-Z])/, '\1_\2').downcase
     end
   end
 end
