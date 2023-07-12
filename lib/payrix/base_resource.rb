@@ -14,6 +14,15 @@ module Payrix
           resource_id = id_or_hash[:id]
 
           # Raise error if :id not present
+
+          expand = id_or_hash[:expand]
+
+          formatted_expand =
+            expand
+              .map { |field| "expand[#{field}][]" }
+              .join('&')
+
+          api_endpoint += "?#{formatted_expand}"
         else
           # Raise error
       end
