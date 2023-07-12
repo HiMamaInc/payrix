@@ -13,7 +13,9 @@ module Payrix
         when Hash
           resource_id = id_or_hash[:id]
 
-          # Raise error if :id not present
+          unless resource_id
+            raise Payrix::Exceptions::ResourceNotFound, "Couldn't find #{self} without ID"
+          end
 
           expand = id_or_hash[:expand]
 
@@ -24,7 +26,7 @@ module Payrix
 
           api_endpoint += "?#{formatted_expand}"
         else
-          # Raise error
+          raise Payrix::Exceptions::ResourceNotFound, "Couldn't find #{self} without ID"
       end
 
       json, status = Http::Request.instance.send_http(
