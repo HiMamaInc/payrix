@@ -9,9 +9,12 @@ module Payrix
         @cls = cls
       end
 
+      def data
+        (@response['response'] && @response['response']['data']) || []
+      end
+
       # Return the response as an array
       def response
-        data = (@response['response'] && @response['response']['data']) || []
         data.map { |v| @cls.new(v) }
       end
 
