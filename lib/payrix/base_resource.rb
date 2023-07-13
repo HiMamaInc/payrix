@@ -130,6 +130,16 @@ module Payrix
       end
     end
 
+    def self.nested_collection(attribute, collection_type)
+      define_method(attribute) do
+        ivar = "@#{attribute}"
+
+        return instance_variable_get(ivar) if instance_variable_defined?(ivar)
+
+        instance_variable_set(ivar, @data[@key_mapping[attribute.to_s]].map { |object| collection_type.new(object) })
+      end
+    end
+
     def snake_case(string)
       string.gsub(/(.)([A-Z])/, '\1_\2').downcase
     end
