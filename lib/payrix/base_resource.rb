@@ -105,7 +105,7 @@ module Payrix
         end
       end
 
-      "<#{self.class}:#{'0x0000%x' % (object_id << 1)} #{attributes.join(', ')}>"
+      "#<#{self.class}:#{'0x0000%x' % (object_id << 1)} #{attributes.join(', ')}>"
     end
 
     private
