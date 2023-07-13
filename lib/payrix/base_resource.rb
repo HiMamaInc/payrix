@@ -34,7 +34,7 @@ module Payrix
 
               formatted_expand =
                 expand
-                  .map { |field| "expand#{field.split('.').map { |part| "[#{part}]" }.join}[]" }
+                  .map { |field| "expand#{field.split('.').map { |part| "[#{camel_case(part)}]" }.join}[]" }
                   .join('&')
 
               api_endpoint += "?#{formatted_expand}"
@@ -132,6 +132,10 @@ module Payrix
 
     def snake_case(string)
       string.gsub(/(.)([A-Z])/, '\1_\2').downcase
+    end
+
+    def self.camel_case(string)
+      string.split('_').inject { |m, p| m + p.capitalize }
     end
   end
 end
