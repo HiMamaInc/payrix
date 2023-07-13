@@ -110,7 +110,7 @@ module Payrix
 
     private
 
-    def self.define_expansion(attribute, type)
+    def self.nested_object(attribute, type)
       define_method(attribute) do
         ivar = "@#{attribute}"
 
