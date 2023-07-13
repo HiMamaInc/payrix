@@ -19,16 +19,28 @@ module Payrix
 
           expand = id_or_hash[:expand]
 
-          if expand.class != Array
-            raise ArgumentError, "Expand key must be an array"
+          case expand
+            when NilClass
+              # Skip
+            when Array
+              # ['entity']
+              # # => ?expand[entity][]
+
+              # ['entity.login']
+              # # => ?expand[entity][login][]
+
+              # ['entity.login.division', 'entity.accounts', 'members']
+              # # => ?expand[entity][login][division][]&expand[entity][accounts][]&expand[members][]
+
+              formatted_expand =
+                expand
+                  .map { |field| "expand#{field.split('.').map { |part| "[#{part}]" }.join}[]" }
+                  .join('&')
+
+              api_endpoint += "?#{formatted_expand}"
+            else
+              raise ArgumentError, "Expand key must be an array"
           end
-
-          formatted_expand =
-            expand
-              .map { |field| "expand[#{field}][]" }
-              .join('&')
-
-          api_endpoint += "?#{formatted_expand}"
         else
           raise Payrix::Exceptions::ResourceNotFound, "Couldn't find #{self} without ID"
       end
