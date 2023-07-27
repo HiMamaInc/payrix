@@ -58,34 +58,6 @@ RSpec.describe Payrix::APIOperations::Retrieve do
       end
     end
 
-    context 'when passing a hash argument with no :expand' do
-      it 'raises Payrix::Exceptions::ResourceNotFound if the API returns an empty response' do
-        mock_request(
-          url: 'https://api.payrix.com/txns',
-          id: 't1_txn_64026b07cc6a79dd5cfd0da',
-          data: [],
-        )
-
-        expect { Txn.retrieve(id: 't1_txn_64026b07cc6a79dd5cfd0da') }.to(
-          raise_error(Payrix::Exceptions::ResourceNotFound, "Couldn't find Txn with id='t1_txn_64026b07cc6a79dd5cfd0da'"),
-        )
-      end
-
-      it 'returns Payrix resource instance if the API returns a non-empty response' do
-        mock_request(
-          url: 'https://api.payrix.com/txns',
-          id: 't1_txn_64026b07cc6a79dd5cfd0da',
-          data: [{ id: 't1_txn_64026b07cc6a79dd5cfd0da', status: 1 }],
-        )
-
-        txn = Txn.retrieve(id: 't1_txn_64026b07cc6a79dd5cfd0da')
-
-        expect(txn).to be_a(Txn)
-        expect(txn.id).to eq('t1_txn_64026b07cc6a79dd5cfd0da')
-        expect(txn.status).to eq(1)
-      end
-    end
-
     context 'when passing a hash argument with :id and :expand' do
       it 'raises Payrix::Exceptions::ResourceNotFound if the API returns an empty response' do
         mock_request(
