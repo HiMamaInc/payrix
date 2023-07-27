@@ -33,7 +33,7 @@ module Payrix
 
                 formatted_expand =
                   expand
-                    .map { |field| "expand#{field.split('.').map { |part| "[#{Payrix::Utils.camel_case(part)}]" }.join}[]" }
+                    .map { |field| "expand#{field.split('.').map { |part| "[#{Payrix::Utils.camel_case(part)}]" }.join}[]=" }
                     .join('&')
 
                 api_endpoint += "?#{formatted_expand}"
