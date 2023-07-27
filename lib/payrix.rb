@@ -5,6 +5,7 @@ require "payrix/http"
 require "payrix/resource"
 
 require "payrix/utils"
+require "payrix/expand_parameter"
 require "payrix/api_operations/retrieve"
 require "payrix/base_resource"
 require "payrix/resources/org_entity"
