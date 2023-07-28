@@ -10,7 +10,7 @@ module Payrix
           formatted_field =
             field
               .split('.')
-              .map { |part| "[#{Payrix::Utils.camel_case(part)}]" }
+              .map { |part| "[#{Payrix::Util.camel_case(part)}]" }
               .join
 
           "expand#{formatted_field}[]="

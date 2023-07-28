@@ -3,7 +3,7 @@ require "payrix/configuration"
 require "payrix/exceptions"
 require "payrix/http"
 require "payrix/resource"
-require "payrix/utils"
+require 'payrix/util'
 require 'payrix/list'
 require 'payrix/request_options'
 require 'payrix/api_operations'
