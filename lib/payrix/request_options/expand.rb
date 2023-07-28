@@ -1,5 +1,5 @@
 module Payrix
-  module ExpandParameter
+  module Expand
     def self.construct(expand)
       if !expand.is_a?(Array)
         raise ArgumentError, 'Expand parameter must be an array of strings'

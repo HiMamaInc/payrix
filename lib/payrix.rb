@@ -4,7 +4,6 @@ require "payrix/exceptions"
 require "payrix/http"
 require "payrix/resource"
 require "payrix/utils"
-require "payrix/expand_parameter"
 require 'payrix/list'
 require 'payrix/request_options'
 require 'payrix/api_operations'
