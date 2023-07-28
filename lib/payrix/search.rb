@@ -4,6 +4,14 @@ module Payrix
       Equals.new(field, value)
     end
 
+    def self.greater(field, value)
+      Greater.new(field, value)
+    end
+
+    def self.less(field, value)
+      Less.new(field, value)
+    end
+
     private
 
     class Node
@@ -23,6 +31,22 @@ module Payrix
         value = value == '' || value == nil ? "''" : value
 
         super(field, 'equals', value)
+      end
+    end
+
+    class Greater < Node
+      def initialize(field, value)
+        value = value == '' || value == nil ? "''" : value
+
+        super(field, 'greater', value)
+      end
+    end
+
+    class Less < Node
+      def initialize(field, value)
+        value = value == '' || value == nil ? "''" : value
+
+        super(field, 'less', value)
       end
     end
   end
