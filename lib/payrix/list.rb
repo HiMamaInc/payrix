@@ -54,6 +54,18 @@ module Payrix
       end
     end
 
+    def map_with_auto_paging(&block)
+      each_with_auto_paging {}
+
+      map(&block)
+    end
+
+    def count_with_auto_paging
+      each_with_auto_paging {}
+
+      count
+    end
+
     def more?
       @response.nil? ? true : @response.has_more?
     end
