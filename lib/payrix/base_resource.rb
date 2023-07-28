@@ -3,6 +3,7 @@ module Payrix
     attr_reader :data
 
     extend Payrix::APIOperations::Retrieve
+    extend Payrix::APIOperations::List
 
     def initialize(data = {})
       @data = data
