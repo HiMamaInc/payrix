@@ -15,6 +15,30 @@ RSpec.describe Payrix::Http::Request do
         to_return(status: 200, body: response_body, headers: {})
     end
 
+    context 'when the request is not authenticated' do
+      it 'raises Payrix::Exceptions::InvalidAuthentication' do
+        WebMock
+          .stub_request(:get, 'https://api.payrix.com/txns')
+          .to_return(
+            status: 401,
+            body: {
+              errors: [
+                {
+                  code: 4,
+                  severity: 3,
+                  msg: 'Invalid authentication',
+                  errorCode: 'invalid_auth',
+                },
+              ],
+            }.to_json,
+          )
+
+        expect { Payrix::Http::Request.instance.send_http(:get, 'https://api.payrix.com', 'txns', {}, {}, 30) }.to(
+          raise_error(Payrix::Exceptions::InvalidAuthentication, 'Invalid authentication token'),
+        )
+      end
+    end
+
     context 'when response is valid json' do
       let(:response_body) { "{}" }
 

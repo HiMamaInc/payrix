@@ -30,6 +30,7 @@ module Payrix
           body = response.body
           status = response.status
 
+          raise Payrix::Exceptions::InvalidAuthentication, 'Invalid authentication token' if status == 401
           raise Payrix::Exceptions::InvalidRequest.new("Invalid request, status code: #{status}") if status == 400 || status == 404
           raise Payrix::Exceptions::Base.new(body) if status < 200 || status > 299
 
