@@ -31,7 +31,7 @@ module Payrix
           {
             'Content-Type' => 'application/json',
             'APIKEY' => api_key,
-            'SEARCH' => "id[equals]=#{resource_id}",
+            'SEARCH' => Payrix::Search.equals(:id, resource_id).construct,
           }
         )
 

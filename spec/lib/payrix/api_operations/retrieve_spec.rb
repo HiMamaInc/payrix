@@ -95,7 +95,7 @@ RSpec.describe Payrix::APIOperations::Retrieve do
               headers: {
                 'Content-Type' => 'application/json',
                 'Apikey' => 'my-personal-key',
-                'Search' => 'id[equals]=t1_txn_64026b07cc6a79dd5cfd0da',
+                'Search' => 'id[equals]=t1_txn_64026b07cc6a79dd5cfd0da&',
               },
             )
             .to_return(
@@ -133,7 +133,7 @@ RSpec.describe Payrix::APIOperations::Retrieve do
         headers: {
           'Content-Type' => 'application/json',
           'Apikey' => '7E57C3FD328F8B00B2A72144FE2A1F83',
-          'Search' => "id[equals]=#{id}",
+          'Search' => "id[equals]=#{id}&",
         },
       )
       .to_return(
