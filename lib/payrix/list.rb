@@ -15,17 +15,12 @@ module Payrix
 
     def page_forward
       endpoint = @endpoint
-
-      if @response.nil?
-        endpoint = "#{endpoint}?page[number]=1"
-      else
-        endpoint = "#{endpoint}?page[number]=#{@response.page['current'] + 1}"
-      end
+      paginate = Payrix::Paginate.construct(next_page)
 
       json, status = Http::Request.instance.send_http(
         'get',
         Payrix.configuration.url,
-        endpoint,
+        "#{endpoint}?#{paginate}",
         {},
         {
           'Content-Type' => 'application/json',
@@ -72,6 +67,12 @@ module Payrix
 
     def inspect
       "#<#{self.class}:#{'0x0000%x' % (object_id << 1)} @klass=#{@klass}>"
+    end
+
+    def next_page
+      return 1 if @response.nil?
+
+      @response.page['current'] + 1
     end
   end
 end
