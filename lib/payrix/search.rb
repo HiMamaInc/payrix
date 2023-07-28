@@ -12,8 +12,6 @@ module Payrix
       Less.new(field, value)
     end
 
-    private
-
     class Node
       def initialize(field, operator, value)
         @field = field

@@ -25,6 +25,7 @@ module Payrix
         {
           'Content-Type' => 'application/json',
           'APIKEY' => @api_key,
+          'SEARCH' => construct_search,
         },
       )
 
@@ -67,6 +68,29 @@ module Payrix
 
     def inspect
       "#<#{self.class}:#{'0x0000%x' % (object_id << 1)} @klass=#{@klass}>"
+    end
+
+    private
+
+    def construct_search
+      @search ||= begin
+        search = ''
+
+        case @filters
+          when Hash
+            return search if @filters.empty?
+
+            @filters.each do |key, value|
+              search += Payrix::Search.equals(key, value).construct
+            end
+          when Payrix::Search::Node
+            search += @filters.construct
+          else
+            raise ArgumentError, 'Invalid argument for filters, use a hash or make use of the Payrix::Search module'
+        end
+
+        search
+      end
     end
 
     def next_page
