@@ -10,10 +10,8 @@ require "payrix/search"
 require "payrix/list"
 require 'payrix/request_options'
 require 'payrix/api_operations'
-require "payrix/base_resource"
-require "payrix/resources/org_entity"
-require "payrix/resources/entity"
-require "payrix/resources/merchant"
+require 'payrix/base_resource'
+require 'payrix/resources'
 
 module Payrix
   class << self

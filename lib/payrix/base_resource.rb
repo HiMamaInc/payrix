@@ -52,6 +52,7 @@ module Payrix
     def self.nested_object(attribute, type)
       define_method(attribute) do
         ivar = "@#{attribute}"
+        type = Payrix.const_get(type)
 
         return instance_variable_get(ivar) if instance_variable_defined?(ivar)
 
@@ -72,10 +73,11 @@ module Payrix
     def self.nested_collection(attribute, collection_type)
       define_method(attribute) do
         ivar = "@#{attribute}"
+        type = Payrix.const_get(collection_type)
 
         return instance_variable_get(ivar) if instance_variable_defined?(ivar)
 
-        instance_variable_set(ivar, @data[@key_mapping[attribute.to_s]].map { |object| collection_type.new(object) })
+        instance_variable_set(ivar, @data[@key_mapping[attribute.to_s]].map { |object| type.new(object) })
       end
     end
 
