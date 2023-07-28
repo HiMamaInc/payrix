@@ -18,7 +18,7 @@ module Payrix
 
             expand = id_or_hash[:expand]
 
-            api_endpoint = Payrix::ExpandParameter.build_url(api_endpoint, expand)
+            api_endpoint += "?#{Payrix::ExpandParameter.construct(expand)}"
           else
             raise Payrix::Exceptions::ResourceNotFound, "Couldn't find #{self} without ID"
         end
