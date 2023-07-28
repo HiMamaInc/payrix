@@ -1,9 +1,9 @@
 module Payrix
   module APIOperations
     module Retrieve
-      def retrieve(id_or_hash, credentials = {})
+      def retrieve(id_or_hash, options = {})
         resource_id = nil
-        api_key = credentials[:api_key] || Payrix.configuration.api_key
+        api_key = options[:api_key] || Payrix.configuration.api_key
         api_endpoint = self::RESOURCE_ENDPOINT
 
         case id_or_hash
