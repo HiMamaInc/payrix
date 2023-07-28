@@ -21,6 +21,14 @@ module Payrix
     @configuration ||= Configuration.new
   end
 
+  def self.api_key=(api_key)
+    configuration.api_key = api_key
+  end
+
+  def self.test_mode=(test_mode)
+    configuration.set_test_mode(test_mode)
+  end
+
   def self.configure
     yield(configuration)
   end
