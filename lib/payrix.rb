@@ -8,7 +8,7 @@ require "payrix/utils"
 require "payrix/expand_parameter"
 require "payrix/search"
 require "payrix/list"
-require "payrix/request_options/paginate"
+require 'payrix/request_options'
 require 'payrix/api_operations'
 require "payrix/base_resource"
 require "payrix/resources/org_entity"
