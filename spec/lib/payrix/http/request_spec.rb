@@ -1,16 +1,6 @@
 # frozen_string_literal: true
 
-require 'rspec'
-
 RSpec.describe Payrix::Http::Request do
-  before do
-    # Do nothing
-  end
-
-  after do
-    # Do nothing
-  end
-
   describe '#send_http' do
     let(:response_body) { "{}" }
 
