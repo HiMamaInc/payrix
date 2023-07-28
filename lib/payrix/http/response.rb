@@ -34,15 +34,13 @@ module Payrix
         (@response['response'] && @response['response']['details'] && @response['response']['details']['totals']) || {}
       end
 
-      def has_more?
-        page = @response['response'] && @response['response']['details'] && @response['response']['details']['page']
-
-        !page.nil? &&
-        !page['current'].nil? &&
-        !page['last'].nil? &&
-        page['current'] < page['last']
+      def page
+        @response['response'] && @response['response']['details'] && @response['response']['details']['page']
       end
 
+      def has_more?
+        page['hasMore']
+      end
     end
   end
 end
