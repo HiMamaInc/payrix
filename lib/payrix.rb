@@ -6,6 +6,7 @@ require "payrix/resource"
 
 require "payrix/utils"
 require "payrix/expand_parameter"
+require "payrix/search"
 require "payrix/list"
 require "payrix/api_operations/retrieve"
 require "payrix/api_operations/list"
