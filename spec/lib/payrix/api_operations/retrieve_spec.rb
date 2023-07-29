@@ -22,6 +22,14 @@ RSpec.describe Payrix::APIOperations::Retrieve do
       end
     end
 
+    context 'when passing a hash argument' do
+      it 'raises Payrix::Exceptions::ResourceNotFound' do
+        expect { Txn.retrieve({}) }.to(
+          raise_error(Payrix::Exceptions::ResourceNotFound, "Couldn't find Txn without ID"),
+        )
+      end
+    end
+
     context 'when passing a string argument' do
       it 'raises Payrix::Exceptions::ResourceNotFound if the API returns an empty response' do
         mock_request(
@@ -50,44 +58,22 @@ RSpec.describe Payrix::APIOperations::Retrieve do
       end
     end
 
-    context 'when passing a hash argument with no :id' do
-      it 'raises Payrix::Exceptions::ResourceNotFound' do
-        expect { Txn.retrieve({}) }.to(
-          raise_error(Payrix::Exceptions::ResourceNotFound, "Couldn't find Txn without ID"),
-        )
-      end
-    end
-
-    context 'when passing a hash argument with :id and :expand' do
-      it 'raises Payrix::Exceptions::ResourceNotFound if the API returns an empty response' do
-        mock_request(
-          url: 'https://api.payrix.com/txns?expand[merchant][]=',
-          id: 't1_txn_64026b07cc6a79dd5cfd0da',
-          data: [],
-        )
-
-        expect { Txn.retrieve(id: 't1_txn_64026b07cc6a79dd5cfd0da', expand: ['merchant']) }.to(
-          raise_error(Payrix::Exceptions::ResourceNotFound, "Couldn't find Txn with id='t1_txn_64026b07cc6a79dd5cfd0da'"),
-        )
-      end
-
-      it 'returns Payrix resource instance if the API returns a non-empty response' do
+    context 'when passing an options hash as the second parameter' do
+      it 'supports passing an :expand key to use the expand API feature' do
         mock_request(
           url: 'https://api.payrix.com/txns?expand[merchant][]=',
           id: 't1_txn_64026b07cc6a79dd5cfd0da',
           data: [{ id: 't1_txn_64026b07cc6a79dd5cfd0da', status: 1 }],
         )
 
-        txn = Txn.retrieve(id: 't1_txn_64026b07cc6a79dd5cfd0da', expand: ['merchant'])
+        txn = Txn.retrieve('t1_txn_64026b07cc6a79dd5cfd0da', { expand: ['merchant'] })
 
         expect(txn).to be_a(Txn)
         expect(txn.id).to eq('t1_txn_64026b07cc6a79dd5cfd0da')
         expect(txn.status).to eq(1)
       end
-    end
 
-    context 'when passing an options hash as the second parameter with :api_key' do
-      it 'user the API key to authenticate the request' do
+      it 'supports passing an :api_key to authenticate the request' do
         stub =
           WebMock
             .stub_request(:get, 'https://api.payrix.com/txns')

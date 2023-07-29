@@ -1,44 +1,31 @@
 module Payrix
   module APIOperations
     module Retrieve
-      def retrieve(id_or_hash, options = {})
-        resource_id = nil
-        api_key = options[:api_key] || Payrix.configuration.api_key
-        api_endpoint = self::RESOURCE_ENDPOINT
-
-        case id_or_hash
-          when String
-            resource_id = id_or_hash
-          when Hash
-            resource_id = id_or_hash[:id]
-
-            unless resource_id
-              raise Payrix::Exceptions::ResourceNotFound, "Couldn't find #{self} without ID"
-            end
-
-            expand = id_or_hash[:expand]
-
-            api_endpoint += "?#{Payrix::Expand.construct(expand)}"
-          else
-            raise Payrix::Exceptions::ResourceNotFound, "Couldn't find #{self} without ID"
+      def retrieve(id, options = {})
+        if !id.is_a?(String)
+          raise Payrix::Exceptions::ResourceNotFound, "Couldn't find #{self} without ID"
         end
+
+        api_key = options[:api_key] || Payrix.configuration.api_key
+        expand = Payrix::Expand.construct(options[:expand] || [])
+        search = Payrix::Search.equals(:id, id).construct
 
         json, status = Http::Request.instance.send_http(
           'get',
           Payrix.configuration.url,
-          api_endpoint,
+          "#{self::RESOURCE_ENDPOINT}?#{expand}",
           {},
           {
             'Content-Type' => 'application/json',
             'APIKEY' => api_key,
-            'SEARCH' => Payrix::Search.equals(:id, resource_id).construct,
+            'SEARCH' => search,
           }
         )
 
         response = Http::Response.new(json, status, self)
 
         if response.data.first.nil?
-          raise Payrix::Exceptions::ResourceNotFound, "Couldn't find #{self} with id='#{resource_id}'"
+          raise Payrix::Exceptions::ResourceNotFound, "Couldn't find #{self} with id='#{id}'"
         end
 
         new(response.data.first)
