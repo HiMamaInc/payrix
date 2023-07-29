@@ -8,6 +8,7 @@ module Payrix
       @api_key = options[:api_key] || Payrix.configuration.api_key
       @filters = filters
       @options = options
+      @search = Payrix::Search.construct(@filters)
       @responses = []
       @response = nil
       @data = []
@@ -25,7 +26,7 @@ module Payrix
         {
           'Content-Type' => 'application/json',
           'APIKEY' => @api_key,
-          'SEARCH' => construct_search,
+          'SEARCH' => @search,
         },
       )
 
@@ -71,27 +72,6 @@ module Payrix
     end
 
     private
-
-    def construct_search
-      @search ||= begin
-        search = ''
-
-        case @filters
-          when Hash
-            return search if @filters.empty?
-
-            @filters.each do |key, value|
-              search += Payrix::Search.equals(key, value).construct
-            end
-          when Payrix::Search::Node
-            search += @filters.construct
-          else
-            raise ArgumentError, 'Invalid argument for filters, use a hash or make use of the Payrix::Search module'
-        end
-
-        search
-      end
-    end
 
     def next_page
       return 1 if @response.nil?
