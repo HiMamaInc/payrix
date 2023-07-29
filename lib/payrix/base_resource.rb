@@ -52,7 +52,7 @@ module Payrix
     def self.nested_object(attribute, type)
       define_method(attribute) do
         ivar = "@#{attribute}"
-        type = Payrix.const_get(type)
+        type_ = Payrix.const_get(type)
 
         return instance_variable_get(ivar) if instance_variable_defined?(ivar)
 
@@ -61,9 +61,9 @@ module Payrix
         result =
           case existing_data
             when String
-              type.retrieve(existing_data)
+              type_.retrieve(existing_data)
             when Hash
-              type.new(existing_data)
+              type_.new(existing_data)
           end
 
         instance_variable_set(ivar, result)
