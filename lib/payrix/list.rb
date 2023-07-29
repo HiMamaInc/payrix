@@ -9,6 +9,7 @@ module Payrix
       @filters = filters
       @options = options
       @search = Payrix::Search.construct(@filters)
+      @expand = Payrix::Expand.construct(options[:expand] || [])
       @responses = []
       @response = nil
       @data = []
@@ -21,7 +22,7 @@ module Payrix
       json, status = Http::Request.instance.send_http(
         'get',
         Payrix.configuration.url,
-        "#{endpoint}?#{paginate}",
+        "#{endpoint}?#{paginate}#{@expand}",
         {},
         {
           'Content-Type' => 'application/json',
