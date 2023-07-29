@@ -60,10 +60,10 @@ module Payrix
 
         result =
           case existing_data
-            when String
-              type_.retrieve(existing_data)
             when Hash
               type_.new(existing_data)
+            else
+              existing_data
           end
 
         instance_variable_set(ivar, result)
