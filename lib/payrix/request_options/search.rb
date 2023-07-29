@@ -1,5 +1,24 @@
 module Payrix
   module Search
+    def self.construct(filter)
+      search = ''
+
+      case filter
+        when Hash
+          return search if filter.empty?
+
+          filter.each do |key, value|
+            search += Payrix::Search.equals(key, value).construct
+          end
+        when Payrix::Search::Node
+          search += filter.construct
+        else
+          raise ArgumentError, 'Search parameter must be a hash or an instance of Payrix::Search::Node'
+      end
+
+      search
+    end
+
     def self.equals(field, value)
       Equals.new(field, value)
     end
