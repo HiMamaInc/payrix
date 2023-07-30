@@ -4,7 +4,6 @@ module Payrix
 
     def initialize(klass:, filters: {}, options: {})
       @klass = klass
-      @endpoint = @klass::RESOURCE_ENDPOINT
       @api_key = options[:api_key] || Payrix.configuration.api_key
       @filters = filters
       @options = options
@@ -16,13 +15,12 @@ module Payrix
     end
 
     def page_forward
-      endpoint = @endpoint
       paginate = Payrix::Paginate.construct(next_page)
 
       json, status = Http::Request.instance.send_http(
         'get',
         Payrix.configuration.url,
-        "#{endpoint}?#{paginate}#{@expand}",
+        "#{@klass::RESOURCE_ENDPOINT}?#{paginate}#{@expand}",
         {},
         {
           'Content-Type' => 'application/json',
