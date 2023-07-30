@@ -38,7 +38,7 @@ module Payrix
       @data.each(&block)
     end
 
-    def each_with_auto_paging(&block)
+    def auto_paging_each(&block)
       loop do
         each(&block)
 
@@ -50,14 +50,14 @@ module Payrix
       end
     end
 
-    def map_with_auto_paging(&block)
-      each_with_auto_paging {}
+    def auto_paging_map(&block)
+      auto_paging_each {}
 
       map(&block)
     end
 
-    def count_with_auto_paging
-      each_with_auto_paging {}
+    def auto_paging_count
+      auto_paging_each {}
 
       count
     end
