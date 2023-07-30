@@ -11,7 +11,7 @@ module Payrix
 
       # Create a key mapping so we can associate snake-cased keys with camel-cased equivalent.
       @data.keys.each do |key|
-        @key_mapping[snake_case(key)] = key
+        @key_mapping[Util.snake_case(key)] = key
       end
 
       # Create dynamic snake-cased methods.
@@ -23,7 +23,7 @@ module Payrix
     end
 
     def inspect
-      json = JSON.pretty_generate(@data.transform_keys { |key| snake_case(key) })
+      json = JSON.pretty_generate(@data.transform_keys { |key| Util.snake_case(key) })
 
       "#<#{self.class}:#{'0x0000%x' % (object_id << 1)} id=#{id} #{json}>"
     end
@@ -60,10 +60,6 @@ module Payrix
 
         instance_variable_set(ivar, @data[@key_mapping[attribute.to_s]].map { |object| type.new(object) })
       end
-    end
-
-    def snake_case(string)
-      string.gsub(/(.)([A-Z])/, '\1_\2').downcase
     end
   end
 end
