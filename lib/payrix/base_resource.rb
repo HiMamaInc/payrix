@@ -23,28 +23,9 @@ module Payrix
     end
 
     def inspect
-      attributes = @key_mapping.keys.sort.map do |key|
-        value = @data[@key_mapping[key]]
+      json = JSON.pretty_generate(@data.transform_keys { |key| snake_case(key) })
 
-        case value
-          when NilClass
-            "#{key}: nil"
-          when String
-            "#{key}: \"#{value}\""
-          when Hash
-            id = value['id']
-
-            if id
-              "#{key}: \"#{id}\""
-            else
-              "#{key}: #{value}"
-            end
-          else
-            "#{key}: #{value}"
-        end
-      end
-
-      "#<#{self.class}:#{'0x0000%x' % (object_id << 1)} #{attributes.join(', ')}>"
+      "#<#{self.class}:#{'0x0000%x' % (object_id << 1)} id=#{id} #{json}>"
     end
 
     private
