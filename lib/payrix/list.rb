@@ -31,7 +31,9 @@ module Payrix
 
       @response = Http::Response.new(json, status, @klass)
       @responses.push(@response)
-      @data += @response.data.map { |resource| @klass.new(resource) }
+      @data += @response.data.map do |resource|
+        Payrix::Object.new(resource, @klass.to_s.gsub('Payrix::', ''))
+      end
     end
 
     def each(&block)

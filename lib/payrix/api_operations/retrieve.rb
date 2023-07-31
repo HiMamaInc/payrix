@@ -28,7 +28,7 @@ module Payrix
           raise Payrix::Exceptions::ResourceNotFound, "Couldn't find #{self} with id='#{id}'"
         end
 
-        new(response.data.first)
+        Payrix::Object.new(response.data.first, self.to_s.gsub('Payrix::', ''))
       end
     end
   end

@@ -52,7 +52,6 @@ RSpec.describe Payrix::APIOperations::Retrieve do
 
         txn = Txn.retrieve('t1_txn_64026b07cc6a79dd5cfd0da')
 
-        expect(txn).to be_a(Txn)
         expect(txn.id).to eq('t1_txn_64026b07cc6a79dd5cfd0da')
         expect(txn.status).to eq(1)
       end
@@ -68,7 +67,6 @@ RSpec.describe Payrix::APIOperations::Retrieve do
 
         txn = Txn.retrieve('t1_txn_64026b07cc6a79dd5cfd0da', { expand: ['merchant'] })
 
-        expect(txn).to be_a(Txn)
         expect(txn.id).to eq('t1_txn_64026b07cc6a79dd5cfd0da')
         expect(txn.status).to eq(1)
       end
