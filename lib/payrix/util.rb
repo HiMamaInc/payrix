@@ -20,5 +20,20 @@ module Payrix
           data
       end
     end
+
+    def self.recursive_snake_case(object)
+      case object
+        when Hash
+          object.each_with_object({}) do |(key, value), hash|
+            hash[Util.snake_case(key.to_s)] = Util.recursive_snake_case(value)
+          end
+        when Array
+          object.map do |item|
+            Util.recursive_snake_case(item)
+          end
+        else
+          object
+      end
+    end
   end
 end

@@ -17,7 +17,7 @@ module Payrix
     def inspect
       resource = " resource=#{@resource}" if @resource
       id_string = " id=#{id}" if respond_to?(:id)
-      json = JSON.pretty_generate(@_data)
+      json = JSON.pretty_generate(Util.recursive_snake_case(@_data))
 
       "#<#{self.class}:#{'0x0000%x' % (object_id << 1)}#{resource}#{id_string} #{json}>"
     end
