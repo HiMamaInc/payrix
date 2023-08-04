@@ -6,23 +6,7 @@ module Payrix
           raise Payrix::Exceptions::ResourceNotFound, "Couldn't find #{self} without ID"
         end
 
-        api_key = options[:api_key] || Payrix.configuration.api_key
-        expand = Payrix::Expand.construct(options[:expand] || [])
-        search = Payrix::Search.construct(id: id)
-
-        json, status = Http::Request.instance.send_http(
-          'get',
-          Payrix.configuration.url,
-          "#{self::RESOURCE_ENDPOINT}?#{expand}",
-          {},
-          {
-            'Content-Type' => 'application/json',
-            'APIKEY' => api_key,
-            'SEARCH' => search,
-          }
-        )
-
-        response = Http::Response.new(json, status, self)
+        response = Payrix::Util.get(klass: self, filters: { id: id }, options: options)
 
         if response.data.first.nil?
           raise Payrix::Exceptions::ResourceNotFound, "Couldn't find #{self} with id='#{id}'"

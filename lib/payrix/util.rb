@@ -35,5 +35,25 @@ module Payrix
           object
       end
     end
+
+    def self.get(klass:, filters: {}, options: {})
+      paginate = Payrix::Paginate.construct(options[:page])
+      expand = Payrix::Expand.construct(options[:expand] || [])
+      search = Payrix::Search.construct(filters)
+
+      json, status = Http::Request.instance.send_http(
+        'get',
+        Payrix.configuration.url,
+        "#{klass::RESOURCE_ENDPOINT}?#{paginate}#{expand}",
+        {},
+        {
+          'Content-Type' => 'application/json',
+          'APIKEY' => options[:api_key] || Payrix.configuration.api_key,
+          'SEARCH' => search,
+        },
+      )
+
+      response = Http::Response.new(json, status, klass)
+    end
   end
 end

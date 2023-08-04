@@ -67,24 +67,12 @@ module Payrix
     private
 
     def request_more
-      paginate = Payrix::Paginate.construct(@current_page)
-      search = Payrix::Search.construct(@filters)
-      expand = Payrix::Expand.construct(@options[:expand] || [])
-      api_key = @options[:api_key] || Payrix.configuration.api_key
-
-      json, status = Http::Request.instance.send_http(
-        'get',
-        Payrix.configuration.url,
-        "#{@klass::RESOURCE_ENDPOINT}?#{paginate}#{expand}",
-        {},
-        {
-          'Content-Type' => 'application/json',
-          'APIKEY' => api_key,
-          'SEARCH' => search,
-        },
-      )
-
-      response = Http::Response.new(json, status, @klass)
+      response =
+        Payrix::Util.get(
+          klass: @klass,
+          filters: @filters,
+          options: @options.merge(page: @current_page),
+        )
 
       @more = response.has_more?
       @current_data = response.data.map do |resource|
