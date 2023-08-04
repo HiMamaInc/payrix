@@ -8,7 +8,7 @@ module Payrix
 
       @_data.each do |key, value|
         parsed_key = Util.snake_case(key.to_s)
-        parsed_value = value.is_a?(Hash) ? Payrix::Object.new(value) : value
+        parsed_value = Util.instantiate_object(value)
 
         define_singleton_method(parsed_key) { parsed_value }
       end
