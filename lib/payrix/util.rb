@@ -6,8 +6,8 @@ module Payrix
       end
     end
 
-    def self.snake_case(string)
-      string.gsub(/(.)([A-Z])/, '\1_\2').downcase
+    def self.snake_case(camel_cased_string)
+      camel_cased_string.gsub(/(.)([A-Z])/, '\1_\2').downcase
     end
 
     def self.instantiate_object(data, resource = nil)
