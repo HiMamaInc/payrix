@@ -1,9 +1,7 @@
 module Payrix
   module Util
-    def self.camel_case(snake_cased_string)
-      snake_cased_string.split('_').inject do |part1, part2|
-        part1 + part2.capitalize
-      end
+    def self.camel_case(string)
+      string.split('_').inject { |part1, part2| part1 + part2.capitalize }
     end
 
     def self.snake_case(camel_cased_string)
