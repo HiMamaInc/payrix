@@ -8,7 +8,7 @@ module Payrix
 
         api_key = options[:api_key] || Payrix.configuration.api_key
         expand = Payrix::Expand.construct(options[:expand] || [])
-        search = Payrix::Search.equals(:id, id).construct
+        search = Payrix::Search.construct(id: id)
 
         json, status = Http::Request.instance.send_http(
           'get',
