@@ -8,6 +8,7 @@ The implementation and interface of this library takes inspiration from the
 - Easy configuration (with optional thread-safe configuration)
 - Helpers to assist with pagination
 - Built-in bi-directional translation between camel-case and snake-case fields
+- Few runtime dependencies
 
 ## Installation
 
