@@ -1,0 +1,13 @@
+AllCops:
+  SuggestExtensions: false
+  NewCops: enable
+  Exclude:
+    - 'lib/payrix/resource/**/*.rb'
+    - 'lib/payrix/resource.rb'
+    - 'spec/lib/payrix/**/*.rb'
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
