@@ -28,10 +28,14 @@ module Payrix
       expand = Payrix::Expand.construct(options[:expand] || [])
       search = Payrix::Search.construct(filters)
 
+      endpoint = klass::RESOURCE_ENDPOINT + '?'
+      endpoint += paginate if options[:page]
+      endpoint += expand
+
       json, status = Http::Request.instance.send_http(
         'get',
         Payrix.configuration.url,
-        "#{klass::RESOURCE_ENDPOINT}?#{paginate}#{expand}",
+        endpoint,
         {},
         {
           'Content-Type' => 'application/json',
