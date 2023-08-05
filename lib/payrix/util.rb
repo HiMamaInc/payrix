@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Payrix
   module Util
     def self.camel_case(string)

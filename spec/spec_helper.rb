@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'payrix'
 require 'webmock/rspec'
 require 'pry'

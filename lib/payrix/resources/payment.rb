@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Payrix
   class Payment
     METHOD_AMERICAN_EXPRESS = 1

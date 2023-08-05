@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'payrix/resources/account'
 require 'payrix/resources/account_verification'
 require 'payrix/resources/adjustment'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Payrix
   module Exceptions
     autoload :Base, 'payrix/exceptions/base'

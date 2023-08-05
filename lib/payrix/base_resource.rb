@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Payrix
   class BaseResource
     extend Payrix::APIOperations::Retrieve

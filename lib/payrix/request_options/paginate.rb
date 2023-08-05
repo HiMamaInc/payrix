@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Payrix
   module Paginate
     def self.construct(page)

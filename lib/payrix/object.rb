@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Payrix
   class Object
     attr_reader :data

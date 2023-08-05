@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Payrix
   class Entity < BaseResource
     RESOURCE_ENDPOINT = 'entities'
