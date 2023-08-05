@@ -134,11 +134,7 @@ module Payrix
         set(params)
 
         if !id
-          if Payrix.configuration.exception_enabled
-            raise Payrix::Exceptions::InvalidRequest.new('ID is required for this action')
-          else
-            return false
-          end
+          raise Payrix::Exceptions::InvalidRequest.new('ID is required for this action')
         end
 
         headers = build_headers
@@ -158,11 +154,7 @@ module Payrix
         set(params)
 
         if !id
-          if Payrix.configuration.exception_enabled
-            raise Payrix::Exceptions::InvalidRequest.new('ID is required for this delete')
-          else
-            return false
-          end
+          raise Payrix::Exceptions::InvalidRequest.new('ID is required for this delete')
         end
 
         headers = build_headers
@@ -206,13 +198,7 @@ module Payrix
 
       def validate_response
         if @response.has_errors?
-          if Payrix.configuration.exception_enabled
-            raise Payrix::Exceptions::ApiError.new("There are errors in the response, #{@response.errors}")
-          end
-
-          false
-        else
-          true
+          raise Payrix::Exceptions::ApiError.new("There are errors in the response, #{@response.errors}")
         end
       end
 

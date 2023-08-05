@@ -40,7 +40,7 @@ module Payrix
         rescue Faraday::ClientError => e
           raise Payrix::Exceptions::Connection.new('')
         rescue JSON::ParserError
-          raise Payrix::Exceptions::InvalidResponse.new('Invalid response object') if Payrix.configuration.exception_enabled
+          raise Payrix::Exceptions::InvalidResponse.new('Invalid response object')
         end
       end
 
