@@ -5,7 +5,7 @@ module Payrix
     class Response
       attr_reader :status
 
-      def initialize(response = {}, status = '', cls)
+      def initialize(response, status, cls)
         @response = response
         @status = status
         @cls = cls
