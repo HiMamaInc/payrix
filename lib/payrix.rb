@@ -1,10 +1,10 @@
 require 'json'
 
-require "payrix/version"
-require "payrix/configuration"
-require "payrix/exceptions"
-require "payrix/http"
-require "payrix/resource"
+require 'payrix/version'
+require 'payrix/configuration'
+require 'payrix/exceptions'
+require 'payrix/http'
+require 'payrix/resource'
 require 'payrix/util'
 require 'payrix/object'
 require 'payrix/list'
