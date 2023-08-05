@@ -6,16 +6,16 @@ module Payrix
       search = ''
 
       case filter
-        when Hash
-          return search if filter.empty?
+      when Hash
+        return search if filter.empty?
 
-          filter.each do |key, value|
-            search += Payrix::Search.equals(key, value).construct
-          end
-        when Payrix::Search::Node
-          search += filter.construct
-        else
-          raise ArgumentError, 'Search parameter must be a hash or an instance of Payrix::Search::Node'
+        filter.each do |key, value|
+          search += Payrix::Search.equals(key, value).construct
+        end
+      when Payrix::Search::Node
+        search += filter.construct
+      else
+        raise ArgumentError, 'Search parameter must be a hash or an instance of Payrix::Search::Node'
       end
 
       search
@@ -47,7 +47,7 @@ module Payrix
 
     class Equals < Node
       def initialize(field, value)
-        value = value == '' || value == nil ? "''" : value
+        value = "''" if ['', nil].include?(value)
 
         super(field, 'equals', value)
       end
@@ -55,7 +55,7 @@ module Payrix
 
     class Greater < Node
       def initialize(field, value)
-        value = value == '' || value == nil ? "''" : value
+        value = "''" if ['', nil].include?(value)
 
         super(field, 'greater', value)
       end
@@ -63,7 +63,7 @@ module Payrix
 
     class Less < Node
       def initialize(field, value)
-        value = value == '' || value == nil ? "''" : value
+        value = "''" if ['', nil].include?(value)
 
         super(field, 'less', value)
       end

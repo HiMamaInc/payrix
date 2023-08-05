@@ -20,24 +20,24 @@ module Payrix
 
     def self.instantiate_from(data)
       case data
-        when Hash
-          new(data)
-        when Array
-          data.map do |item|
-            instantiate_from(item)
-          end
-        else
-          data
+      when Hash
+        new(data)
+      when Array
+        data.map do |item|
+          instantiate_from(item)
+        end
+      else
+        data
       end
     end
 
     def inspect
-      parts = ["#<#{self.class}:#{'0x0000%x' % (object_id << 1)}"]
+      parts = ["#<#{self.class}:#{format('0x0000%x', (object_id << 1))}"]
 
       parts.append("id=#{id}") if respond_to?(:id)
       parts.append(JSON.pretty_generate(Payrix::Util.recursive_snake_case(@data)))
 
-      parts.join(' ') + '>'
+      "#{parts.join(' ')}>"
     end
   end
 end

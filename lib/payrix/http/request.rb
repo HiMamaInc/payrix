@@ -11,19 +11,16 @@ module Payrix
     class Request
       include Singleton
 
-      def initialize
-      end
-
       def send_http(method, base_url, endpoint, data = {}, headers = {}, timeout = 30)
-        conn = Faraday.new(url: base_url) do |conn|
-          conn.response :follow_redirects, limit: 3
+        conn = Faraday.new(url: base_url) do |connection|
+          connection.response :follow_redirects, limit: 3
 
-          conn.headers = headers
-          conn.options.timeout = timeout
-          conn.options.open_timeout = timeout
+          connection.headers = headers
+          connection.options.timeout = timeout
+          connection.options.open_timeout = timeout
 
-          conn.request :json
-          conn.adapter Faraday.default_adapter
+          connection.request :json
+          connection.adapter Faraday.default_adapter
         end
 
         begin
@@ -33,19 +30,20 @@ module Payrix
           status = response.status
 
           raise Payrix::Exceptions::InvalidAuthentication, 'Invalid authentication token' if status == 401
-          raise Payrix::Exceptions::InvalidRequest.new("Invalid request, status code: #{status}") if status == 400 || status == 404
-          raise Payrix::Exceptions::Base.new(body) if status < 200 || status > 299
+          if [400, 404].include?(status)
+            raise Payrix::Exceptions::InvalidRequest, "Invalid request, status code: #{status}"
+          end
+          raise Payrix::Exceptions::Base, body if status < 200 || status > 299
 
           json = JSON.parse(body)
 
-          return json, status
-        rescue Faraday::ClientError => e
-          raise Payrix::Exceptions::Connection.new('')
+          [json, status]
+        rescue Faraday::ClientError
+          raise Payrix::Exceptions::Connection, ''
         rescue JSON::ParserError
-          raise Payrix::Exceptions::InvalidResponse.new('Invalid response object')
+          raise Payrix::Exceptions::InvalidResponse, 'Invalid response object'
         end
       end
-
     end
   end
 end

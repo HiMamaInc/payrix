@@ -3,9 +3,7 @@
 module Payrix
   module Expand
     def self.construct(expand)
-      if !expand.is_a?(Array)
-        raise ArgumentError, 'Expand parameter must be an array of strings'
-      end
+      raise ArgumentError, 'Expand parameter must be an array of strings' unless expand.is_a?(Array)
 
       expand
         .map do |field|

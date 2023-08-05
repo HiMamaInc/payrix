@@ -2,6 +2,7 @@ AllCops:
   SuggestExtensions: false
   NewCops: enable
   Exclude:
+    - 'lib/payrix/http/request_params.rb'
     - 'lib/payrix/resource/**/*.rb'
     - 'lib/payrix/resource.rb'
     - 'spec/lib/payrix/**/*.rb'
@@ -11,3 +12,18 @@ Style/TrailingCommaInArguments:
 
 Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: comma
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented_relative_to_receiver
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/ParameterLists:
+  Enabled: false

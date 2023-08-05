@@ -38,7 +38,7 @@ module Payrix
         page_forward
         each(&block)
 
-        break if !more?
+        break unless more?
       end
     end
 
@@ -63,7 +63,7 @@ module Payrix
     end
 
     def inspect
-      "#<#{self.class}:#{'0x0000%x' % (object_id << 1)} resource=#{@klass} page=#{@current_page} count=#{@current_data.count}>"
+      "#<#{self.class}:#{format('0x0000%x', (object_id << 1))} page=#{@current_page} count=#{@current_data.count}>"
     end
 
     private

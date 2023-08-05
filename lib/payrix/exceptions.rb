@@ -11,4 +11,3 @@ module Payrix
     autoload :InvalidAuthentication, 'payrix/exceptions/invalid_authentication'
   end
 end
-
