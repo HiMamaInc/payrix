@@ -1,25 +1,41 @@
 module Payrix
   class Object
-    attr_reader :_data
+    attr_reader :data
 
-    def initialize(data = {}, resource = nil)
-      @_data = data
-      @resource = resource
+    def initialize(data)
+      @data = data
 
-      @_data.each do |key, value|
-        parsed_key = Util.snake_case(key.to_s)
-        parsed_value = Util.instantiate_object(value)
+      @data.each do |key, value|
+        parsed_key = Payrix::Util.snake_case(key.to_s)
+        parsed_value = self.class.instantiate_from(value)
 
         define_singleton_method(parsed_key) { parsed_value }
       end
     end
 
-    def inspect
-      resource = " resource=#{@resource}" if @resource
-      id_string = " id=#{id}" if respond_to?(:id)
-      json = JSON.pretty_generate(Util.recursive_snake_case(@_data))
+    # Only support creating an instance of Payrix::Object through .instantiate_from.
+    private_class_method :new
 
-      "#<#{self.class}:#{'0x0000%x' % (object_id << 1)}#{resource}#{id_string} #{json}>"
+    def self.instantiate_from(data)
+      case data
+        when Hash
+          new(data)
+        when Array
+          data.map do |item|
+            instantiate_from(item)
+          end
+        else
+          data
+      end
+    end
+
+    def inspect
+      parts = ["#<#{self.class}:#{'0x0000%x' % (object_id << 1)}"]
+
+      parts.append("id=#{id}") if respond_to?(:id)
+      parts.append(JSON.pretty_generate(Payrix::Util.recursive_snake_case(@data)))
+
+      parts.join(' ') + '>'
     end
   end
 end

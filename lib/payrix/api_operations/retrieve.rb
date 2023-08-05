@@ -12,7 +12,7 @@ module Payrix
           raise Payrix::Exceptions::ResourceNotFound, "Couldn't find #{self} with id='#{id}'"
         end
 
-        Payrix::Util.instantiate_object(response.data.first, self.to_s.gsub('Payrix::', ''))
+        Payrix::Object.instantiate_from(response.data.first)
       end
     end
   end

@@ -75,9 +75,7 @@ module Payrix
         )
 
       @more = response.has_more?
-      @current_data = response.data.map do |resource|
-        Payrix::Object.new(resource, @klass.to_s.gsub('Payrix::', ''))
-      end
+      @current_data = Payrix::Object.instantiate_from(response.data)
 
       self
     end
