@@ -1,11 +1,15 @@
+require:
+  - rubocop-rspec
+
 AllCops:
+  TargetRubyVersion: 2.7
   SuggestExtensions: false
   NewCops: enable
   Exclude:
     - 'lib/payrix/http/request_params.rb'
     - 'lib/payrix/resource/**/*.rb'
     - 'lib/payrix/resource.rb'
-    - 'spec/lib/payrix/**/*.rb'
+    - 'spec/lib/payrix/resource/**/*.rb'
 
 Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: comma
@@ -27,3 +31,21 @@ Metrics/AbcSize:
 
 Metrics/ParameterLists:
   Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/FilePath:
+  Enabled: false
+
+Style/WordArray:
+  EnforcedStyle: brackets
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+RSpec/NestedGroups:
+  Max: 4

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Payrix::Configuration do
   it 'supports setting an API key' do
     configuration = described_class.new

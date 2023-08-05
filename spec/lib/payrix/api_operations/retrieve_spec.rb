@@ -1,8 +1,13 @@
-RSpec.describe Payrix::APIOperations::Retrieve do
-  Txn = Class.new(Payrix::BaseResource) do
-    self::RESOURCE_ENDPOINT = 'txns'
+# frozen_string_literal: true
 
-    extend Payrix::APIOperations::Retrieve
+RSpec.describe Payrix::APIOperations::Retrieve do
+  before do
+    klass = Class.new(Payrix::BaseResource) do
+      extend Payrix::APIOperations::Retrieve
+    end
+
+    stub_const('Txn', klass)
+    stub_const('Txn::RESOURCE_ENDPOINT', 'txns')
   end
 
   describe '.retrieve' do
@@ -53,7 +58,7 @@ RSpec.describe Payrix::APIOperations::Retrieve do
             .stub_request(:get, 'https://api.payrix.com/txns')
             .with(
               headers: {
-                'Search' => "id[equals]=t1_txn_64026b07cc6a79dd5cfd0da&",
+                'Search' => 'id[equals]=t1_txn_64026b07cc6a79dd5cfd0da&',
               },
             )
             .to_return(
@@ -75,12 +80,12 @@ RSpec.describe Payrix::APIOperations::Retrieve do
               }.to_json,
             )
 
-            expect { Txn.retrieve('t1_txn_64026b07cc6a79dd5cfd0da') }.to(
-              raise_error(
-                Payrix::Exceptions::ResourceNotFound,
-                "Couldn't find Txn with id='t1_txn_64026b07cc6a79dd5cfd0da'",
-              ),
-            )
+          expect { Txn.retrieve('t1_txn_64026b07cc6a79dd5cfd0da') }.to(
+            raise_error(
+              Payrix::Exceptions::ResourceNotFound,
+              "Couldn't find Txn with id='t1_txn_64026b07cc6a79dd5cfd0da'",
+            ),
+          )
         end
       end
 
@@ -90,7 +95,7 @@ RSpec.describe Payrix::APIOperations::Retrieve do
             .stub_request(:get, 'https://api.payrix.com/txns')
             .with(
               headers: {
-                'Search' => "id[equals]=t1_txn_64026b07cc6a79dd5cfd0da&",
+                'Search' => 'id[equals]=t1_txn_64026b07cc6a79dd5cfd0da&',
               },
             )
             .to_return(
@@ -130,7 +135,7 @@ RSpec.describe Payrix::APIOperations::Retrieve do
             .stub_request(:get, 'https://api.payrix.com/txns?expand[merchant][]=')
             .with(
               headers: {
-                'Search' => "id[equals]=t1_txn_64026b07cc6a79dd5cfd0da&",
+                'Search' => 'id[equals]=t1_txn_64026b07cc6a79dd5cfd0da&',
               },
             )
             .to_return(

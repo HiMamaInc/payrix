@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Payrix::Util do
   describe '.camel_case' do
     context 'when given a snake-cased string' do
