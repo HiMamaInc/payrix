@@ -4,16 +4,12 @@ require 'uri'
 
 module Payrix
   class Configuration
-    attr_accessor :api_key, :session_key
+    attr_accessor :api_key, :session_key, :test_mode
 
     def initialize
       @api_key = ''
       @session_key = ''
       @test_mode = false
-    end
-
-    def set_test_mode(test_mode)
-      @test_mode = test_mode
     end
 
     def url

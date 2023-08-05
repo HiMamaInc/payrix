@@ -24,7 +24,7 @@ module Payrix
         @response['errors'] || (@response['response'] && @response['response']['errors']) || []
       end
 
-      def has_errors?
+      def errors?
         !errors.empty?
       end
 
@@ -40,7 +40,7 @@ module Payrix
         @response['response'] && @response['response']['details'] && @response['response']['details']['page']
       end
 
-      def has_more?
+      def more?
         page['hasMore']
       end
     end

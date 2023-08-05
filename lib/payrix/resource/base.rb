@@ -56,8 +56,8 @@ module Payrix
         @response.nil? ? false : @response.status
       end
 
-      def has_errors?
-        @response.nil? ? false : @response.has_errors?
+      def errors?
+        @response.nil? ? false : @response.errors?
       end
 
       def response
@@ -72,8 +72,8 @@ module Payrix
         @response.nil? ? [] : @response.totals
       end
 
-      def has_more?
-        @response.nil? ? true : @response.has_more?
+      def more?
+        @response.nil? ? true : @response.more?
       end
 
       def retrieve(params = {})
@@ -197,7 +197,7 @@ module Payrix
       end
 
       def validate_response
-        if @response.has_errors?
+        if @response.errors?
           raise Payrix::Exceptions::ApiError.new("There are errors in the response, #{@response.errors}")
         end
       end

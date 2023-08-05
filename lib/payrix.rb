@@ -29,7 +29,7 @@ module Payrix
   end
 
   def self.test_mode=(test_mode)
-    configuration.set_test_mode(test_mode)
+    configuration.test_mode = test_mode
   end
 
   def self.configure

@@ -76,7 +76,7 @@ module Payrix
           options: @options.merge(page: @current_page),
         )
 
-      @more = response.has_more?
+      @more = response.more?
       @current_data = Payrix::Object.instantiate_from(response.data)
 
       self

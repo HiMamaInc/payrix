@@ -26,7 +26,7 @@ RSpec.describe Payrix::Configuration do
       it 'returns https://test-api.payrix.com' do
         configuration = described_class.new
 
-        configuration.set_test_mode(true)
+        configuration.test_mode = true
 
         expect(configuration.url).to eq('https://test-api.payrix.com')
       end
@@ -36,7 +36,7 @@ RSpec.describe Payrix::Configuration do
       it 'returns https://api.payrix.com' do
         configuration = described_class.new
 
-        configuration.set_test_mode(false)
+        configuration.test_mode = false
 
         expect(configuration.url).to eq('https://api.payrix.com')
       end
