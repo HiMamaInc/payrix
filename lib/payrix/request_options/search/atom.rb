@@ -4,6 +4,8 @@ module Payrix
   module RequestOptions
     module Search
       class Atom < Node
+        attr_reader :field, :operator, :value
+
         def initialize(field, operator, value)
           @field = field
           @operator = operator
