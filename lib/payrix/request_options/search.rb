@@ -3,6 +3,7 @@
 require 'payrix/request_options/search/node'
 require 'payrix/request_options/search/atom'
 require 'payrix/request_options/search/equals'
+require 'payrix/request_options/search/greater'
 
 module Payrix
   module Search
