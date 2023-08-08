@@ -26,9 +26,9 @@ module Payrix
     end
 
     def self.get(klass:, filters: {}, options: {})
-      paginate = Payrix::Paginate.construct(options[:page])
-      expand = Payrix::Expand.construct(options[:expand] || [])
-      search = Payrix::Search.construct(filters)
+      paginate = Payrix::RequestOptions::Paginate.construct(options[:page])
+      expand = Payrix::RequestOptions::Expand.construct(options[:expand] || [])
+      search = Payrix::RequestOptions::Search.construct(filters)
 
       endpoint = "#{klass::RESOURCE_ENDPOINT}?"
       endpoint += paginate if options[:page]

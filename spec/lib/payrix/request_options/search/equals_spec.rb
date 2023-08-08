@@ -14,7 +14,7 @@ RSpec.describe Payrix::RequestOptions::Search::Equals do
       it 'returns an valid equals search argument' do
         equals = described_class.new(:field, 0)
 
-        expect(equals.construct).to eq("field[equals]=0")
+        expect(equals.construct).to eq('field[equals]=0')
       end
     end
 
@@ -30,7 +30,7 @@ RSpec.describe Payrix::RequestOptions::Search::Equals do
       it 'returns an valid equals search argument' do
         equals = described_class.new(:field, 'value')
 
-        expect(equals.construct).to eq("field[equals]=value")
+        expect(equals.construct).to eq('field[equals]=value')
       end
     end
   end

@@ -14,6 +14,8 @@ module Payrix
           validate_field
           validate_operator
           validate_value
+
+          super()
         end
 
         def construct(prefix = '')

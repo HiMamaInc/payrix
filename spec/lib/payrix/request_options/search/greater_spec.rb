@@ -14,7 +14,7 @@ RSpec.describe Payrix::RequestOptions::Search::Greater do
       it 'returns an valid greater search argument' do
         greater = described_class.new(:field, 0)
 
-        expect(greater.construct).to eq("field[greater]=0")
+        expect(greater.construct).to eq('field[greater]=0')
       end
     end
 
@@ -30,7 +30,7 @@ RSpec.describe Payrix::RequestOptions::Search::Greater do
       it 'returns an valid greater search argument' do
         greater = described_class.new(:field, 'value')
 
-        expect(greater.construct).to eq("field[greater]=value")
+        expect(greater.construct).to eq('field[greater]=value')
       end
     end
   end

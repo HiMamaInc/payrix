@@ -11,26 +11,8 @@ AllCops:
     - 'lib/payrix/resource.rb'
     - 'spec/lib/payrix/resource/**/*.rb'
 
-Style/TrailingCommaInArguments:
-  EnforcedStyleForMultiline: comma
-
-Style/TrailingCommaInHashLiteral:
-  EnforcedStyleForMultiline: comma
-
-Style/Documentation:
-  Enabled: false
-
-Metrics/MethodLength:
-  Enabled: false
-
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented_relative_to_receiver
-
-Metrics/AbcSize:
-  Enabled: false
-
-Metrics/ParameterLists:
-  Enabled: false
 
 RSpec/ExampleLength:
   Enabled: false
@@ -38,14 +20,14 @@ RSpec/ExampleLength:
 RSpec/MultipleExpectations:
   Enabled: false
 
-RSpec/FilePath:
-  Enabled: false
-
-Style/WordArray:
-  EnforcedStyle: brackets
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
 
 Style/TrailingCommaInArrayLiteral:
   EnforcedStyleForMultiline: comma
 
-RSpec/NestedGroups:
-  Max: 4
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/WordArray:
+  EnforcedStyle: brackets

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable RSpec/RepeatedExampleGroupBody TODO: Refactor specs to remove duplicates
 RSpec.describe Payrix::RequestOptions::Search::Atom do
   describe '#initialize' do
     context 'when the field is nil' do
@@ -321,3 +322,4 @@ RSpec.describe Payrix::RequestOptions::Search::Atom do
     end
   end
 end
+# rubocop:enable RSpec/RepeatedExampleGroupBody

@@ -14,7 +14,7 @@ RSpec.describe Payrix::RequestOptions::Search::Less do
       it 'returns an valid less search argument' do
         less = described_class.new(:field, 0)
 
-        expect(less.construct).to eq("field[less]=0")
+        expect(less.construct).to eq('field[less]=0')
       end
     end
 
@@ -30,7 +30,7 @@ RSpec.describe Payrix::RequestOptions::Search::Less do
       it 'returns an valid less search argument' do
         less = described_class.new(:field, 'value')
 
-        expect(less.construct).to eq("field[less]=value")
+        expect(less.construct).to eq('field[less]=value')
       end
     end
   end

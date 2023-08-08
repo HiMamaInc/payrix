@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Payrix::Expand do
+RSpec.describe Payrix::RequestOptions::Expand do
   describe '.construct' do
     context 'when the expand argument is nil' do
       it 'raises ArgumentError' do
