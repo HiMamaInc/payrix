@@ -2,6 +2,7 @@
 
 require 'payrix/request_options/search/node'
 require 'payrix/request_options/search/atom'
+require 'payrix/request_options/search/equals'
 
 module Payrix
   module Search
