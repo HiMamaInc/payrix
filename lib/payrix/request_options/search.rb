@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'payrix/request_options/search/node'
+require 'payrix/request_options/search/atom'
 
 module Payrix
   module Search
