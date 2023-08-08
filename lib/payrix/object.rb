@@ -37,7 +37,7 @@ module Payrix
       parts.append("id=#{id}") if respond_to?(:id)
       parts.append(JSON.pretty_generate(Payrix::Util.recursive_snake_case(@data)))
 
-      "#{parts.join(' ')}>"
+      "#{parts.join(' ')}>".dup
     end
   end
 end
