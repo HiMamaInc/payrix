@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'payrix/request_options/search/node'
+
 module Payrix
   module Search
     def self.construct(filter)
