@@ -25,6 +25,21 @@ module Payrix
       end
     end
 
+    def self.recursive_camel_case(object)
+      case object
+      when Hash
+        object.each_with_object({}) do |(key, value), hash|
+          hash[Util.camel_case(key.to_s)] = Util.recursive_camel_case(value)
+        end
+      when Array
+        object.map do |item|
+          Util.recursive_camel_case(item)
+        end
+      else
+        object
+      end
+    end
+
     def self.get(klass:, filters: {}, options: {})
       paginate = Payrix::RequestOptions::Paginate.construct(options[:page])
       expand = Payrix::RequestOptions::Expand.construct(options[:expand] || [])
