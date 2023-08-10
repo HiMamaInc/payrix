@@ -3,5 +3,7 @@
 module Payrix
   class MessageThread < BaseResource
     RESOURCE_ENDPOINT = 'messageThreads'
+
+    extend Payrix::APIOperations::DeleteDisabled
   end
 end

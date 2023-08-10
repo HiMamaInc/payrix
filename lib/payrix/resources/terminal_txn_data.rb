@@ -3,5 +3,7 @@
 module Payrix
   class TerminalTxnData < BaseResource
     RESOURCE_ENDPOINT = 'terminalTxnDatas'
+
+    extend Payrix::APIOperations::DeleteDisabled
   end
 end

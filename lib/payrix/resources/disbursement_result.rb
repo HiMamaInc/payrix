@@ -3,5 +3,7 @@
 module Payrix
   class DisbursementResult < BaseResource
     RESOURCE_ENDPOINT = 'disbursementResults'
+
+    extend Payrix::APIOperations::DeleteDisabled
   end
 end

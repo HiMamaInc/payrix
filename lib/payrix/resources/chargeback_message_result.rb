@@ -3,5 +3,7 @@
 module Payrix
   class ChargebackMessageResult < BaseResource
     RESOURCE_ENDPOINT = 'chargebackMessageResults'
+
+    extend Payrix::APIOperations::DeleteDisabled
   end
 end

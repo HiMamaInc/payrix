@@ -33,5 +33,7 @@ module Payrix
     COF_TYPE_SINGLE = 'single'
     COF_TYPE_SCHEDULED = 'scheduled'
     COF_TYPE_UNSCHEDULED = 'unscheduled'
+
+    extend Payrix::APIOperations::DeleteDisabled
   end
 end
