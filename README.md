@@ -149,6 +149,34 @@ merchant = Payrix::Merchant.retrieve('t1_mer_620acd189522582b3fb7849', { expand:
 merchant.entity.id # => "t1_ent_620acd189522582b3fb7848"
 ```
 
+Use dot notation to expand nested resources.
+
+```ruby
+merchant = Payrix::Merchant.retrieve('t1_mer_620acd189522582b3fb7849', { expand: ['entity.org_entities'] })
+
+merchant.entity.id # => "t1_ent_620acd189522582b3fb7848"
+merchant.entity.org_entities[0].id # => "t1_oet_620acd189522582b3fb78b8"
+```
+
+To expand nested resources on an array, add a `[]` before the nested resource.
+
+```ruby
+merchant = Payrix::Merchant.retrieve('t1_mer_620acd189522582b3fb7849', { expand: ['entity.org_entities[].org'] })
+
+merchant.entity.id # => "t1_ent_620acd189522582b3fb7848"
+merchant.entity.org_entities[0].id # => "t1_oet_620acd189522582b3fb78b8"
+merchant.entity.org_entities[0].org.id # => "t1_org_620acd189522582b3fb78b8"
+```
+
+Pass multiple strings to expand over multiple nested resources.
+
+```ruby
+merchant = Payrix::Merchant.retrieve('t1_mer_620acd189522582b3fb7849', { expand: ['entity', 'members'] })
+
+merchant.entity.id # => "t1_ent_620acd189522582b3fb7848"
+merchant.members # => [...}
+```
+
 ### Per Request Configuration
 
 Pass in `:api_key` to set the API key used per request.
