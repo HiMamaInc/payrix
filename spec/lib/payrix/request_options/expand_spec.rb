@@ -59,5 +59,13 @@ RSpec.describe Payrix::RequestOptions::Expand do
         )
       end
     end
+
+    it do
+      expand = ['merchant.entity.org_entities[].org.org_entities[].entity']
+
+      expect(described_class.construct(expand)).to(
+        eq('expand[merchant][entity][orgEntities][0][org][orgEntities][0][entity][]='),
+      )
+    end
   end
 end
