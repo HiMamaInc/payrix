@@ -122,7 +122,13 @@ Coming soon ..
 
 ### Delete
 
-Coming soon ..
+Delete a single resource by ID.
+
+```ruby
+Payrix::Merchant.delete('t1_mer_620acd189522582b3fb7849')
+```
+
+This operation is idempotent. Multiple calls using the same ID will not raise an error. The first time this is called, the resource will be returned from this operation. Subsequent calls will return `nil`.
 
 ### Options
 
