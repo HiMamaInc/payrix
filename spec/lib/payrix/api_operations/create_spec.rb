@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.describe Payrix::APIOperations::Delete do
+RSpec.describe Payrix::APIOperations::Create do
   before do
     klass = Class.new(Payrix::BaseResource) do
-      extend Payrix::APIOperations::Delete
+      extend Payrix::APIOperations::Create
     end
 
     stub_const('Txn', klass)
@@ -92,7 +92,7 @@ RSpec.describe Payrix::APIOperations::Delete do
             )
 
         expect { Txn.create({ total: -1, cof_type: 'single' }) }.to(
-          raise_error(Payrix::ApiError)
+          raise_error(Payrix::ApiError),
         )
 
         expect(stub).to have_been_requested
@@ -218,7 +218,7 @@ RSpec.describe Payrix::APIOperations::Delete do
               }.to_json,
             )
 
-        txn = Txn.create({ total: 100_00, cof_type: 'single' }, { api_key: 'my-personal-key' })
+        Txn.create({ total: 100_00, cof_type: 'single' }, { api_key: 'my-personal-key' })
 
         expect(stub).to have_been_requested
       end

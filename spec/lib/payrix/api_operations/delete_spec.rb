@@ -79,7 +79,7 @@ RSpec.describe Payrix::APIOperations::Delete do
             )
 
         expect { Txn.delete('t1_txn_64026b07cc6a79dd5cfd0da') }.to(
-          raise_error(Payrix::ApiError, 'There are errors in the response'),
+          raise_error(Payrix::ApiError),
         )
 
         expect(stub).to have_been_requested

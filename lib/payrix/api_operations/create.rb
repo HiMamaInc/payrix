@@ -6,7 +6,7 @@ module Payrix
       def create(fields, options = {})
         raise ArgumentError, "#{self}.create takes a hash argument" unless fields.is_a?(Hash)
 
-        expand = Payrix::RequestOptions::Expand.construct(options[:expand] ||[])
+        expand = Payrix::RequestOptions::Expand.construct(options[:expand] || [])
 
         json, status = Http::Request.instance.send_http(
           'post',
@@ -21,9 +21,7 @@ module Payrix
 
         response = Http::Response.new(json, status, self)
 
-        if response.errors?
-          raise ApiError.new('There are errors in the response', response.data, response.errors)
-        end
+        raise ApiError.new('There are errors in the response', response.data, response.errors) if response.errors?
 
         Payrix::Object.instantiate_from(response.data.first)
       end
