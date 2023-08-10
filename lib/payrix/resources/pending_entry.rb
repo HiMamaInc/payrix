@@ -4,6 +4,7 @@ module Payrix
   class PendingEntry < BaseResource
     RESOURCE_ENDPOINT = 'pendingEntries'
 
+    extend Payrix::APIOperations::CreateDisabled
     extend Payrix::APIOperations::DeleteDisabled
   end
 end

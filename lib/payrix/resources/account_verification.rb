@@ -4,6 +4,7 @@ module Payrix
   class AccountVerification < BaseResource
     RESOURCE_ENDPOINT = 'accountVerifications'
 
+    extend Payrix::APIOperations::CreateDisabled
     extend Payrix::APIOperations::DeleteDisabled
   end
 end

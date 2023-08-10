@@ -3,5 +3,7 @@
 module Payrix
   class AggregationResultGroup < BaseResource
     RESOURCE_ENDPOINT = 'aggregationResultGroups'
+
+    extend Payrix::APIOperations::CreateDisabled
   end
 end

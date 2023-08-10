@@ -4,6 +4,7 @@ module Payrix
   class EntryOrigin < BaseResource
     RESOURCE_ENDPOINT = 'entryOrigins'
 
+    extend Payrix::APIOperations::CreateDisabled
     extend Payrix::APIOperations::DeleteDisabled
   end
 end

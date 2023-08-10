@@ -4,6 +4,7 @@ module Payrix
   class PaymentUpdate < BaseResource
     RESOURCE_ENDPOINT = 'paymentUpdates'
 
+    extend Payrix::APIOperations::CreateDisabled
     extend Payrix::APIOperations::DeleteDisabled
   end
 end

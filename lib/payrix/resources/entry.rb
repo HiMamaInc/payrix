@@ -4,6 +4,7 @@ module Payrix
   class Entry < BaseResource
     RESOURCE_ENDPOINT = 'entries'
 
+    extend Payrix::APIOperations::CreateDisabled
     extend Payrix::APIOperations::DeleteDisabled
   end
 end

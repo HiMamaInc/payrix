@@ -4,6 +4,7 @@ module Payrix
   class Statement < BaseResource
     RESOURCE_ENDPOINT = 'statements'
 
+    extend Payrix::APIOperations::CreateDisabled
     extend Payrix::APIOperations::DeleteDisabled
   end
 end
