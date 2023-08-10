@@ -35,37 +35,39 @@ RSpec.describe Payrix::RequestOptions::Expand do
     end
 
     context 'when the expand argument is an array of one single-level string' do
-      it 'returns the passed in URL concatenated with the expand parameters' do
+      it 'returns a formatted expansion query parameter' do
         expect(described_class.construct(['payment'])).to eq('expand[payment][]=')
       end
     end
 
     context 'when the expand argument is an array of multiple single-level strings' do
-      it 'returns the passed in URL concatenated with the expand parameters' do
+      it 'returns a formatted expansion query parameter' do
         expect(described_class.construct(['payment', 'merchant'])).to eq('expand[payment][]=&expand[merchant][]=')
       end
     end
 
     context 'when the expand argument is an array of one multi-level string' do
-      it 'returns the passed in URL concatenated with the expand parameters' do
+      it 'returns a formatted expansion query parameter' do
         expect(described_class.construct(['merchant.entity'])).to eq('expand[merchant][entity][]=')
       end
     end
 
     context 'when the expand argument is an array of multiple multi-level strings' do
-      it 'returns the passed in URL concatenated with the expand parameters' do
+      it 'returns a formatted expansion query parameter' do
         expect(described_class.construct(['merchant.entity.org_entities', 'payment.bin'])).to(
           eq('expand[merchant][entity][orgEntities][]=&expand[payment][bin][]='),
         )
       end
     end
 
-    it do
-      expand = ['merchant.entity.org_entities[].org.org_entities[].entity']
+    context 'when the expand argument is an array of multi-level strings unpacking arrays of data' do
+      it 'returns a formatted expansion query parameter' do
+        expand = ['merchant.entity.org_entities[].org.org_entities[].entity']
 
-      expect(described_class.construct(expand)).to(
-        eq('expand[merchant][entity][orgEntities][0][org][orgEntities][0][entity][]='),
-      )
+        expect(described_class.construct(expand)).to(
+          eq('expand[merchant][entity][orgEntities][0][org][orgEntities][0][entity][]='),
+        )
+      end
     end
   end
 end

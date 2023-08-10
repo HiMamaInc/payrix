@@ -11,7 +11,13 @@ module Payrix
             formatted_field =
               field
                 .split('.')
-                .map { |part| "[#{Payrix::Util.camel_case(part)}]" }
+                .map do |part|
+                  if part.end_with?('[]')
+                    "[#{Payrix::Util.camel_case(part.split('[]').first)}][0]"
+                  else
+                    "[#{Payrix::Util.camel_case(part)}]"
+                  end
+                end
                 .join
 
             "expand#{formatted_field}[]="
