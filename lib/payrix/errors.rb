@@ -15,4 +15,7 @@ module Payrix
       super(message)
     end
   end
+
+  class NotSupportedError < Error
+  end
 end
