@@ -8,7 +8,6 @@ The implementation and interface of this library takes inspiration from the
 - Easy configuration (with optional thread-safe configuration)
 - Helpers to assist with pagination
 - Built-in bi-directional translation between camel-case and snake-case fields
-- Few runtime dependencies
 
 ## Installation
 
@@ -38,7 +37,7 @@ Payrix::Merchant.list
 
 ### Retrieve
 
-Retrieve a single resource by ID. Access properties on the resource using dot notation.
+Retrieve a single resource by ID.
 
 ```ruby
 merchant = Payrix::Merchant.retrieve('t1_mer_620acd189522582b3fb7849')
@@ -49,7 +48,7 @@ merchant.status # => 2
 
 ### List
 
-Retrieve a collection of resources. Iterate through the results using methods like `#each`.
+Retrieve a collection of resources.
 
 ```ruby
 merchants = Payrix::Merchant.list
@@ -114,7 +113,20 @@ The interface of all operators follows `.operator(:field, value)`.
 
 ### Create
 
-Coming soon ..
+Create a single resource by passing a hash of attributes to `.create`.
+
+```ruby
+txn = Payrix::Txn.create({
+  type: Payrix::Txn::TYPE_SALE_TRANSACTION,
+  origin: Payrix::Txn::ORIGIN_COMMERCE_SYSTEM,
+  merchant: 't1_mer_620acd189522582b3fb7849',
+  total: 12500,
+  token: '05885cff7ac5be8748390a44c43b6f85',
+  cof_type: Payrix::Txn::COF_TYPE_SINGLE,
+})
+
+txn.id # => "t1_txn_64026b07cc6a79dd5cfd0da"
+```
 
 ### Update
 
@@ -136,6 +148,9 @@ All requests accept an options hash parameter.
 
 - `.retrieve(id, options)`
 - `.list(filters, options)`
+- `.delete(id, options)`
+- `.create(data, options)`
+- `.update(id, data, options)`
 
 You can use this to access more functionality described below.
 
@@ -190,17 +205,46 @@ This is useful if you need to set the API key in a thread-safe way, which is not
 
 ### Errors
 
-Coming soon ..
+All Payrix-specific errors inherit from `Payrix::ApiError`.
 
-### Integration
+Show diagram ..
 
-Constants ..
-Coming soon ..
+- `Payrix::ConnectionError` - There was a problem connecting with the Payrix API.
+- `Payrix::TimeoutError` - The Payrix API took more than 30 seconds to respond.
+- `Payrix::RateLimitError` - The Payrix API initiated a block on subsequent requests.
+- `Payrix::AuthenticationError` - The supplied authentication parameters were invalid.
+- `Payrix::NotFoundError` - The Payrix API returned an empty response (`.retrieve` only).
+- `Payrix::ApiError` - The Payrix API returned a general error.
+- `Payrix::NotSupportedError` - The library does not support the given action for the resource.
 
-### Testing
+When a `Payrix::ApiError` is raised, there are often multiple error message that provide useful information.
 
-Coming soon ..
+```ruby
+begin
+  Payrix::Txn.create({ ... })
+rescue Payrix::ApiError => error
+  error.errors # => [...]
+end
+```
+
+### Development
+
+After checking out the repository, run `bin/setup` to install dependencies. Then run `bundle exec rspec`
+to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to
+experiment.
 
 ### Contributing
 
-Coming soon ..
+Bug reports and pull requests are welcome on GitHub at https://github.com/HiMamaInc/payrix.
+
+This project is intended to be a safe, welcoming space for collaboration, and contributors are
+expected to adhere to the [Contributor Covenant](https://www.contributor-covenant.org) code of conduct.
+
+### License
+
+The gem is available as open source under the terms of the MIT License.
+
+### Code of Conduct
+
+Anyone interacting with this codebase on GitHub, issue trackers, chat rooms, and mailing lists is expected
+to follow the [code of conduct]().
