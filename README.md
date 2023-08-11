@@ -113,7 +113,7 @@ The interface of all operators follows `.operator(:field, value)`.
 
 ### Create
 
-Create a single resource by passing a hash of attributes to `.create`.
+Create a single resource.
 
 ```ruby
 txn = Payrix::Txn.create({
@@ -130,7 +130,14 @@ txn.id # => "t1_txn_64026b07cc6a79dd5cfd0da"
 
 ### Update
 
-Coming soon ..
+Update a single resource.
+
+```ruby
+customer = Payrix::Customer.update('t1_cus_64d511636b66052bb4dec9c', { first: 'Joy' })
+
+customer.id # => "t1_cus_64d511636b66052bb4dec9c"
+customer.first # => "Joy"
+```
 
 ### Delete
 
