@@ -5,5 +5,6 @@ module Payrix
     RESOURCE_ENDPOINT = 'txnDatas'
 
     extend Payrix::APIOperations::DeleteDisabled
+    extend Payrix::APIOperations::UpdateDisabled
   end
 end

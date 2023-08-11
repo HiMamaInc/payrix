@@ -5,5 +5,6 @@ module Payrix
     RESOURCE_ENDPOINT = 'aggregationResultGroups'
 
     extend Payrix::APIOperations::CreateDisabled
+    extend Payrix::APIOperations::UpdateDisabled
   end
 end

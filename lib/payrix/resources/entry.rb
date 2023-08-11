@@ -6,5 +6,6 @@ module Payrix
 
     extend Payrix::APIOperations::CreateDisabled
     extend Payrix::APIOperations::DeleteDisabled
+    extend Payrix::APIOperations::UpdateDisabled
   end
 end
