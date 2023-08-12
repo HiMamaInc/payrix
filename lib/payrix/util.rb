@@ -42,11 +42,13 @@ module Payrix
 
     def self.get(klass:, filters: {}, options: {})
       paginate = Payrix::RequestOptions::Paginate.construct(options[:page])
+      limit = Payrix::RequestOptions::Paginate::Limit.construct(options[:limit])
       expand = Payrix::RequestOptions::Expand.construct(options[:expand] || [])
       search = Payrix::RequestOptions::Search.construct(filters)
 
       endpoint = "#{klass::RESOURCE_ENDPOINT}?"
       endpoint += paginate if options[:page]
+      endpoint += limit
       endpoint += expand
 
       json, status = Http::Request.instance.send_http(
