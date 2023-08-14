@@ -106,7 +106,7 @@ RSpec.describe Payrix::APIOperations::Update do
             .stub_request(:put, 'https://api.payrix.com/customers/t1_cus_64d511636b66052bb4dec9c')
             .with(
               body: {
-                entity: 't1_ent_640b4c3ddd3dd258e691501'
+                entity: 't1_ent_640b4c3ddd3dd258e691501',
               }.to_json,
             )
             .to_return(
