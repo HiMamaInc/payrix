@@ -11,6 +11,7 @@ module Payrix
       @current_page = options[:page] || 1
       @current_data = []
       @more = true
+      @client = Payrix::Client.new
 
       if !@current_page.is_a?(Integer) || @current_page < 1
         raise ArgumentError, 'Page option must be an integer greater than 0'
@@ -76,11 +77,14 @@ module Payrix
 
     def request_more
       response =
-        Payrix::Util.get(
-          klass: @klass,
-          filters: @filters,
-          options: @options.merge(page: @current_page),
-        )
+        @client
+          .request(
+            method: :get,
+            resource: @klass::RESOURCE_ENDPOINT,
+            data: {},
+            filters: @filters,
+            options: @options.merge(page: @current_page),
+          )
 
       @more = response.more?
       @current_data = Payrix::Object.instantiate_from(response.data)

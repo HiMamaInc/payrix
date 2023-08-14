@@ -39,26 +39,5 @@ module Payrix
         object
       end
     end
-
-    def self.get(klass:, filters: {}, options: {})
-      endpoint = "#{klass::RESOURCE_ENDPOINT}?"
-      endpoint += Payrix::RequestOptions::Paginate::Number.construct(options[:page])
-      endpoint += Payrix::RequestOptions::Paginate::Limit.construct(options[:limit])
-      endpoint += Payrix::RequestOptions::Expand.construct(options[:expand])
-
-      json, status = Http::Request.instance.send_http(
-        'get',
-        Payrix.configuration.url,
-        endpoint,
-        {},
-        {
-          'Content-Type' => 'application/json',
-          'APIKEY' => options[:api_key] || Payrix.configuration.api_key,
-          'SEARCH' => Payrix::RequestOptions::Search.construct(filters),
-        },
-      )
-
-      Http::Response.new(json, status, klass)
-    end
   end
 end

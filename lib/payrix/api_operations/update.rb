@@ -8,18 +8,16 @@ module Payrix
           raise ArgumentError, "#{self}.update takes a string and a hash argument"
         end
 
-        json, status = Http::Request.instance.send_http(
-          'put',
-          Payrix.configuration.url,
-          "#{self::RESOURCE_ENDPOINT}/#{id}",
-          Payrix::Util.recursive_camel_case(fields),
-          {
-            'Content-Type' => 'application/json',
-            'APIKEY' => options[:api_key] || Payrix.configuration.api_key,
-          },
-        )
+        client = Payrix::Client.new
 
-        response = Http::Response.new(json, status, self)
+        response =
+          client
+            .request(
+              method: :put,
+              resource: "#{self::RESOURCE_ENDPOINT}/#{id}",
+              data: fields,
+              options: options,
+            )
 
         raise ApiError.new('There are errors in the response', response.data, response.errors) if response.errors?
 
