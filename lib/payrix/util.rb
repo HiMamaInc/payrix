@@ -41,7 +41,7 @@ module Payrix
     end
 
     def self.get(klass:, filters: {}, options: {})
-      paginate = Payrix::RequestOptions::Paginate.construct(options[:page])
+      paginate = Payrix::RequestOptions::Paginate::Number.construct(options[:page])
       limit = Payrix::RequestOptions::Paginate::Limit.construct(options[:limit])
       expand = Payrix::RequestOptions::Expand.construct(options[:expand] || [])
       search = Payrix::RequestOptions::Search.construct(filters)
