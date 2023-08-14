@@ -5,13 +5,11 @@ module Payrix
     module Paginate
       # A builder class that constructs a valid URL query parameter to be used for specifying the page to return from
       # the result set of a paginated query (.list).
-      class Number
+      module Number
         def self.construct(number)
           return '' if number.nil?
 
-          if !number.is_a?(Integer) || number < 1
-            raise ArgumentError, 'Number option must be an integer greater than 1'
-          end
+          raise ArgumentError, 'Number option must be an integer greater than 1' if !number.is_a?(Integer) || number < 1
 
           "page[number]=#{number}&"
         end

@@ -5,7 +5,7 @@ module Payrix
     module Paginate
       # A builder class that constructs a valid URL query parameter to be used for limiting the result set of a
       # paginated query (.list).
-      class Limit
+      module Limit
         def self.construct(limit)
           return '' if limit.nil?
 
