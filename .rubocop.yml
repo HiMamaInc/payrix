@@ -8,6 +8,7 @@ AllCops:
   SuggestExtensions: false
   NewCops: enable
   Exclude:
+    # These files will eventually be removed from the library, so don't bother fixing them up.
     - 'lib/payrix/http/request_params.rb'
     - 'lib/payrix/resource/**/*.rb'
     - 'lib/payrix/resource.rb'
@@ -21,6 +22,11 @@ RSpec/ExampleLength:
 
 RSpec/MultipleExpectations:
   Enabled: false
+
+Style/Documentation:
+  Exclude:
+    # Documentation and descriptions for API resources should be found in the official Payrix API documentation.
+    - 'lib/payrix/resources/**/*.rb'
 
 Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: comma
