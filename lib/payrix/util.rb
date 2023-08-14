@@ -14,11 +14,11 @@ module Payrix
       case object
       when Hash
         object.each_with_object({}) do |(key, value), hash|
-          hash[Util.snake_case(key.to_s)] = Util.recursive_snake_case(value)
+          hash[snake_case(key.to_s)] = recursive_snake_case(value)
         end
       when Array
         object.map do |item|
-          Util.recursive_snake_case(item)
+          recursive_snake_case(item)
         end
       else
         object
@@ -29,11 +29,11 @@ module Payrix
       case object
       when Hash
         object.each_with_object({}) do |(key, value), hash|
-          hash[Util.camel_case(key.to_s)] = Util.recursive_camel_case(value)
+          hash[camel_case(key.to_s)] = recursive_camel_case(value)
         end
       when Array
         object.map do |item|
-          Util.recursive_camel_case(item)
+          recursive_camel_case(item)
         end
       else
         object
