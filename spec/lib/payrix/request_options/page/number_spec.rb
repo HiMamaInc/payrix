@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Payrix::RequestOptions::Paginate::Number do
+RSpec.describe Payrix::RequestOptions::Page::Number do
   describe '.construct' do
     context 'when given nil' do
       it 'returns an empty string' do

@@ -6,8 +6,8 @@ module Payrix
     def request(method:, resource:, data: {}, filters: {}, options: {})
       url = Payrix.configuration.url
 
-      page_number = Payrix::RequestOptions::Paginate::Number.construct(options[:page])
-      page_limit = Payrix::RequestOptions::Paginate::Limit.construct(options[:limit])
+      page_number = Payrix::RequestOptions::Page::Number.construct(options[:page])
+      page_limit = Payrix::RequestOptions::Page::Limit.construct(options[:limit])
       expand = Payrix::RequestOptions::Expand.construct(options[:expand])
       endpoint = [resource, '?', page_number, page_limit, expand].join
 

@@ -2,7 +2,7 @@
 
 module Payrix
   module RequestOptions
-    module Paginate
+    module Page
       # A builder class that constructs a valid URL query parameter to be used for limiting the result set of a
       # paginated query (.list).
       module Limit
