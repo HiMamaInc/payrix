@@ -8,9 +8,15 @@ module Payrix
       @klass = klass
       @filters = filters
       @options = options
-      @current_page = 0
+      @current_page = options[:page] || 1
       @current_data = []
       @more = true
+
+      if !@current_page.is_a?(Integer) || @current_page < 1
+        raise ArgumentError, 'Page option must be an integer greater than 0'
+      end
+
+      @current_page -= 1
 
       page_forward
     end
