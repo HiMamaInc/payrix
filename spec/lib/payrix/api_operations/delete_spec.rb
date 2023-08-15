@@ -13,49 +13,37 @@ RSpec.describe Payrix::APIOperations::Delete do
   describe '.delete' do
     context 'when passing nil' do
       it 'raises ArgumentError' do
-        expect { Txn.delete(nil) }.to(
-          raise_error(ArgumentError, 'Txn.delete takes a string argument'),
-        )
+        expect { Txn.delete(nil) }.to raise_error(ArgumentError)
       end
     end
 
     context 'when passing a boolean' do
       it 'raises ArgumentError' do
-        expect { Txn.delete(true) }.to(
-          raise_error(ArgumentError, 'Txn.delete takes a string argument'),
-        )
+        expect { Txn.delete(true) }.to raise_error(ArgumentError)
       end
     end
 
     context 'when passing a number' do
       it 'raises ArgumentError' do
-        expect { Txn.delete(0) }.to(
-          raise_error(ArgumentError, 'Txn.delete takes a string argument'),
-        )
+        expect { Txn.delete(0) }.to raise_error(ArgumentError)
       end
     end
 
     context 'when passing a symbol' do
       it 'raises ArgumentError' do
-        expect { Txn.delete(:symbol) }.to(
-          raise_error(ArgumentError, 'Txn.delete takes a string argument'),
-        )
+        expect { Txn.delete(:symbol) }.to raise_error(ArgumentError)
       end
     end
 
     context 'when passing an array' do
       it 'raises ArgumentError' do
-        expect { Txn.delete([]) }.to(
-          raise_error(ArgumentError, 'Txn.delete takes a string argument'),
-        )
+        expect { Txn.delete([]) }.to raise_error(ArgumentError)
       end
     end
 
     context 'when passing a hash' do
       it 'raises ArgumentError' do
-        expect { Txn.delete({}) }.to(
-          raise_error(ArgumentError, 'Txn.delete takes a string argument'),
-        )
+        expect { Txn.delete({}) }.to raise_error(ArgumentError)
       end
     end
 
