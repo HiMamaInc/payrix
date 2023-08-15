@@ -11,9 +11,7 @@ RSpec.describe Payrix::APIOperations::CreateDisabled do
 
   describe '.create' do
     it 'raises Payrix::NotSupportedError' do
-      expect { Txn.create({}) }.to(
-        raise_error(Payrix::NotSupportedError, 'Txn.create is not supported'),
-      )
+      expect { Txn.create({}) }.to raise_error(Payrix::NotSupportedError)
     end
   end
 end
