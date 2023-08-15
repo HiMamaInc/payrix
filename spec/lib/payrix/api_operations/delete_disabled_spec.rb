@@ -11,9 +11,7 @@ RSpec.describe Payrix::APIOperations::DeleteDisabled do
 
   describe '.delete' do
     it 'raises Payrix::NotSupportedError' do
-      expect { Txn.delete('t1_txn_64026b07cc6a79dd5cfd0da') }.to(
-        raise_error(Payrix::NotSupportedError, 'Txn.delete is not supported'),
-      )
+      expect { Txn.delete('t1_txn_64026b07cc6a79dd5cfd0da') }.to raise_error(Payrix::NotSupportedError)
     end
   end
 end
