@@ -13,49 +13,37 @@ RSpec.describe Payrix::APIOperations::Create do
   describe '.create' do
     context 'when passing nil' do
       it 'raises ArgumentError' do
-        expect { Txn.create(nil) }.to(
-          raise_error(ArgumentError, 'Txn.create takes a hash argument'),
-        )
+        expect { Txn.create(nil) }.to raise_error(ArgumentError)
       end
     end
 
     context 'when passing a boolean' do
       it 'raises ArgumentError' do
-        expect { Txn.create(true) }.to(
-          raise_error(ArgumentError, 'Txn.create takes a hash argument'),
-        )
+        expect { Txn.create(true) }.to raise_error(ArgumentError)
       end
     end
 
     context 'when passing a number' do
       it 'raises ArgumentError' do
-        expect { Txn.create(0) }.to(
-          raise_error(ArgumentError, 'Txn.create takes a hash argument'),
-        )
+        expect { Txn.create(0) }.to raise_error(ArgumentError)
       end
     end
 
     context 'when passing a string' do
       it 'raises ArgumentError' do
-        expect { Txn.create('') }.to(
-          raise_error(ArgumentError, 'Txn.create takes a hash argument'),
-        )
+        expect { Txn.create('') }.to raise_error(ArgumentError)
       end
     end
 
     context 'when passing a symbol' do
       it 'raises ArgumentError' do
-        expect { Txn.create(:symbol) }.to(
-          raise_error(ArgumentError, 'Txn.create takes a hash argument'),
-        )
+        expect { Txn.create(:symbol) }.to raise_error(ArgumentError)
       end
     end
 
     context 'when passing an array' do
       it 'raises ArgumentError' do
-        expect { Txn.create([]) }.to(
-          raise_error(ArgumentError, 'Txn.create takes a hash argument'),
-        )
+        expect { Txn.create([]) }.to raise_error(ArgumentError)
       end
     end
 

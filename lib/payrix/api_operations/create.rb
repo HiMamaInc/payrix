@@ -2,6 +2,7 @@
 
 module Payrix
   module APIOperations
+    # Extending your class with this module gives you a method to enable sending POST requests to the Payrix API.
     module Create
       def create(fields, options = {})
         raise ArgumentError, "#{self}.create takes a hash argument" unless fields.is_a?(Hash)
