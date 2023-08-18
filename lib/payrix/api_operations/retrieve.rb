@@ -18,8 +18,6 @@ module Payrix
               options: options,
             )
 
-        raise ApiError.new('There are errors in the response', response.data, response.errors) if response.errors?
-
         raise Payrix::NotFoundError, "Couldn't find #{self} with id='#{id}'" if response.data.first.nil?
 
         Payrix::Object.instantiate_from(response.data.first)

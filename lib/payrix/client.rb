@@ -26,7 +26,11 @@ module Payrix
           .instance
           .send_http(method, url, endpoint, data, headers)
 
-      Payrix::Http::Response.new(json, status, self)
+      response = Payrix::Http::Response.new(json, status, self)
+
+      raise ApiError.new('There are errors in the response', response.data, response.errors) if response.errors?
+
+      response
     end
   end
 end

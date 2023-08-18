@@ -17,8 +17,6 @@ module Payrix
               options: options,
             )
 
-        raise ApiError.new('There are errors in the response', response.data, response.errors) if response.errors?
-
         Payrix::Object.instantiate_from(response.data.first)
       end
     end
