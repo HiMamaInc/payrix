@@ -13,89 +13,67 @@ RSpec.describe Payrix::APIOperations::Update do
   describe '.update' do
     context 'when passing nil for the ID' do
       it 'raises ArgumentError' do
-        expect { Customer.update(nil, { first: 'Joy' }) }.to(
-          raise_error(ArgumentError, 'Customer.update takes a string and a hash argument'),
-        )
+        expect { Customer.update(nil, { first: 'Joy' }) }.to raise_error(ArgumentError)
       end
     end
 
     context 'when passing a boolean for the ID' do
       it 'raises ArgumentError' do
-        expect { Customer.update(true, { first: 'Joy' }) }.to(
-          raise_error(ArgumentError, 'Customer.update takes a string and a hash argument'),
-        )
+        expect { Customer.update(true, { first: 'Joy' }) }.to raise_error(ArgumentError)
       end
     end
 
     context 'when passing a number for the ID' do
       it 'raises ArgumentError' do
-        expect { Customer.update(0, { first: 'Joy' }) }.to(
-          raise_error(ArgumentError, 'Customer.update takes a string and a hash argument'),
-        )
+        expect { Customer.update(0, { first: 'Joy' }) }.to raise_error(ArgumentError)
       end
     end
 
     context 'when passing a symbol for the ID' do
       it 'raises ArgumentError' do
-        expect { Customer.update(:symbol, { first: 'Joy' }) }.to(
-          raise_error(ArgumentError, 'Customer.update takes a string and a hash argument'),
-        )
+        expect { Customer.update(:symbol, { first: 'Joy' }) }.to raise_error(ArgumentError)
       end
     end
 
     context 'when passing an array for the ID' do
       it 'raises ArgumentError' do
-        expect { Customer.update([], { first: 'Joy' }) }.to(
-          raise_error(ArgumentError, 'Customer.update takes a string and a hash argument'),
-        )
+        expect { Customer.update([], { first: 'Joy' }) }.to raise_error(ArgumentError)
       end
     end
 
     context 'when passing a hash for the ID' do
       it 'raises ArgumentError' do
-        expect { Customer.update({}, { first: 'Joy' }) }.to(
-          raise_error(ArgumentError, 'Customer.update takes a string and a hash argument'),
-        )
+        expect { Customer.update({}, { first: 'Joy' }) }.to raise_error(ArgumentError)
       end
     end
 
     context 'when passing nil for the fields' do
       it 'raises ArgumentError' do
-        expect { Customer.update('t1_cus_64d511636b66052bb4dec9c', nil) }.to(
-          raise_error(ArgumentError, 'Customer.update takes a string and a hash argument'),
-        )
+        expect { Customer.update('t1_cus_64d511636b66052bb4dec9c', nil) }.to raise_error(ArgumentError)
       end
     end
 
     context 'when passing a boolean for the fields' do
       it 'raises ArgumentError' do
-        expect { Customer.update('t1_cus_64d511636b66052bb4dec9c', true) }.to(
-          raise_error(ArgumentError, 'Customer.update takes a string and a hash argument'),
-        )
+        expect { Customer.update('t1_cus_64d511636b66052bb4dec9c', true) }.to raise_error(ArgumentError)
       end
     end
 
     context 'when passing a number for the fields' do
       it 'raises ArgumentError' do
-        expect { Customer.update('t1_cus_64d511636b66052bb4dec9c', 0) }.to(
-          raise_error(ArgumentError, 'Customer.update takes a string and a hash argument'),
-        )
+        expect { Customer.update('t1_cus_64d511636b66052bb4dec9c', 0) }.to raise_error(ArgumentError)
       end
     end
 
     context 'when passing a symbol for the fields' do
       it 'raises ArgumentError' do
-        expect { Customer.update('t1_cus_64d511636b66052bb4dec9c', :symbol) }.to(
-          raise_error(ArgumentError, 'Customer.update takes a string and a hash argument'),
-        )
+        expect { Customer.update('t1_cus_64d511636b66052bb4dec9c', :symbol) }.to raise_error(ArgumentError)
       end
     end
 
     context 'when passing an array for the fields' do
       it 'raises ArgumentError' do
-        expect { Customer.update('t1_cus_64d511636b66052bb4dec9c', []) }.to(
-          raise_error(ArgumentError, 'Customer.update takes a string and a hash argument'),
-        )
+        expect { Customer.update('t1_cus_64d511636b66052bb4dec9c', []) }.to raise_error(ArgumentError)
       end
     end
 

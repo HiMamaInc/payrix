@@ -2,6 +2,7 @@
 
 module Payrix
   module APIOperations
+    # Extending your class with this module gives you a method to enable sending PUT requests to the Payrix API.
     module Update
       def update(id, fields, options = {})
         if !id.is_a?(String) || !fields.is_a?(Hash)
