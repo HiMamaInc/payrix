@@ -7,10 +7,9 @@ module Payrix
       def create(fields, options = {})
         raise ArgumentError, "#{self}.create takes a hash argument" unless fields.is_a?(Hash)
 
-        client = Payrix::Client.new
-
         response =
-          client
+          Payrix::Client
+            .new
             .request(
               method: :post,
               resource: self::RESOURCE_ENDPOINT,

@@ -7,10 +7,9 @@ module Payrix
       def retrieve(id, options = {})
         raise ArgumentError, "#{self}.retrieve takes a string argument" unless id.is_a?(String)
 
-        client = Payrix::Client.new
-
         response =
-          client
+          Payrix::Client
+            .new
             .request(
               method: :get,
               resource: self::RESOURCE_ENDPOINT,

@@ -9,10 +9,9 @@ module Payrix
           raise ArgumentError, "#{self}.update takes a string and a hash argument"
         end
 
-        client = Payrix::Client.new
-
         response =
-          client
+          Payrix::Client
+            .new
             .request(
               method: :put,
               resource: "#{self::RESOURCE_ENDPOINT}/#{id}",
