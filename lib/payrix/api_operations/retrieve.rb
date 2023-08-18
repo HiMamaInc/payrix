@@ -2,6 +2,7 @@
 
 module Payrix
   module APIOperations
+    # Extending your class with this module gives you a method to enable sending GET requests to the Payrix API.
     module Retrieve
       def retrieve(id, options = {})
         raise ArgumentError, "#{self}.retrieve takes a string argument" unless id.is_a?(String)
@@ -17,6 +18,8 @@ module Payrix
               filters: { id: id },
               options: options,
             )
+
+        raise ApiError.new('There are errors in the response', response.data, response.errors) if response.errors?
 
         if response.data.first.nil?
           raise(

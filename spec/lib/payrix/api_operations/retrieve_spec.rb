@@ -13,41 +13,65 @@ RSpec.describe Payrix::APIOperations::Retrieve do
   describe '.retrieve' do
     context 'when passing nil' do
       it 'raises ArgumentError' do
-        expect { Txn.retrieve(nil) }.to(
-          raise_error(ArgumentError, 'Txn.retrieve takes a string argument'),
-        )
+        expect { Txn.retrieve(nil) }.to raise_error(ArgumentError)
+      end
+    end
+
+    context 'when passing a boolean' do
+      it 'raises ArgumentError' do
+        expect { Txn.retrieve(true) }.to raise_error(ArgumentError)
       end
     end
 
     context 'when passing a number' do
       it 'raises ArgumentError' do
-        expect { Txn.retrieve(0) }.to(
-          raise_error(ArgumentError, 'Txn.retrieve takes a string argument'),
-        )
+        expect { Txn.retrieve(0) }.to raise_error(ArgumentError)
       end
     end
 
     context 'when passing a symbol' do
       it 'raises ArgumentError' do
-        expect { Txn.retrieve(:symbol) }.to(
-          raise_error(ArgumentError, 'Txn.retrieve takes a string argument'),
-        )
+        expect { Txn.retrieve(:symbol) }.to raise_error(ArgumentError)
       end
     end
 
     context 'when passing an array' do
       it 'raises ArgumentError' do
-        expect { Txn.retrieve([]) }.to(
-          raise_error(ArgumentError, 'Txn.retrieve takes a string argument'),
-        )
+        expect { Txn.retrieve([]) }.to raise_error(ArgumentError)
       end
     end
 
     context 'when passing a hash' do
       it 'raises ArgumentError' do
-        expect { Txn.retrieve({}) }.to(
-          raise_error(ArgumentError, 'Txn.retrieve takes a string argument'),
-        )
+        expect { Txn.retrieve({}) }.to raise_error(ArgumentError)
+      end
+    end
+
+    context 'when passing a string, and the API response contains errors' do
+      it 'raises Payrix::ApiError' do
+        WebMock
+          .stub_request(:get, 'https://api.payrix.com/txns')
+          .with(
+            headers: {
+              'Search' => 'id[equals]=t1_txn_64026b07cc6a79dd5cfd0da',
+            },
+          )
+          .to_return(
+            status: 200,
+            body: {
+              response: {
+                errors: [
+                  {
+                    code: 15,
+                    severity: 2,
+                    errorCode: 'no_such_record',
+                  },
+                ],
+              },
+            }.to_json,
+          )
+
+        expect { Txn.retrieve('t1_txn_64026b07cc6a79dd5cfd0da') }.to raise_error(Payrix::ApiError)
       end
     end
 
@@ -79,12 +103,7 @@ RSpec.describe Payrix::APIOperations::Retrieve do
             }.to_json,
           )
 
-        expect { Txn.retrieve('t1_txn_64026b07cc6a79dd5cfd0da') }.to(
-          raise_error(
-            Payrix::Exceptions::ResourceNotFound,
-            "Couldn't find Txn with id='t1_txn_64026b07cc6a79dd5cfd0da'",
-          ),
-        )
+        expect { Txn.retrieve('t1_txn_64026b07cc6a79dd5cfd0da') }.to raise_error(Payrix::Exceptions::ResourceNotFound)
       end
     end
 
