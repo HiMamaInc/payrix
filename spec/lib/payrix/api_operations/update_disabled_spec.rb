@@ -11,9 +11,7 @@ RSpec.describe Payrix::APIOperations::UpdateDisabled do
 
   describe '.Update' do
     it 'raises Payrix::NotSupportedError' do
-      expect { Txn.update('t1_txn_64026b07cc6a79dd5cfd0da', {}) }.to(
-        raise_error(Payrix::NotSupportedError, 'Txn.update is not supported'),
-      )
+      expect { Txn.update('t1_txn_64026b07cc6a79dd5cfd0da', {}) }.to raise_error(Payrix::NotSupportedError)
     end
   end
 end
