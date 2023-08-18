@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
-require 'uri'
-
 module Payrix
+  # Use this class to configure API parameters such as API URL, API key, etc.
   class Configuration
     attr_accessor :api_key, :session_key, :test_mode
 
