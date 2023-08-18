@@ -76,7 +76,7 @@ RSpec.describe Payrix::APIOperations::Retrieve do
     end
 
     context 'when passing a string, and the API response is empty' do
-      it 'raises Payrix::Exceptions::ResourceNotFound' do
+      it 'raises Payrix::NotFoundError' do
         WebMock
           .stub_request(:get, 'https://api.payrix.com/txns')
           .with(
@@ -103,7 +103,7 @@ RSpec.describe Payrix::APIOperations::Retrieve do
             }.to_json,
           )
 
-        expect { Txn.retrieve('t1_txn_64026b07cc6a79dd5cfd0da') }.to raise_error(Payrix::Exceptions::ResourceNotFound)
+        expect { Txn.retrieve('t1_txn_64026b07cc6a79dd5cfd0da') }.to raise_error(Payrix::NotFoundError)
       end
     end
 

@@ -33,4 +33,7 @@ module Payrix
 
   class NotSupportedError < Error
   end
+
+  class NotFoundError < Error
+  end
 end
