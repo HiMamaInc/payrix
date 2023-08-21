@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module Payrix
+  # This class is used to wrap any response coming from the Payrix API, to support easy access to both shallow and
+  # deeply nested attributes in a Ruby-idiomatic way (using snake-case accessors).
   class Object
     attr_reader :data
 
