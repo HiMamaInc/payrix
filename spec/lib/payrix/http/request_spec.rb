@@ -17,7 +17,7 @@ RSpec.describe Payrix::Http::Request do
     end
 
     context 'when the request is not authenticated' do
-      it 'raises Payrix::Exceptions::InvalidAuthentication' do
+      it 'raises Payrix::InvalidAuthenticationError' do
         WebMock
           .stub_request(:get, 'https://api.payrix.com/txns')
           .to_return(
@@ -35,7 +35,7 @@ RSpec.describe Payrix::Http::Request do
           )
 
         expect { described_class.instance.send_http(:get, 'https://api.payrix.com', 'txns', {}, {}, 30) }.to(
-          raise_error(Payrix::Exceptions::InvalidAuthentication, 'Invalid authentication token'),
+          raise_error(Payrix::InvalidAuthenticationError),
         )
       end
     end

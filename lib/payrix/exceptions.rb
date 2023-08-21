@@ -7,6 +7,5 @@ module Payrix
     autoload :Connection, 'payrix/exceptions/connection'
     autoload :InvalidRequest, 'payrix/exceptions/invalid_request'
     autoload :InvalidResponse, 'payrix/exceptions/invalid_response'
-    autoload :InvalidAuthentication, 'payrix/exceptions/invalid_authentication'
   end
 end

@@ -41,4 +41,8 @@ module Payrix
   # An error returned when the requested resource (from .retrieve) turns up empty.
   class NotFoundError < Error
   end
+
+  # An error returned when the API returns an invalid authentication error.
+  class InvalidAuthenticationError < Error
+  end
 end
