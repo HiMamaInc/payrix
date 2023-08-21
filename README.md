@@ -11,6 +11,12 @@ The implementation and interface of this library takes inspiration from the
 
 ## Installation
 
+### Requirements
+
+- Faraday (`~> 2.0.1`)
+
+### Bundler
+
 This library can be installed from a `Gemfile` using Bundler.
 
 ```ruby
