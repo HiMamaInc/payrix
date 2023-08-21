@@ -214,17 +214,13 @@ This is useful if you need to set the API key in a thread-safe way, which is not
 
 All Payrix-specific errors inherit from `Payrix::ApiError`.
 
-Show diagram ..
-
-- `Payrix::ConnectionError` - There was a problem connecting with the Payrix API.
-- `Payrix::TimeoutError` - The Payrix API took more than 30 seconds to respond.
 - `Payrix::RateLimitError` - The Payrix API initiated a block on subsequent requests.
 - `Payrix::AuthenticationError` - The supplied authentication parameters were invalid.
 - `Payrix::NotFoundError` - The Payrix API returned an empty response (`.retrieve` only).
 - `Payrix::ApiError` - The Payrix API returned a general error.
 - `Payrix::NotSupportedError` - The library does not support the given action for the resource.
 
-When a `Payrix::ApiError` is raised, there are often multiple error message that provide useful information.
+When a `Payrix::ApiError` is raised, there are often multiple error messages that provide useful information.
 
 ```ruby
 begin
