@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
 module Payrix
+  # All library-specific errors inherit from this error class. This helps make it easy for integrations to rescue
+  # specifically from errors raised by this library.
   class Error < StandardError
   end
 
+  # A general error returned from the Payrix API. The cause could stem from multiple separate issues.
   class ApiError < Error
     attr_reader :object, :errors
 
@@ -31,9 +34,11 @@ module Payrix
     end
   end
 
+  # A pre-flight error indicating the attempted operation is not supported on the given resource.
   class NotSupportedError < Error
   end
 
+  # An error returned when the requested resource (from .retrieve) turns up empty.
   class NotFoundError < Error
   end
 end
