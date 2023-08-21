@@ -45,4 +45,9 @@ module Payrix
   # An error returned when the API returns an invalid authentication error.
   class InvalidAuthenticationError < Error
   end
+
+  # An error returned when the API rate limits the request. See https://resource.payrix.com/resources/rate-limiting for
+  # more details.
+  class RateLimitError < Error
+  end
 end

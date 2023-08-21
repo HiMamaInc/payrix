@@ -33,6 +33,7 @@ module Payrix
           if [400, 404].include?(status)
             raise Payrix::Exceptions::InvalidRequest, "Invalid request, status code: #{status}"
           end
+          raise Payrix::RateLimitError if status == 429
           raise Payrix::Exceptions::Base, body if status < 200 || status > 299
 
           json = JSON.parse(body)

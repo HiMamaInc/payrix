@@ -26,6 +26,30 @@ RSpec.describe Payrix::Http::Request do
       end
     end
 
+    context 'when the request is rate limited' do
+      it 'raises Payrix::RateLimitError' do
+        WebMock
+          .stub_request(:get, 'https://api.payrix.com/txns')
+          .to_return(
+            status: 429,
+            body: {
+              errors: [
+                {
+                  code: 64,
+                  severity: 2,
+                  msg: 'Rate of requests exceeded - Temporary block implemented',
+                  errorCode: 'C_RATE_LIMIT_EXCEEDED_TEMP_BLOCK',
+                },
+              ],
+            }.to_json,
+          )
+
+        expect { described_class.instance.send_http(:get, 'https://api.payrix.com', 'txns', {}, {}, 30) }.to(
+          raise_error(Payrix::RateLimitError),
+        )
+      end
+    end
+
     context 'when response is valid json' do
       it 'handles the response' do
         WebMock
