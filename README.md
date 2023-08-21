@@ -238,9 +238,12 @@ end
 
 ### Development
 
-After checking out the repository, run `bin/setup` to install dependencies. Then run `bundle exec rspec`
-to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to
-experiment.
+After checking out the repository ..
+
+- Install dependencies (`bin/setup`)
+- Run tests (`bundle exec rspec`)
+- Run linting (`bundle exec rubocop`)
+- Run an interactive prompt to experiment (`bin/console`)
 
 ### Contributing
 
