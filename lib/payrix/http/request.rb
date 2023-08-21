@@ -8,7 +8,7 @@ require 'faraday/follow_redirects'
 
 module Payrix
   module Http
-    class Request
+    class Request # rubocop:disable Style/Documentation - Legacy file, which will be removed eventually
       include Singleton
 
       def send_http(method, base_url, endpoint, data = {}, headers = {}, timeout = 30)

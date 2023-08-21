@@ -2,7 +2,7 @@
 
 module Payrix
   module Http
-    class Response
+    class Response # rubocop:disable Style/Documentation - Legacy file, which will be removed eventually
       attr_reader :status
 
       def initialize(response, status, cls)
