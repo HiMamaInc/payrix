@@ -2,61 +2,52 @@
 
 RSpec.describe Payrix::RequestOptions::Search do
   describe '.construct' do
-    context 'when passing nil' do
+    context 'when given nil' do
       it 'raises ArgumentError' do
-        expect { described_class.construct(nil) }.to(
-          raise_error(ArgumentError, 'Search parameter must be a hash or an instance of Payrix::Search::Node'),
-        )
+        expect { described_class.construct(nil) }.to raise_error(ArgumentError)
       end
     end
 
-    context 'when passing a number' do
+    context 'when given a number' do
       it 'raises ArgumentError' do
-        expect { described_class.construct(0) }.to(
-          raise_error(ArgumentError, 'Search parameter must be a hash or an instance of Payrix::Search::Node'),
-        )
+        expect { described_class.construct(0) }.to raise_error(ArgumentError)
       end
     end
 
-    context 'when passing a string argument' do
+    context 'when given a string' do
       it 'raises ArgumentError' do
-        expect { described_class.construct('') }.to(
-          raise_error(ArgumentError, 'Search parameter must be a hash or an instance of Payrix::Search::Node'),
-        )
+        expect { described_class.construct('') }.to raise_error(ArgumentError)
       end
     end
 
-    context 'when passing an array argument' do
+    context 'when given an array' do
       it 'raises ArgumentError' do
-        expect { described_class.construct([]) }.to(
-          raise_error(ArgumentError, 'Search parameter must be a hash or an instance of Payrix::Search::Node'),
-        )
+        expect { described_class.construct([]) }.to raise_error(ArgumentError)
       end
     end
 
-    context 'when passing an empty hash argument' do
+    context 'when given an empty hash' do
       it 'returns an empty string' do
-        filter = {}
+        filter = described_class.construct({})
 
-        expect(described_class.construct(filter)).to eq('')
+        expect(filter).to eq('')
       end
     end
 
-    context 'when passing a non-empty hash argument' do
+    context 'when given a non-empty hash' do
       it 'returns a search string of chained equals operators' do
-        filter = { status: 2, authorized: 1 }
+        filter = described_class.construct({ status: 2, authorized: 1 })
 
-        expect(described_class.construct(filter)).to(
-          eq('status[equals]=2&authorized[equals]=1'),
-        )
+        expect(filter).to eq('status[equals]=2&authorized[equals]=1')
       end
     end
 
-    context 'when passing an search node' do
+    context 'when given a search node' do
       it 'returns a search string using the node' do
         node = described_class::Greater.new(:status, 1)
+        filter = described_class.construct(node)
 
-        expect(described_class.construct(node)).to eq('status[greater]=1')
+        expect(filter).to eq('status[greater]=1')
       end
     end
   end

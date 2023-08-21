@@ -8,6 +8,8 @@ require 'payrix/request_options/search/less'
 
 module Payrix
   module RequestOptions
+    # A module of builder methods that construct valid search predicates to be used for limiting the result set of a
+    # paginated query (.list).
     module Search
       def self.construct(filter)
         case filter
