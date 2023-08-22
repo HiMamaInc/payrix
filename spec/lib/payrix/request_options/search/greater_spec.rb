@@ -3,7 +3,7 @@
 RSpec.describe Payrix::RequestOptions::Search::Greater do
   describe '#contstruct' do
     context 'with a nil value' do
-      it 'returns an valid greater search argument' do
+      it 'returns a valid search filter' do
         greater = described_class.new(:field, nil)
 
         expect(greater.construct).to eq("field[greater]=''")
@@ -11,7 +11,7 @@ RSpec.describe Payrix::RequestOptions::Search::Greater do
     end
 
     context 'with a number value' do
-      it 'returns an valid greater search argument' do
+      it 'returns a valid search filter' do
         greater = described_class.new(:field, 0)
 
         expect(greater.construct).to eq('field[greater]=0')
@@ -19,7 +19,7 @@ RSpec.describe Payrix::RequestOptions::Search::Greater do
     end
 
     context 'with an empty string value' do
-      it 'returns an valid greater search argument' do
+      it 'returns a valid search filter' do
         greater = described_class.new(:field, '')
 
         expect(greater.construct).to eq("field[greater]=''")
@@ -27,7 +27,7 @@ RSpec.describe Payrix::RequestOptions::Search::Greater do
     end
 
     context 'with a non-empty string value' do
-      it 'returns an valid greater search argument' do
+      it 'returns a valid search filter' do
         greater = described_class.new(:field, 'value')
 
         expect(greater.construct).to eq('field[greater]=value')
