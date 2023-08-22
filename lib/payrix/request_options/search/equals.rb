@@ -3,6 +3,7 @@
 module Payrix
   module RequestOptions
     module Search
+      # A builder class that constructs a valid 'equals' search filter.
       class Equals < Atom
         def initialize(field, value)
           value = "''" if ['', nil].include?(value)
