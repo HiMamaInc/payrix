@@ -3,6 +3,7 @@
 module Payrix
   module RequestOptions
     module Search
+      # A parent builder class that all field operators inherit from.
       class Atom < Node
         attr_reader :field, :operator, :value
 
