@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Payrix
+  # This class is used to request a collection of items from the Payrix API, and support paginating through them.
   class List
     include Enumerable
 
@@ -38,6 +39,10 @@ module Payrix
       @current_data.each(&block)
     end
 
+    def more?
+      @more
+    end
+
     def auto_paging_each(&block)
       @current_page = 0
 
@@ -63,10 +68,6 @@ module Payrix
       auto_paging_each { count += 1 }
 
       count
-    end
-
-    def more?
-      @more
     end
 
     def inspect
