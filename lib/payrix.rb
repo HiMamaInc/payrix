@@ -18,6 +18,7 @@ require 'payrix/api_operations'
 require 'payrix/base_resource'
 require 'payrix/resources'
 
+# The Payrix API.
 module Payrix
   class << self
     attr_writer :configuration
