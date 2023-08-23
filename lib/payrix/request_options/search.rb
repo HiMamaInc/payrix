@@ -5,6 +5,7 @@ require 'payrix/request_options/search/atom'
 require 'payrix/request_options/search/equals'
 require 'payrix/request_options/search/greater'
 require 'payrix/request_options/search/less'
+require 'payrix/request_options/search/compound'
 
 module Payrix
   module RequestOptions

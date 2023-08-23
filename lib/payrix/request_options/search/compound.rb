@@ -3,6 +3,7 @@
 module Payrix
   module RequestOptions
     module Search
+      # A parent builder class that all compound operators inherit from.
       class Compound < Node
         def initialize(operator, *args)
           @operator = operator
