@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Payrix
+  # A set of utility methods used throughout the library.
   module Util
     def self.camel_case(string)
       string.split('_').inject { |part1, part2| part1 + part2.capitalize }
