@@ -11,5 +11,3 @@ RSpec.configure do |config|
 
   config.expose_dsl_globally = false
 end
-
-WebMock.disable_net_connect!(allow: 'https://test-api.payrix.com/')
