@@ -6,6 +6,8 @@ require 'payrix/request_options/search/equals'
 require 'payrix/request_options/search/greater'
 require 'payrix/request_options/search/less'
 require 'payrix/request_options/search/compound'
+require 'payrix/request_options/search/and'
+require 'payrix/request_options/search/or'
 
 module Payrix
   module RequestOptions
@@ -37,6 +39,14 @@ module Payrix
 
       def self.less(field, value)
         Less.new(field, value)
+      end
+
+      def self.and(*nodes)
+        And.new(*nodes)
+      end
+
+      def self.or(*nodes)
+        Or.new(*nodes)
       end
     end
   end

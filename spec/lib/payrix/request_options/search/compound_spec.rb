@@ -50,49 +50,49 @@ RSpec.describe Payrix::RequestOptions::Search::Compound do
       end
     end
 
-    context 'when the *args is nil' do
+    context 'when the *nodes is nil' do
       it 'raises ArgumentError' do
         expect { described_class.new(:operator, nil) }.to raise_error(ArgumentError)
       end
     end
 
-    context 'when the *args is a boolean' do
+    context 'when the *nodes is a boolean' do
       it 'raises ArgumentError' do
         expect { described_class.new(:operator, true) }.to raise_error(ArgumentError)
       end
     end
 
-    context 'when the *args is a number' do
+    context 'when the *nodes is a number' do
       it 'raises ArgumentError' do
         expect { described_class.new(:operator, 0) }.to raise_error(ArgumentError)
       end
     end
 
-    context 'when the *args is a string' do
+    context 'when the *nodes is a string' do
       it 'raises ArgumentError' do
         expect { described_class.new(:operator, '') }.to raise_error(ArgumentError)
       end
     end
 
-    context 'when the *args is a hash' do
+    context 'when the *nodes is a hash' do
       it 'raises ArgumentError' do
         expect { described_class.new(:operator, {}) }.to raise_error(ArgumentError)
       end
     end
 
-    context 'when the *args is an empty array' do
+    context 'when the *nodes is an empty array' do
       it 'raises ArgumentError' do
         expect { described_class.new(:operator, []) }.to raise_error(ArgumentError)
       end
     end
 
-    context 'when the *args is an array of non-search nodes' do
+    context 'when the *nodes is an array of non-search nodes' do
       it 'raises ArgumentError' do
         expect { described_class.new(:operator, [nil, true, 0, '']) }.to raise_error(ArgumentError)
       end
     end
 
-    context 'when the *args is an array of 1 search node' do
+    context 'when the *nodes is an array of 1 search node' do
       it 'raises ArgumentError' do
         nodes = [Payrix::Search.equals(:A, 1)]
 
@@ -100,7 +100,7 @@ RSpec.describe Payrix::RequestOptions::Search::Compound do
       end
     end
 
-    context 'when the operator is a string and the *args is an array of 2+ search nodes' do
+    context 'when the operator is a string and the *nodes is an array of 2+ search nodes' do
       it 'instantiates' do
         nodes = [Payrix::Search.equals(:A, 1), Payrix::Search.equals(:A, 2)]
 
@@ -110,7 +110,7 @@ RSpec.describe Payrix::RequestOptions::Search::Compound do
       end
     end
 
-    context 'when the operator is a symbol and the *args is an array of search nodes' do
+    context 'when the operator is a symbol and the *nodes is an array of search nodes' do
       it 'instantiates' do
         nodes = [Payrix::Search.equals(:A, 1), Payrix::Search.equals(:A, 2)]
 
