@@ -109,13 +109,28 @@ filter = Payrix::Search.less(:status, Payrix::Merchant::STATUS_BOARDED)
 merchants = Payrix::Merchants.list(filter)
 ```
 
-Here is a list of all operators available.
+Here is a list of all simple operators available.
 
 - `Payrix::Search.equals`
 - `Payrix::Search.greater`
 - `Payrix::Search.less`
 
 The interface of all operators follows `.operator(:field, value)`.
+
+Use compound operators to make combinations of simple and other compound operators.
+
+```ruby
+filter =
+  Payrix::Search.or(
+    Payrix::Search.equals(:status, Payrix::Merchant::STATUS_BOARDED),
+    Payrix::Search.equals(:status, Payrix::Merchant::STATUS_READY),
+  )
+
+merchants = Payrix::Merchants.list(filter)
+```
+
+The available compound operators are `Payrix::Search.or` and `Payrix::Search.and`. Both operators
+takes 2+ simple or compound search nodes.
 
 ### Create
 
