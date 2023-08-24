@@ -17,10 +17,6 @@ AllCops:
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented_relative_to_receiver
 
-Metrics/MethodLength:
-  # The default of 10 felt too restrictive.
-  Max: 15
-
 RSpec/ExampleLength:
   Enabled: false
 
