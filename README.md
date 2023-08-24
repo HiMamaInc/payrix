@@ -1,5 +1,7 @@
 # Payrix Ruby Library
 
+![Test](https://github.com/HiMamaInc/payrix/actions/workflows/test.yml/badge.svg)
+
 A Ruby SDK for communicating with the [Payrix API](https://test-portal.payrix.com/docs/api).
 
 The implementation and interface of this library takes inspiration from the
