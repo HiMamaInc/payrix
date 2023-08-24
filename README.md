@@ -74,35 +74,6 @@ merchants.each do |merchant|
 end
 ```
 
-#### Paginating
-
-Payrix supports pagination for paging through a collection of resources. By default, the initial
-`.list` call requests the first page of resources, and returns an object to page through more.
-
-```ruby
-ids = []
-merchants = Payrix::Merchant.list
-
-ids += merchants.map { |merchant| merchant.id }
-
-while merchants.more?
-  merchants.page_forward
-
-  ids += merchants.map { |merchant| merchant.id }
-end
-```
-
-Use the manual approach above, or use a library helper to make this easier.
-
-```ruby
-ids = Payrix::Merchant.list.auto_paging_map { |merchant| merchant.id }
-```
-
-There are a few other helpers.
-
-- `#auto_paging_each` - Pass in a `&block` to execute some code for each resource.
-- `#auto_paging_count` - Return a count of all resources in the collection.
-
 #### Filtering
 
 Filter through the returned results by passing an argument to `.list`.
@@ -141,6 +112,41 @@ merchants = Payrix::Merchants.list(filter)
 
 The available compound operators are `Payrix::Search.or` and `Payrix::Search.and`. Both operators
 takes 2+ simple or compound search nodes.
+
+#### Paginating
+
+Payrix supports pagination for paging through a collection of resources. By default, the initial
+`.list` call requests the first page of resources, and returns an object to page through more.
+
+```ruby
+ids = []
+merchants = Payrix::Merchant.list
+
+ids += merchants.map { |merchant| merchant.id }
+
+while merchants.more?
+  merchants.page_forward
+
+  ids += merchants.map { |merchant| merchant.id }
+end
+```
+
+Use the manual approach above, or use a library helper to make this easier.
+
+```ruby
+ids = Payrix::Merchant.list.auto_paging_map { |merchant| merchant.id }
+```
+
+There are a few other helpers.
+
+- `#auto_paging_each` - Pass in a `&block` to execute some code for each resource.
+- `#auto_paging_count` - Return a count of all resources in the collection.
+
+Use the `:page` and `:limit` parameter to skip to a certain page and limit the results returned.
+
+```ruby
+Payrix::Merchant.list({}, { page: 2, limit: 10 })
+```
 
 ### Create
 
