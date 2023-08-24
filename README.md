@@ -13,6 +13,13 @@ The implementation and interface of this library takes inspiration from the
 
 ## Installation
 
+### Supported Ruby Versions
+
+- 2.7
+- 3.0
+- 3.1
+- 3.2
+
 ### Requirements
 
 - Faraday (`~> 2.0.1`)
