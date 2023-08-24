@@ -39,6 +39,7 @@ gem 'payrix', git: 'https://github.com/HiMamaInc/payrix.git'
 Configure the library using your API key to start making requests.
 
 ```ruby
+require 'bundler/setup'
 require 'payrix'
 
 Payrix.api_key = '928b...'
