@@ -192,7 +192,7 @@ All requests accept an options hash parameter.
 
 You can use this to access more functionality described below.
 
-### Expanding
+#### Expanding
 
 Pass in `:expand` to retrieve associated data in the same API call.
 
@@ -230,7 +230,7 @@ merchant.entity.id # => "t1_ent_620acd189522582b3fb7848"
 merchant.members # => [...}
 ```
 
-### Per Request Configuration
+#### Per Request Configuration
 
 Pass in `:api_key` to set the API key used per request.
 
@@ -261,7 +261,14 @@ rescue Payrix::ApiError => error
 end
 ```
 
-### Development
+### Configuration
+
+There are a few configuration parameters.
+
+- `Payrix.api_key=` - Use this to set the API key.
+- `Payrix.test_mode=` - Set `true` to use the Sandbox environment, and `false` use the Production environment.
+
+## Development
 
 After checking out the repository ..
 
@@ -270,18 +277,18 @@ After checking out the repository ..
 - Run linting (`bundle exec rubocop`)
 - Run an interactive prompt to experiment (`bin/console`)
 
-### Contributing
+## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/HiMamaInc/payrix.
 
 This project is intended to be a safe, welcoming space for collaboration, and contributors are
 expected to adhere to the [Contributor Covenant](https://www.contributor-covenant.org) code of conduct.
 
-### License
+## License
 
 The gem is available as open source under the terms of the MIT License.
 
-### Code of Conduct
+## Code of Conduct
 
 Anyone interacting with this codebase on GitHub, issue trackers, chat rooms, and mailing lists is expected
 to follow the [code of conduct]().
