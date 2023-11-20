@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Payrix
   module Http
     class RequestParams
@@ -52,7 +54,7 @@ module Payrix
       end
 
       def page
-        @page.nil? || @page == 0 ? "" : "page[number]=#{@page}"
+        @page.nil? || @page == 0 ? '' : "page[number]=#{@page}"
       end
 
       def page=(page)

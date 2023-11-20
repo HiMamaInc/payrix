@@ -1,32 +1,21 @@
-require 'uri'
+# frozen_string_literal: true
 
 module Payrix
+  # Use this class to configure API parameters such as API URL, API key, etc.
   class Configuration
-    attr_reader :url
-    attr_accessor :api_key, :session_key, :exception_enabled
-    
+    attr_accessor :api_key, :session_key, :test_mode
+
     def initialize
-      @url = 'https://api.payrix.com'
       @api_key = ''
       @session_key = ''
-      @exception_enabled = true
+      @test_mode = false
     end
 
-    def exception_enabled=(v)
-      @exception_enabled = !!v
-    end
-
-    def set_test_mode(test)
-      host = URI.parse(url).host
-
-      if test == true
-        if !host.start_with?('test-')
-          @url = "https://test-#{host}"
-        end
+    def url
+      if @test_mode
+        'https://test-api.payrix.com'
       else
-        if host.start_with?('test-')
-          @url = "https://#{host[5..-1]}"
-        end
+        'https://api.payrix.com'
       end
     end
   end

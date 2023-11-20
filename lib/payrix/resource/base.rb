@@ -56,8 +56,8 @@ module Payrix
         @response.nil? ? false : @response.status
       end
 
-      def has_errors?
-        @response.nil? ? false : @response.has_errors?
+      def errors?
+        @response.nil? ? false : @response.errors?
       end
 
       def response
@@ -72,8 +72,8 @@ module Payrix
         @response.nil? ? [] : @response.totals
       end
 
-      def has_more?
-        @response.nil? ? true : @response.has_more?
+      def more?
+        @response.nil? ? true : @response.more?
       end
 
       def retrieve(params = {})
@@ -134,11 +134,7 @@ module Payrix
         set(params)
 
         if !id
-          if Payrix.configuration.exception_enabled
-            raise Payrix::Exceptions::InvalidRequest.new('ID is required for this action')
-          else
-            return false
-          end
+          raise Payrix::Exceptions::InvalidRequest.new('ID is required for this action')
         end
 
         headers = build_headers
@@ -158,11 +154,7 @@ module Payrix
         set(params)
 
         if !id
-          if Payrix.configuration.exception_enabled
-            raise Payrix::Exceptions::InvalidRequest.new('ID is required for this delete')
-          else
-            return false
-          end
+          raise Payrix::Exceptions::InvalidRequest.new('ID is required for this delete')
         end
 
         headers = build_headers
@@ -205,14 +197,8 @@ module Payrix
       end
 
       def validate_response
-        if @response.has_errors?
-          if Payrix.configuration.exception_enabled
-            raise Payrix::Exceptions::ApiError.new("There are errors in the response, #{@response.errors}")
-          end
-
-          false
-        else
-          true
+        if @response.errors?
+          raise Payrix::Exceptions::ApiError.new("There are errors in the response, #{@response.errors}")
         end
       end
 

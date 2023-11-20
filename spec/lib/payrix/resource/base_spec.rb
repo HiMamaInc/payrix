@@ -14,7 +14,7 @@ RSpec.describe Payrix::Resource::Base do
     fixture_file_path = File.join(fixture_base_path, 'error.json')
 
     WebMock
-      .stub_request(:post, 'https://test-api.payrix.com/test')
+      .stub_request(:post, 'https://api.payrix.com/test')
       .to_return(body: File.read(fixture_file_path), status: 200)
   end
 
