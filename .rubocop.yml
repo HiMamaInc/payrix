@@ -7,12 +7,6 @@ AllCops:
   TargetRubyVersion: 2.7
   SuggestExtensions: false
   NewCops: enable
-  Exclude:
-    # These files will eventually be removed from the library, so don't bother fixing them up.
-    - 'lib/payrix/http/request_params.rb'
-    - 'lib/payrix/resource/**/*.rb'
-    - 'lib/payrix/resource.rb'
-    - 'spec/lib/payrix/resource/**/*.rb'
 
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented_relative_to_receiver
