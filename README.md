@@ -15,7 +15,7 @@ The implementation and interface of this library takes inspiration from the
 
 ### Supported Ruby Versions
 
-- 2.7
+- 2.7 (deprecated)
 - 3.0
 - 3.1
 - 3.2
