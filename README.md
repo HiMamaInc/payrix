@@ -11,6 +11,8 @@ The implementation and interface of this library takes inspiration from the
 - Helpers to assist with pagination
 - Built-in bi-directional translation between camel-case and snake-case fields
 
+This library follows [Semantic Versioning](https://semver.org/).
+
 ## Installation
 
 ### Supported Ruby Versions
