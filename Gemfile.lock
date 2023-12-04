@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    payrix (0.1.2)
+    payrix (1.0.0)
       faraday (~> 2.0.1)
       faraday-follow_redirects
 

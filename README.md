@@ -11,11 +11,13 @@ The implementation and interface of this library takes inspiration from the
 - Helpers to assist with pagination
 - Built-in bi-directional translation between camel-case and snake-case fields
 
+This library follows [Semantic Versioning](https://semver.org/).
+
 ## Installation
 
 ### Supported Ruby Versions
 
-- 2.7
+- 2.7 (deprecated)
 - 3.0
 - 3.1
 - 3.2
@@ -292,7 +294,7 @@ expected to adhere to the [Contributor Covenant](https://www.contributor-covenan
 
 ## License
 
-The gem is available as open source under the terms of the MIT License.
+The gem is available as open source under the terms of the attached Apache 2.0 license.
 
 ## Code of Conduct
 
