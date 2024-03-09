@@ -11,8 +11,11 @@ module Payrix
       @test_mode = false
     end
 
-    def url
-      if @test_mode
+    def url(test_mode_override = nil)
+      test_mode = @test_mode
+      test_mode = test_mode_override if [true, false].include?(test_mode_override)
+
+      if test_mode
         'https://test-api.payrix.com'
       else
         'https://api.payrix.com'

@@ -41,5 +41,65 @@ RSpec.describe Payrix::Configuration do
         expect(configuration.url).to eq('https://api.payrix.com')
       end
     end
+
+    context 'when nil is passed and the default test mode is on' do
+      it 'returns https://test-api.payrix.com' do
+        configuration = described_class.new
+
+        configuration.test_mode = true
+
+        expect(configuration.url(nil)).to eq('https://test-api.payrix.com')
+      end
+    end
+
+    context 'when nil is passed and the default test mode is off' do
+      it 'returns https://api.payrix.com' do
+        configuration = described_class.new
+
+        configuration.test_mode = false
+
+        expect(configuration.url(nil)).to eq('https://api.payrix.com')
+      end
+    end
+
+    context 'when true is passed and the default test mode is on' do
+      it 'returns https://test-api.payrix.com' do
+        configuration = described_class.new
+
+        configuration.test_mode = true
+
+        expect(configuration.url(true)).to eq('https://test-api.payrix.com')
+      end
+    end
+
+    context 'when true is passed and the default test mode is off' do
+      it 'returns https://test-api.payrix.com' do
+        configuration = described_class.new
+
+        configuration.test_mode = false
+
+        expect(configuration.url(true)).to eq('https://test-api.payrix.com')
+      end
+    end
+
+    context 'when false is passed and the default test mode is on' do
+      it 'returns https://api.payrix.com' do
+        configuration = described_class.new
+
+        configuration.test_mode = true
+
+        expect(configuration.url(false)).to eq('https://api.payrix.com')
+      end
+    end
+
+    context 'when false is passed and the default test mode is off' do
+      it 'returns https://api.payrix.com' do
+        configuration = described_class.new
+
+        configuration.test_mode = false
+
+        expect(configuration.url(false)).to eq('https://api.payrix.com')
+      end
+    end
   end
 end
