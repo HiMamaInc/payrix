@@ -22,7 +22,7 @@ RSpec.describe Payrix::Configuration do
   end
 
   describe '#url' do
-    context 'when in test mode' do
+    context 'when no arguments are passed and the default test mode is on' do
       it 'returns https://test-api.payrix.com' do
         configuration = described_class.new
 
@@ -32,7 +32,7 @@ RSpec.describe Payrix::Configuration do
       end
     end
 
-    context 'when not in test mode' do
+    context 'when no arguments are passed and the default test mode is off' do
       it 'returns https://api.payrix.com' do
         configuration = described_class.new
 
