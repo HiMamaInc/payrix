@@ -1,3 +1,7 @@
+## Unreleased
+
+- Support passing `:test_mode` parameter into `options` hash for all CRUD operations.
+
 ## 1.0.0 (2023-11-27)
 
 - Interact with the Payrix API!

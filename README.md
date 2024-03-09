@@ -240,10 +240,13 @@ merchant.members # => [...}
 
 #### Per Request Configuration
 
-Pass in `:api_key` to set the API key used per request.
+Set the following configuration parameters per request.
+
+- `:api_key` - Set the API key used.
+- `:test_mode` - Set `true` to use the Sandvox environment, and `false` to use the Production environment.
 
 ```ruby
-Payrix::Merchant.retrieve('t1_mer_620acd189522582b3fb7849', { api_key: 'b442...' })
+Payrix::Merchant.retrieve('t1_mer_620acd189522582b3fb7849', { api_key: 'b442...', test_mode: true })
 ```
 
 This is useful if you need to set the API key in a thread-safe way, which is not possible through
