@@ -19,6 +19,11 @@ require 'payrix/resources'
 
 # The Payrix API.
 module Payrix
+  ENVIRONMENTS = {
+    sandbox: :sandbox,
+    production: :production,
+  }.freeze
+
   class << self
     attr_writer :configuration
   end
@@ -31,8 +36,8 @@ module Payrix
     configuration.api_key = api_key
   end
 
-  def self.test_mode=(test_mode)
-    configuration.test_mode = test_mode
+  def self.environment=(environment)
+    configuration.environment = environment
   end
 
   def self.configure

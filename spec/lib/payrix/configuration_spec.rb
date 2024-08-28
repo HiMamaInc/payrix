@@ -22,7 +22,7 @@ RSpec.describe Payrix::Configuration do
   end
 
   describe '#url' do
-    context 'when test mode setting is not configured' do
+    context 'when environment is not configured' do
       it 'returns the production URL https://api.payrix.com' do
         configuration = described_class.new
 
@@ -30,21 +30,21 @@ RSpec.describe Payrix::Configuration do
       end
     end
 
-    context 'when test mode setting is enabled' do
+    context 'when environment is set to sandbox' do
       it 'returns the sandbox URL https://test-api.payrix.com' do
         configuration = described_class.new
 
-        configuration.test_mode = true
+        configuration.environment = :sandbox
 
         expect(configuration.url).to eq('https://test-api.payrix.com')
       end
     end
 
-    context 'when test mode setting is disabled' do
+    context 'when environment is set to production' do
       it 'returns the production URL https://api.payrix.com' do
         configuration = described_class.new
 
-        configuration.test_mode = false
+        configuration.environment = :production
 
         expect(configuration.url).to eq('https://api.payrix.com')
       end

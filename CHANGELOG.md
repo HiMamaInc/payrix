@@ -1,3 +1,15 @@
+## Unreleased
+
+### Breaking Changes
+
+- Change API for setting request environment.
+  - Replace `Payrix.test_mode = true` with `Payrix.environment = :sandbox`.
+  - Replace `Payrix.test_mode = false` with `Payrix.environment = :production`.
+
+### Removals
+
+- Remove `Payrix.test_mode` configuration.
+
 ## 1.0.0 (2023-11-27)
 
 - Interact with the Payrix API!

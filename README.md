@@ -274,7 +274,7 @@ end
 There are a few configuration parameters.
 
 - `Payrix.api_key=` - Use this to set the API key.
-- `Payrix.test_mode=` - Set `true` to use the Sandbox environment, and `false` use the Production environment.
+- `Payrix.environment=` - Use this to set the request environment. Set to `:sandbox` or `:production`.
 
 ## Development
 
