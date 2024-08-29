@@ -5,6 +5,8 @@
 - Change API for setting request environment.
   - Replace `Payrix.test_mode = true` with `Payrix.environment = :sandbox`.
   - Replace `Payrix.test_mode = false` with `Payrix.environment = :production`.
+- Change default request environment to `:sandbox`.
+  - Set `Payrix.environment = :production` to keep existing behaviour.
 
 ### Removals
 

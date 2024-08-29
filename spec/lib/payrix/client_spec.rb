@@ -8,7 +8,7 @@ RSpec.describe Payrix::Client do
       it 'supports basic requests' do
         stub =
           WebMock
-            .stub_request(:get, 'https://api.payrix.com/txns')
+            .stub_request(:get, 'https://test-api.payrix.com/txns')
             .with(
               headers: {
                 'Content-Type' => 'application/json',
@@ -37,7 +37,7 @@ RSpec.describe Payrix::Client do
           WebMock
             .stub_request(
               :get,
-              'https://api.payrix.com/txns?page[number]=1&page[limit]=10&expand[merchant][]=',
+              'https://test-api.payrix.com/txns?page[number]=1&page[limit]=10&expand[merchant][]=',
             )
             .with(
               headers: {
@@ -80,7 +80,7 @@ RSpec.describe Payrix::Client do
       it 'supports basic requests' do
         stub =
           WebMock
-            .stub_request(:post, 'https://api.payrix.com/txns')
+            .stub_request(:post, 'https://test-api.payrix.com/txns')
             .with(
               headers: {
                 'Content-Type' => 'application/json',
@@ -110,7 +110,7 @@ RSpec.describe Payrix::Client do
       it 'supports advanced requests' do
         stub =
           WebMock
-            .stub_request(:post, 'https://api.payrix.com/txns?expand[merchant][]=')
+            .stub_request(:post, 'https://test-api.payrix.com/txns?expand[merchant][]=')
             .with(
               headers: {
                 'Content-Type' => 'application/json',
@@ -154,7 +154,7 @@ RSpec.describe Payrix::Client do
       it 'supports basic requests' do
         stub =
           WebMock
-            .stub_request(:put, 'https://api.payrix.com/txns/t1_txn_64026b07cc6a79dd5cfd0da')
+            .stub_request(:put, 'https://test-api.payrix.com/txns/t1_txn_64026b07cc6a79dd5cfd0da')
             .with(
               headers: {
                 'Content-Type' => 'application/json',
@@ -192,7 +192,7 @@ RSpec.describe Payrix::Client do
       it 'supports advanced requests' do
         stub =
           WebMock
-            .stub_request(:put, 'https://api.payrix.com/txns/t1_txn_64026b07cc6a79dd5cfd0da')
+            .stub_request(:put, 'https://test-api.payrix.com/txns/t1_txn_64026b07cc6a79dd5cfd0da')
             .with(
               headers: {
                 'Content-Type' => 'application/json',
@@ -235,7 +235,7 @@ RSpec.describe Payrix::Client do
       it 'supports basic requests' do
         stub =
           WebMock
-            .stub_request(:delete, 'https://api.payrix.com/txns/t1_txn_64026b07cc6a79dd5cfd0da')
+            .stub_request(:delete, 'https://test-api.payrix.com/txns/t1_txn_64026b07cc6a79dd5cfd0da')
             .with(
               headers: {
                 'Content-Type' => 'application/json',
@@ -261,7 +261,7 @@ RSpec.describe Payrix::Client do
       it 'supports advanced requests' do
         stub =
           WebMock
-            .stub_request(:delete, 'https://api.payrix.com/txns/t1_txn_64026b07cc6a79dd5cfd0da')
+            .stub_request(:delete, 'https://test-api.payrix.com/txns/t1_txn_64026b07cc6a79dd5cfd0da')
             .with(
               headers: {
                 'Content-Type' => 'application/json',

@@ -51,7 +51,7 @@ RSpec.describe Payrix::APIOperations::Create do
       it 'raises Payrix::ApiError' do
         stub =
           WebMock
-            .stub_request(:post, 'https://api.payrix.com/txns')
+            .stub_request(:post, 'https://test-api.payrix.com/txns')
             .with(
               body: {
                 total: -1,
@@ -91,7 +91,7 @@ RSpec.describe Payrix::APIOperations::Create do
       it 'returns the created object' do
         stub =
           WebMock
-            .stub_request(:post, 'https://api.payrix.com/txns')
+            .stub_request(:post, 'https://test-api.payrix.com/txns')
             .with(
               body: {
                 total: 100_00,
@@ -132,7 +132,7 @@ RSpec.describe Payrix::APIOperations::Create do
       it 'supports resource expansion via the :expand key' do
         stub =
           WebMock
-            .stub_request(:post, 'https://api.payrix.com/txns?expand[merchant][]=')
+            .stub_request(:post, 'https://test-api.payrix.com/txns?expand[merchant][]=')
             .with(
               body: {
                 total: 100_00,
@@ -176,7 +176,7 @@ RSpec.describe Payrix::APIOperations::Create do
       it 'supports setting the API key per-request via the :api_key key' do
         stub =
           WebMock
-            .stub_request(:post, 'https://api.payrix.com/txns')
+            .stub_request(:post, 'https://test-api.payrix.com/txns')
             .with(
               body: {
                 total: 100_00,

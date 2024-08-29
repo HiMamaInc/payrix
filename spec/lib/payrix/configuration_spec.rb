@@ -23,10 +23,10 @@ RSpec.describe Payrix::Configuration do
 
   describe '#url' do
     context 'when environment is not configured' do
-      it 'returns the production URL https://api.payrix.com' do
+      it 'returns the sandbox URL https://test-api.payrix.com' do
         configuration = described_class.new
 
-        expect(configuration.url).to eq('https://api.payrix.com')
+        expect(configuration.url).to eq('https://test-api.payrix.com')
       end
     end
 

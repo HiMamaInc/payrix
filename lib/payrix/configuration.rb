@@ -8,7 +8,7 @@ module Payrix
     def initialize
       @api_key = ''
       @session_key = ''
-      @environment = Payrix::ENVIRONMENTS.fetch(:production)
+      @environment = Payrix::ENVIRONMENTS.fetch(:sandbox)
     end
 
     def url

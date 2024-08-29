@@ -81,7 +81,7 @@ RSpec.describe Payrix::APIOperations::Update do
       it 'raises Payrix::ApiError' do
         stub =
           WebMock
-            .stub_request(:put, 'https://api.payrix.com/customers/t1_cus_64d511636b66052bb4dec9c')
+            .stub_request(:put, 'https://test-api.payrix.com/customers/t1_cus_64d511636b66052bb4dec9c')
             .with(
               body: {
                 entity: 't1_ent_640b4c3ddd3dd258e691501',
@@ -120,7 +120,7 @@ RSpec.describe Payrix::APIOperations::Update do
       it 'returns the created object' do
         stub =
           WebMock
-            .stub_request(:put, 'https://api.payrix.com/customers/t1_cus_64d511636b66052bb4dec9c')
+            .stub_request(:put, 'https://test-api.payrix.com/customers/t1_cus_64d511636b66052bb4dec9c')
             .with(
               body: {
                 first: 'Joseph',
@@ -159,7 +159,7 @@ RSpec.describe Payrix::APIOperations::Update do
       it 'supports setting the API key per-request via the :api_key key' do
         stub =
           WebMock
-            .stub_request(:put, 'https://api.payrix.com/customers/t1_cus_64d511636b66052bb4dec9c')
+            .stub_request(:put, 'https://test-api.payrix.com/customers/t1_cus_64d511636b66052bb4dec9c')
             .with(
               body: {
                 first: 'Joseph',
