@@ -18,8 +18,16 @@ module Payrix
       @environment = environment.to_sym
     end
 
-    def url
-      case @environment
+    def url(environment_override = nil)
+      environment = @environment
+
+      unless environment_override.nil?
+        validate_environment!(environment_override)
+
+        environment = environment_override.to_sym
+      end
+
+      case environment
       when Payrix::ENVIRONMENTS.fetch(:sandbox)
         'https://test-api.payrix.com'
       when Payrix::ENVIRONMENTS.fetch(:production)

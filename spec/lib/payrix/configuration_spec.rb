@@ -77,7 +77,7 @@ RSpec.describe Payrix::Configuration do
   end
 
   describe '#url' do
-    context 'when environment is not configured' do
+    context 'when environment is not configured and nothing is passed' do
       it 'returns the sandbox URL https://test-api.payrix.com' do
         configuration = described_class.new
 
@@ -85,7 +85,23 @@ RSpec.describe Payrix::Configuration do
       end
     end
 
-    context 'when environment is set to sandbox' do
+    context 'when environment is not configured and sandbox is passed' do
+      it 'returns the sandbox URL https://test-api.payrix.com' do
+        configuration = described_class.new
+
+        expect(configuration.url(:sandbox)).to eq('https://test-api.payrix.com')
+      end
+    end
+
+    context 'when environment is not configured and production is passed' do
+      it 'returns the production URL https://api.payrix.com' do
+        configuration = described_class.new
+
+        expect(configuration.url(:production)).to eq('https://api.payrix.com')
+      end
+    end
+
+    context 'when environment is set to sandbox and nothing is passed' do
       it 'returns the sandbox URL https://test-api.payrix.com' do
         configuration = described_class.new
 
@@ -95,13 +111,53 @@ RSpec.describe Payrix::Configuration do
       end
     end
 
-    context 'when environment is set to production' do
+    context 'when environment is set to sandbox and sandbox is passed' do
+      it 'returns the sandbox URL https://test-api.payrix.com' do
+        configuration = described_class.new
+
+        configuration.environment = :sandbox
+
+        expect(configuration.url(:sandbox)).to eq('https://test-api.payrix.com')
+      end
+    end
+
+    context 'when environment is set to sandbox and production is passed' do
+      it 'returns the production URL https://api.payrix.com' do
+        configuration = described_class.new
+
+        configuration.environment = :sandbox
+
+        expect(configuration.url(:production)).to eq('https://api.payrix.com')
+      end
+    end
+
+    context 'when environment is set to production and nothing is passed' do
       it 'returns the production URL https://api.payrix.com' do
         configuration = described_class.new
 
         configuration.environment = :production
 
         expect(configuration.url).to eq('https://api.payrix.com')
+      end
+    end
+
+    context 'when environment is set to production and sandbox is passed' do
+      it 'returns the sandbox URL https://test-api.payrix.com' do
+        configuration = described_class.new
+
+        configuration.environment = :production
+
+        expect(configuration.url(:sandbox)).to eq('https://test-api.payrix.com')
+      end
+    end
+
+    context 'when environment is set to production and production is passed' do
+      it 'returns the production URL https://api.payrix.com' do
+        configuration = described_class.new
+
+        configuration.environment = :production
+
+        expect(configuration.url(:production)).to eq('https://api.payrix.com')
       end
     end
   end
