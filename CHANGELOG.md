@@ -12,6 +12,10 @@
 
 - Remove `Payrix.test_mode` configuration.
 
+### Additions
+
+- Support per-request `:environment` configuration for all CRUD operations.
+
 ## 1.0.0 (2023-11-27)
 
 - Interact with the Payrix API!

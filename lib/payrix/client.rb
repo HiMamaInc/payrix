@@ -4,7 +4,7 @@ module Payrix
   # The Payrix::Client is used both internally and externally to initiate API requests to the Payrix API.
   class Client
     def request(method:, resource:, data: {}, filters: {}, options: {})
-      url = Payrix.configuration.url
+      url = Payrix.configuration.url(options[:environment])
 
       page_number = Payrix::RequestOptions::Page::Number.construct(options[:page])
       page_limit = Payrix::RequestOptions::Page::Limit.construct(options[:limit])
