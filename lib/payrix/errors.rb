@@ -42,6 +42,10 @@ module Payrix
   class NotFoundError < Error
   end
 
+  # A pre-flight error indicating that the environment set is not valid.
+  class InvalidEnvironmentError < Error
+  end
+
   # An error returned when the API returns an invalid authentication error.
   class InvalidAuthenticationError < Error
   end

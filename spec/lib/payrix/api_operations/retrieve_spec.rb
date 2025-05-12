@@ -50,7 +50,7 @@ RSpec.describe Payrix::APIOperations::Retrieve do
     context 'when passing a string, and the API response contains errors' do
       it 'raises Payrix::ApiError' do
         WebMock
-          .stub_request(:get, 'https://api.payrix.com/txns')
+          .stub_request(:get, 'https://test-api.payrix.com/txns')
           .with(
             headers: {
               'Search' => 'id[equals]=t1_txn_64026b07cc6a79dd5cfd0da',
@@ -78,7 +78,7 @@ RSpec.describe Payrix::APIOperations::Retrieve do
     context 'when passing a string, and the API response is empty' do
       it 'raises Payrix::NotFoundError' do
         WebMock
-          .stub_request(:get, 'https://api.payrix.com/txns')
+          .stub_request(:get, 'https://test-api.payrix.com/txns')
           .with(
             headers: {
               'Search' => 'id[equals]=t1_txn_64026b07cc6a79dd5cfd0da',
@@ -110,7 +110,7 @@ RSpec.describe Payrix::APIOperations::Retrieve do
     context 'when passing a string and the API response is not empty' do
       it 'returns an object' do
         WebMock
-          .stub_request(:get, 'https://api.payrix.com/txns')
+          .stub_request(:get, 'https://test-api.payrix.com/txns')
           .with(
             headers: {
               'Search' => 'id[equals]=t1_txn_64026b07cc6a79dd5cfd0da',
@@ -150,7 +150,7 @@ RSpec.describe Payrix::APIOperations::Retrieve do
     context 'when passing a string and an options hash' do
       it 'supports resource expansion via the :expand key' do
         WebMock
-          .stub_request(:get, 'https://api.payrix.com/txns?expand[merchant][]=')
+          .stub_request(:get, 'https://test-api.payrix.com/txns?expand[merchant][]=')
           .with(
             headers: {
               'Search' => 'id[equals]=t1_txn_64026b07cc6a79dd5cfd0da',
@@ -193,7 +193,7 @@ RSpec.describe Payrix::APIOperations::Retrieve do
       it 'supports setting the API key per-request via the :api_key key' do
         stub =
           WebMock
-            .stub_request(:get, 'https://api.payrix.com/txns')
+            .stub_request(:get, 'https://test-api.payrix.com/txns')
             .with(
               headers: {
                 'Apikey' => 'my-personal-key',

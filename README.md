@@ -240,14 +240,16 @@ merchant.members # => [...}
 
 #### Per Request Configuration
 
-Pass in `:api_key` to set the API key used per request.
+Set the following configuration parameters per request.
+
+- `:api_key` - Set the API key used.
+- `:environment` - Set the environment used (see valid values in Configuration below).
 
 ```ruby
-Payrix::Merchant.retrieve('t1_mer_620acd189522582b3fb7849', { api_key: 'b442...' })
+Payrix::Merchant.retrieve('t1_mer_620acd189522582b3fb7849', { api_key: 'b442...', environment: :production })
 ```
 
-This is useful if you need to set the API key in a thread-safe way, which is not possible through
-`Payrix.api_key=`. If both are set, the per request configuration takes precedent.
+This is useful if you need to configure the request in a thread-safe way. This is not possible using the static configuration mentioned in Configuration below. The per-request configuration always takes precedent.
 
 ### Errors
 
@@ -274,7 +276,7 @@ end
 There are a few configuration parameters.
 
 - `Payrix.api_key=` - Use this to set the API key.
-- `Payrix.test_mode=` - Set `true` to use the Sandbox environment, and `false` use the Production environment.
+- `Payrix.environment=` - Use this to set the request environment. Set to `:sandbox` or `:production`.
 
 ## Development
 

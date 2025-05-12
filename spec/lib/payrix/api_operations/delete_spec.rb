@@ -51,7 +51,7 @@ RSpec.describe Payrix::APIOperations::Delete do
       it 'raises Payrix::ApiError' do
         stub =
           WebMock
-            .stub_request(:delete, 'https://api.payrix.com/txns/t1_txn_64026b07cc6a79dd5cfd0da')
+            .stub_request(:delete, 'https://test-api.payrix.com/txns/t1_txn_64026b07cc6a79dd5cfd0da')
             .to_return(
               status: 200,
               body: {
@@ -78,7 +78,7 @@ RSpec.describe Payrix::APIOperations::Delete do
       it 'returns the deleted object' do
         stub =
           WebMock
-            .stub_request(:delete, 'https://api.payrix.com/txns/t1_txn_64026b07cc6a79dd5cfd0da')
+            .stub_request(:delete, 'https://test-api.payrix.com/txns/t1_txn_64026b07cc6a79dd5cfd0da')
             .to_return(
               status: 200,
               body: {
@@ -109,7 +109,7 @@ RSpec.describe Payrix::APIOperations::Delete do
       it 'supports setting the API key per-request via the :api_key key' do
         stub =
           WebMock
-            .stub_request(:delete, 'https://api.payrix.com/txns/t1_txn_64026b07cc6a79dd5cfd0da')
+            .stub_request(:delete, 'https://test-api.payrix.com/txns/t1_txn_64026b07cc6a79dd5cfd0da')
             .with(
               headers: {
                 'Apikey' => 'my-personal-key',

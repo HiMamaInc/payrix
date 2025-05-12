@@ -10,7 +10,7 @@ RSpec.describe Payrix::List do
     context 'when a hash filter is given' do
       it 'instantiates and requests the 1st page with the filter' do
         WebMock
-          .stub_request(:get, 'https://api.payrix.com/txns?page[number]=1')
+          .stub_request(:get, 'https://test-api.payrix.com/txns?page[number]=1')
           .with(
             headers: {
               'Search' => 'status[equals]=1',
@@ -51,7 +51,7 @@ RSpec.describe Payrix::List do
     context 'when a node filter is given' do
       it 'instantiates and requests the 1st page with the filter' do
         WebMock
-          .stub_request(:get, 'https://api.payrix.com/txns?page[number]=1')
+          .stub_request(:get, 'https://test-api.payrix.com/txns?page[number]=1')
           .with(
             headers: {
               'Search' => 'amount[greater]=10000',
@@ -132,7 +132,7 @@ RSpec.describe Payrix::List do
     context 'when page is nil' do
       it 'instantiates and requests the 1st page' do
         WebMock
-          .stub_request(:get, 'https://api.payrix.com/txns?page[number]=1')
+          .stub_request(:get, 'https://test-api.payrix.com/txns?page[number]=1')
           .to_return(
             status: 200,
             body: {
@@ -174,7 +174,7 @@ RSpec.describe Payrix::List do
     context 'when page is 1' do
       it 'instantiates and requests the 1st page' do
         WebMock
-          .stub_request(:get, 'https://api.payrix.com/txns?page[number]=1')
+          .stub_request(:get, 'https://test-api.payrix.com/txns?page[number]=1')
           .to_return(
             status: 200,
             body: {
@@ -208,7 +208,7 @@ RSpec.describe Payrix::List do
     context 'when page is greater than 1' do
       it 'instantiates and requests the nth page' do
         WebMock
-          .stub_request(:get, 'https://api.payrix.com/txns?page[number]=15')
+          .stub_request(:get, 'https://test-api.payrix.com/txns?page[number]=15')
           .to_return(
             status: 200,
             body: {
@@ -242,7 +242,7 @@ RSpec.describe Payrix::List do
     context 'when limit is given' do
       it 'limits the number of records per page' do
         WebMock
-          .stub_request(:get, 'https://api.payrix.com/txns?page[number]=1&page[limit]=1')
+          .stub_request(:get, 'https://test-api.payrix.com/txns?page[number]=1&page[limit]=1')
           .to_return(
             status: 200,
             body: {
@@ -273,7 +273,7 @@ RSpec.describe Payrix::List do
     context 'when expand is given' do
       it 'supports resource expansion' do
         WebMock
-          .stub_request(:get, 'https://api.payrix.com/txns?page[number]=1&expand[merchant][]=')
+          .stub_request(:get, 'https://test-api.payrix.com/txns?page[number]=1&expand[merchant][]=')
           .to_return(
             status: 200,
             body: {
@@ -311,7 +311,7 @@ RSpec.describe Payrix::List do
       it 'supports setting the API key per-request' do
         stub =
           WebMock
-            .stub_request(:get, 'https://api.payrix.com/txns?page[number]=1')
+            .stub_request(:get, 'https://test-api.payrix.com/txns?page[number]=1')
             .with(
               headers: {
                 'Apikey' => 'my-personal-key',
@@ -348,7 +348,7 @@ RSpec.describe Payrix::List do
   describe 'Pagination' do
     before do
       WebMock
-        .stub_request(:get, 'https://api.payrix.com/txns?page[number]=1')
+        .stub_request(:get, 'https://test-api.payrix.com/txns?page[number]=1')
         .to_return(
           status: 200,
           body: {
@@ -372,7 +372,7 @@ RSpec.describe Payrix::List do
         )
 
       WebMock
-        .stub_request(:get, 'https://api.payrix.com/txns?page[number]=2')
+        .stub_request(:get, 'https://test-api.payrix.com/txns?page[number]=2')
         .to_return(
           status: 200,
           body: {
@@ -396,7 +396,7 @@ RSpec.describe Payrix::List do
         )
 
       WebMock
-        .stub_request(:get, 'https://api.payrix.com/txns?page[number]=3')
+        .stub_request(:get, 'https://test-api.payrix.com/txns?page[number]=3')
         .to_return(
           status: 200,
           body: {
