@@ -16,6 +16,7 @@ require 'payrix/errors'
 require 'payrix/api_operations'
 require 'payrix/base_resource'
 require 'payrix/resources'
+require 'payrix/test_server'
 
 # The Payrix API.
 module Payrix
