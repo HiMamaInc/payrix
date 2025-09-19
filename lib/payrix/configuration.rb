@@ -19,15 +19,11 @@ module Payrix
     end
 
     def url(environment_override = nil)
-      environment = @environment
+      environment = environment_override || @environment
 
-      unless environment_override.nil?
-        validate_environment!(environment_override)
+      validate_environment!(environment)
 
-        environment = environment_override.to_sym
-      end
-
-      case environment
+      case environment.to_sym
       when Payrix::ENVIRONMENTS.fetch(:sandbox)
         'https://test-api.payrix.com'
       when Payrix::ENVIRONMENTS.fetch(:production)
