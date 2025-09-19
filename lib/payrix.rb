@@ -24,6 +24,10 @@ module Payrix
     production: :production,
   }.freeze
 
+  REGIONS = {
+    us: :us,
+  }.freeze
+
   class << self
     attr_writer :configuration
   end
@@ -34,6 +38,10 @@ module Payrix
 
   def self.api_key=(api_key)
     configuration.api_key = api_key
+  end
+
+  def self.region=(region)
+    configuration.region = region
   end
 
   def self.environment=(environment)

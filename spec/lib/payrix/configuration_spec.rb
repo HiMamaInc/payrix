@@ -76,6 +76,41 @@ RSpec.describe Payrix::Configuration do
     end
   end
 
+  describe '#region=' do
+    context "when set to 'us'" do
+      it 'sets the region to US' do
+        configuration = described_class.new
+
+        configuration.region = 'us'
+
+        expect(configuration.region).to eq(:us)
+      end
+    end
+
+    context 'when set to :us' do
+      it 'sets the region to US' do
+        configuration = described_class.new
+
+        configuration.region = :us
+
+        expect(configuration.region).to eq(:us)
+      end
+    end
+
+    context 'when set to an unsupported value' do
+      it 'raises Payrix::InvalidRegionError' do
+        configuration = described_class.new
+
+        expect { configuration.region = true }.to raise_error(Payrix::InvalidRegionError)
+        expect { configuration.region = 0 }.to raise_error(Payrix::InvalidRegionError)
+        expect { configuration.region = :uk }.to raise_error(Payrix::InvalidRegionError)
+        expect { configuration.region = 'uk' }.to raise_error(Payrix::InvalidRegionError)
+        expect { configuration.region = [] }.to raise_error(Payrix::InvalidRegionError)
+        expect { configuration.region = {} }.to raise_error(Payrix::InvalidRegionError)
+      end
+    end
+  end
+
   describe '#url' do
     context 'when environment is not configured and nothing is passed' do
       it 'returns the sandbox URL https://test-api.payrix.com' do
