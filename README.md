@@ -20,6 +20,8 @@ This library follows [Semantic Versioning](https://semver.org/).
 - 3.0
 - 3.1
 - 3.2
+- 3.3
+- 3.4
 
 ### Requirements
 

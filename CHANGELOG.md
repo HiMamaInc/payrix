@@ -16,6 +16,7 @@
 ### Additions
 
 - Support per-request `:environment` configuration for all CRUD operations.
+- Support Ruby versions 3.3, 3.4.
 
 ## 1.0.0 (2023-11-27)
 
