@@ -11,6 +11,7 @@
 ### Removals
 
 - Remove `Payrix.test_mode` configuration.
+- Remove Ruby version 2.7 from supported list.
 
 ### Additions
 
