@@ -17,8 +17,8 @@ This library follows [Semantic Versioning](https://semver.org/).
 
 ### Supported Ruby Versions
 
-- 3.0
-- 3.1
+- 3.0 (deprecated)
+- 3.1 (deprecated)
 - 3.2
 - 3.3
 - 3.4

@@ -12,6 +12,7 @@
 
 - Remove `Payrix.test_mode` configuration.
 - Remove Ruby version 2.7 from supported list.
+- Deprecate Ruby version 3.0, 3.1 (it will be removed in the next major release).
 
 ### Additions
 
