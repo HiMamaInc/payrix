@@ -37,7 +37,7 @@ RSpec.describe Payrix::Client do
           WebMock
             .stub_request(
               :get,
-              'https://api.payrix.com/txns?page[number]=1&page[limit]=10&expand[merchant][]=',
+              'https://api.payrixcanada.com/txns?page[number]=1&page[limit]=10&expand[merchant][]=',
             )
             .with(
               headers: {
@@ -68,6 +68,7 @@ RSpec.describe Payrix::Client do
                 limit: 10,
                 expand: ['merchant'],
                 api_key: 'custom-key',
+                region: :ca,
                 environment: :production,
               },
             )
@@ -111,7 +112,7 @@ RSpec.describe Payrix::Client do
       it 'supports advanced requests' do
         stub =
           WebMock
-            .stub_request(:post, 'https://api.payrix.com/txns?expand[merchant][]=')
+            .stub_request(:post, 'https://api.payrixcanada.com/txns?expand[merchant][]=')
             .with(
               headers: {
                 'Content-Type' => 'application/json',
@@ -143,6 +144,7 @@ RSpec.describe Payrix::Client do
               options: {
                 expand: ['merchant'],
                 api_key: 'custom-key',
+                region: :ca,
                 environment: :production,
               },
             )
@@ -194,7 +196,7 @@ RSpec.describe Payrix::Client do
       it 'supports advanced requests' do
         stub =
           WebMock
-            .stub_request(:put, 'https://api.payrix.com/txns/t1_txn_64026b07cc6a79dd5cfd0da')
+            .stub_request(:put, 'https://api.payrixcanada.com/txns/t1_txn_64026b07cc6a79dd5cfd0da')
             .with(
               headers: {
                 'Content-Type' => 'application/json',
@@ -225,6 +227,7 @@ RSpec.describe Payrix::Client do
               },
               options: {
                 api_key: 'custom-key',
+                region: :ca,
                 environment: :production,
               },
             )
@@ -264,7 +267,7 @@ RSpec.describe Payrix::Client do
       it 'supports advanced requests' do
         stub =
           WebMock
-            .stub_request(:delete, 'https://api.payrix.com/txns/t1_txn_64026b07cc6a79dd5cfd0da')
+            .stub_request(:delete, 'https://api.payrixcanada.com/txns/t1_txn_64026b07cc6a79dd5cfd0da')
             .with(
               headers: {
                 'Content-Type' => 'application/json',
@@ -289,6 +292,7 @@ RSpec.describe Payrix::Client do
               resource: 'txns/t1_txn_64026b07cc6a79dd5cfd0da',
               options: {
                 api_key: 'custom-key',
+                region: :ca,
                 environment: :production,
               },
             )

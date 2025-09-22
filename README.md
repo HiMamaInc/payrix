@@ -244,10 +244,11 @@ merchant.members # => [...}
 Set the following configuration parameters per request.
 
 - `:api_key` - Set the API key used.
+- `:region` - Set the API used (see valid values in Configuration below).
 - `:environment` - Set the environment used (see valid values in Configuration below).
 
 ```ruby
-Payrix::Merchant.retrieve('t1_mer_620acd189522582b3fb7849', { api_key: 'b442...', environment: :production })
+Payrix::Merchant.retrieve('t1_mer_620acd189522582b3fb7849', { api_key: 'b442...', region: :ca, environment: :production })
 ```
 
 This is useful if you need to configure the request in a thread-safe way. This is not possible using the static configuration mentioned in Configuration below. The per-request configuration always takes precedent.

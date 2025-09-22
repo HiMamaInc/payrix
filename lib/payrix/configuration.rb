@@ -25,8 +25,8 @@ module Payrix
       @environment = environment.to_sym
     end
 
-    def url(environment_override = nil)
-      region = @region
+    def url(region_override = nil, environment_override = nil)
+      region = region_override || @region
       environment = environment_override || @environment
 
       validate_region!(region)

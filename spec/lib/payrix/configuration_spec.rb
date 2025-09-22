@@ -132,17 +132,35 @@ RSpec.describe Payrix::Configuration do
   end
 
   describe '#url' do
+    # rubocop:disable RSpec/NestedGroups
     describe 'region is not configured' do
-      it 'raises Payrix::InvalidRegionError' do
-        configuration = described_class.new
+      context 'when region override is not passed' do
+        it 'raises Payrix::InvalidRegionError' do
+          configuration = described_class.new
 
-        expect { configuration.url }.to raise_error(Payrix::InvalidRegionError)
+          expect { configuration.url }.to raise_error(Payrix::InvalidRegionError)
+        end
+      end
+
+      context 'when region override is passed (us)' do
+        it 'returns the sandbox URL https://test-api.payrix.com' do
+          configuration = described_class.new
+
+          expect(configuration.url(:us)).to eq('https://test-api.payrix.com')
+        end
+      end
+
+      context 'when region override is passed (ca)' do
+        it 'returns the sandbox URL https://test-api.payrixcanada.com' do
+          configuration = described_class.new
+
+          expect(configuration.url(:ca)).to eq('https://test-api.payrixcanada.com')
+        end
       end
     end
 
-    # rubocop:disable RSpec/NestedGroups
     describe 'region is US' do
-      context 'when environment is not configured and nothing is passed' do
+      context 'when environment not configured, no environment override, no region override' do
         it 'returns the sandbox URL https://test-api.payrix.com' do
           configuration = described_class.new
 
@@ -152,27 +170,57 @@ RSpec.describe Payrix::Configuration do
         end
       end
 
-      context 'when environment is not configured and sandbox is passed' do
+      context 'when environment not configured, no environment override, region override (ca)' do
+        it 'returns the sandbox URL https://test-api.payrixcanada.com' do
+          configuration = described_class.new
+
+          configuration.region = :us
+
+          expect(configuration.url(:ca)).to eq('https://test-api.payrixcanada.com')
+        end
+      end
+
+      context 'when environment not configured, environment override (sandbox), no region override' do
         it 'returns the sandbox URL https://test-api.payrix.com' do
           configuration = described_class.new
 
           configuration.region = :us
 
-          expect(configuration.url(:sandbox)).to eq('https://test-api.payrix.com')
+          expect(configuration.url(nil, :sandbox)).to eq('https://test-api.payrix.com')
         end
       end
 
-      context 'when environment is not configured and production is passed' do
+      context 'when environment not configured, environment override (sandbox), region override (ca)' do
+        it 'returns the sandbox URL https://test-api.payrixcanada.com' do
+          configuration = described_class.new
+
+          configuration.region = :us
+
+          expect(configuration.url(:ca, :sandbox)).to eq('https://test-api.payrixcanada.com')
+        end
+      end
+
+      context 'when environment not configured, environment override (production), no region override' do
         it 'returns the production URL https://api.payrix.com' do
           configuration = described_class.new
 
           configuration.region = :us
 
-          expect(configuration.url(:production)).to eq('https://api.payrix.com')
+          expect(configuration.url(nil, :production)).to eq('https://api.payrix.com')
         end
       end
 
-      context 'when environment is set to sandbox and nothing is passed' do
+      context 'when environment not configured, environment override (production), region override (ca)' do
+        it 'returns the production URL https://api.payrixcanada.com' do
+          configuration = described_class.new
+
+          configuration.region = :us
+
+          expect(configuration.url(:ca, :production)).to eq('https://api.payrixcanada.com')
+        end
+      end
+
+      context 'when environment configured (sandbox), no environment override, no region override' do
         it 'returns the sandbox URL https://test-api.payrix.com' do
           configuration = described_class.new
 
@@ -183,29 +231,62 @@ RSpec.describe Payrix::Configuration do
         end
       end
 
-      context 'when environment is set to sandbox and sandbox is passed' do
+      context 'when environment configured (sandbox), no environment override, region override (ca)' do
+        it 'returns the sandbox URL https://test-api.payrixcanada.com' do
+          configuration = described_class.new
+
+          configuration.region = :us
+          configuration.environment = :sandbox
+
+          expect(configuration.url(:ca)).to eq('https://test-api.payrixcanada.com')
+        end
+      end
+
+      context 'when environment configured (sandbox), environment override (sandbox), no region override' do
         it 'returns the sandbox URL https://test-api.payrix.com' do
           configuration = described_class.new
 
           configuration.region = :us
           configuration.environment = :sandbox
 
-          expect(configuration.url(:sandbox)).to eq('https://test-api.payrix.com')
+          expect(configuration.url(nil, :sandbox)).to eq('https://test-api.payrix.com')
         end
       end
 
-      context 'when environment is set to sandbox and production is passed' do
+      context 'when environment configured (sandbox), environment override (sandbox), region override (ca)' do
+        it 'returns the sandbox URL https://test-api.payrixcanada.com' do
+          configuration = described_class.new
+
+          configuration.region = :us
+          configuration.environment = :sandbox
+
+          expect(configuration.url(:ca, :sandbox)).to eq('https://test-api.payrixcanada.com')
+        end
+      end
+
+      context 'when environment configured (sandbox), environment override (production), no region override' do
         it 'returns the production URL https://api.payrix.com' do
           configuration = described_class.new
 
           configuration.region = :us
           configuration.environment = :sandbox
 
-          expect(configuration.url(:production)).to eq('https://api.payrix.com')
+          expect(configuration.url(nil, :production)).to eq('https://api.payrix.com')
         end
       end
 
-      context 'when environment is set to production and nothing is passed' do
+      context 'when environment configured (sandbox), environment override (production), region override (ca)' do
+        it 'returns the production URL https://api.payrixcanada.com' do
+          configuration = described_class.new
+
+          configuration.region = :us
+          configuration.environment = :sandbox
+
+          expect(configuration.url(:ca, :production)).to eq('https://api.payrixcanada.com')
+        end
+      end
+
+      context 'when environment configured (production), no environment override, no region override' do
         it 'returns the production URL https://api.payrix.com' do
           configuration = described_class.new
 
@@ -216,31 +297,64 @@ RSpec.describe Payrix::Configuration do
         end
       end
 
-      context 'when environment is set to production and sandbox is passed' do
+      context 'when environment configured (production), no environment override, region override (ca)' do
+        it 'returns the production URL https://api.payrixcanada.com' do
+          configuration = described_class.new
+
+          configuration.region = :us
+          configuration.environment = :production
+
+          expect(configuration.url(:ca)).to eq('https://api.payrixcanada.com')
+        end
+      end
+
+      context 'when environment configured (production), environment override (sandbox), no region override' do
         it 'returns the sandbox URL https://test-api.payrix.com' do
           configuration = described_class.new
 
           configuration.region = :us
           configuration.environment = :production
 
-          expect(configuration.url(:sandbox)).to eq('https://test-api.payrix.com')
+          expect(configuration.url(nil, :sandbox)).to eq('https://test-api.payrix.com')
         end
       end
 
-      context 'when environment is set to production and production is passed' do
+      context 'when environment configured (production), environment override (sandbox), region override (ca)' do
+        it 'returns the sandbox URL https://test-api.payrixcanada.com' do
+          configuration = described_class.new
+
+          configuration.region = :us
+          configuration.environment = :production
+
+          expect(configuration.url(:ca, :sandbox)).to eq('https://test-api.payrixcanada.com')
+        end
+      end
+
+      context 'when environment configured (production), environment override (production), no region override' do
         it 'returns the production URL https://api.payrix.com' do
           configuration = described_class.new
 
           configuration.region = :us
           configuration.environment = :production
 
-          expect(configuration.url(:production)).to eq('https://api.payrix.com')
+          expect(configuration.url(nil, :production)).to eq('https://api.payrix.com')
+        end
+      end
+
+      context 'when environment configured (production), environment override (production), region override (ca)' do
+        it 'returns the production URL https://api.payrixcanada.com' do
+          configuration = described_class.new
+
+          configuration.region = :us
+          configuration.environment = :production
+
+          expect(configuration.url(:ca, :production)).to eq('https://api.payrixcanada.com')
         end
       end
     end
 
     describe 'region is CA' do
-      context 'when environment is not configured and nothing is passed' do
+      context 'when environment not configured, no environment override, no region override' do
         it 'returns the sandbox URL https://test-api.payrixcanada.com' do
           configuration = described_class.new
 
@@ -250,27 +364,57 @@ RSpec.describe Payrix::Configuration do
         end
       end
 
-      context 'when environment is not configured and sandbox is passed' do
+      context 'when environment not configured, no environment override, region override (us)' do
+        it 'returns the sandbox URL https://test-api.payrix.com' do
+          configuration = described_class.new
+
+          configuration.region = :ca
+
+          expect(configuration.url(:us)).to eq('https://test-api.payrix.com')
+        end
+      end
+
+      context 'when environment not configured, environment override (sandbox), no region override' do
         it 'returns the sandbox URL https://test-api.payrixcanada.com' do
           configuration = described_class.new
 
           configuration.region = :ca
 
-          expect(configuration.url(:sandbox)).to eq('https://test-api.payrixcanada.com')
+          expect(configuration.url(nil, :sandbox)).to eq('https://test-api.payrixcanada.com')
         end
       end
 
-      context 'when environment is not configured and production is passed' do
+      context 'when environment not configured, environment override (sandbox), region override (us)' do
+        it 'returns the sandbox URL https://test-api.payrix.com' do
+          configuration = described_class.new
+
+          configuration.region = :ca
+
+          expect(configuration.url(:us, :sandbox)).to eq('https://test-api.payrix.com')
+        end
+      end
+
+      context 'when environment not configured, environment override (production), no region override' do
         it 'returns the production URL https://api.payrixcanada.com' do
           configuration = described_class.new
 
           configuration.region = :ca
 
-          expect(configuration.url(:production)).to eq('https://api.payrixcanada.com')
+          expect(configuration.url(nil, :production)).to eq('https://api.payrixcanada.com')
         end
       end
 
-      context 'when environment is set to sandbox and nothing is passed' do
+      context 'when environment not configured, environment override (production), region override (us)' do
+        it 'returns the production URL https://api.payrix.com' do
+          configuration = described_class.new
+
+          configuration.region = :ca
+
+          expect(configuration.url(:us, :production)).to eq('https://api.payrix.com')
+        end
+      end
+
+      context 'when environment configured (sandbox), no environment override, no region override' do
         it 'returns the sandbox URL https://test-api.payrixcanada.com' do
           configuration = described_class.new
 
@@ -281,29 +425,62 @@ RSpec.describe Payrix::Configuration do
         end
       end
 
-      context 'when environment is set to sandbox and sandbox is passed' do
+      context 'when environment configured (sandbox), no environment override, region override (us)' do
+        it 'returns the sandbox URL https://test-api.payrix.com' do
+          configuration = described_class.new
+
+          configuration.region = :ca
+          configuration.environment = :sandbox
+
+          expect(configuration.url(:us)).to eq('https://test-api.payrix.com')
+        end
+      end
+
+      context 'when environment configured (sandbox), environment override (sandbox), no region override' do
         it 'returns the sandbox URL https://test-api.payrixcanada.com' do
           configuration = described_class.new
 
           configuration.region = :ca
           configuration.environment = :sandbox
 
-          expect(configuration.url(:sandbox)).to eq('https://test-api.payrixcanada.com')
+          expect(configuration.url(nil, :sandbox)).to eq('https://test-api.payrixcanada.com')
         end
       end
 
-      context 'when environment is set to sandbox and production is passed' do
+      context 'when environment configured (sandbox), environment override (sandbox), region override (us)' do
+        it 'returns the sandbox URL https://test-api.payrix.com' do
+          configuration = described_class.new
+
+          configuration.region = :ca
+          configuration.environment = :sandbox
+
+          expect(configuration.url(:us, :sandbox)).to eq('https://test-api.payrix.com')
+        end
+      end
+
+      context 'when environment configured (sandbox), environment override (production), no region override' do
         it 'returns the production URL https://api.payrixcanada.com' do
           configuration = described_class.new
 
           configuration.region = :ca
           configuration.environment = :sandbox
 
-          expect(configuration.url(:production)).to eq('https://api.payrixcanada.com')
+          expect(configuration.url(nil, :production)).to eq('https://api.payrixcanada.com')
         end
       end
 
-      context 'when environment is set to production and nothing is passed' do
+      context 'when environment configured (sandbox), environment override (production), region override (us)' do
+        it 'returns the production URL https://api.payrix.com' do
+          configuration = described_class.new
+
+          configuration.region = :ca
+          configuration.environment = :sandbox
+
+          expect(configuration.url(:us, :production)).to eq('https://api.payrix.com')
+        end
+      end
+
+      context 'when environment configured (production), no environment override, no region override' do
         it 'returns the production URL https://api.payrixcanada.com' do
           configuration = described_class.new
 
@@ -314,25 +491,58 @@ RSpec.describe Payrix::Configuration do
         end
       end
 
-      context 'when environment is set to production and sandbox is passed' do
+      context 'when environment configured (production), no environment override, region override (us)' do
+        it 'returns the production URL https://api.payrix.com' do
+          configuration = described_class.new
+
+          configuration.region = :ca
+          configuration.environment = :production
+
+          expect(configuration.url(:us)).to eq('https://api.payrix.com')
+        end
+      end
+
+      context 'when environment configured (production), environment override (sandbox), no region override' do
         it 'returns the sandbox URL https://test-api.payrixcanada.com' do
           configuration = described_class.new
 
           configuration.region = :ca
           configuration.environment = :production
 
-          expect(configuration.url(:sandbox)).to eq('https://test-api.payrixcanada.com')
+          expect(configuration.url(nil, :sandbox)).to eq('https://test-api.payrixcanada.com')
         end
       end
 
-      context 'when environment is set to production and production is passed' do
+      context 'when environment configured (production), environment override (sandbox), region override (us)' do
+        it 'returns the sandbox URL https://test-api.payrix.com' do
+          configuration = described_class.new
+
+          configuration.region = :ca
+          configuration.environment = :production
+
+          expect(configuration.url(:us, :sandbox)).to eq('https://test-api.payrix.com')
+        end
+      end
+
+      context 'when environment configured (production), environment override (production), no region override' do
         it 'returns the production URL https://api.payrixcanada.com' do
           configuration = described_class.new
 
           configuration.region = :ca
           configuration.environment = :production
 
-          expect(configuration.url(:production)).to eq('https://api.payrixcanada.com')
+          expect(configuration.url(nil, :production)).to eq('https://api.payrixcanada.com')
+        end
+      end
+
+      context 'when environment configured (production), environment override (production), region override (us)' do
+        it 'returns the production URL https://api.payrix.com' do
+          configuration = described_class.new
+
+          configuration.region = :ca
+          configuration.environment = :production
+
+          expect(configuration.url(:us, :production)).to eq('https://api.payrix.com')
         end
       end
     end
