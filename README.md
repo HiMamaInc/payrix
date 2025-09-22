@@ -45,6 +45,7 @@ require 'bundler/setup'
 require 'payrix'
 
 Payrix.api_key = '928b...'
+Payrix.region = :us
 
 # Retrieve a single transaction
 Payrix::Txn.retrieve('t1_txn_64026b07cc6a79dd5cfd0da')
@@ -243,10 +244,11 @@ merchant.members # => [...}
 Set the following configuration parameters per request.
 
 - `:api_key` - Set the API key used.
+- `:region` - Set the API used (see valid values in Configuration below).
 - `:environment` - Set the environment used (see valid values in Configuration below).
 
 ```ruby
-Payrix::Merchant.retrieve('t1_mer_620acd189522582b3fb7849', { api_key: 'b442...', environment: :production })
+Payrix::Merchant.retrieve('t1_mer_620acd189522582b3fb7849', { api_key: 'b442...', region: :ca, environment: :production })
 ```
 
 This is useful if you need to configure the request in a thread-safe way. This is not possible using the static configuration mentioned in Configuration below. The per-request configuration always takes precedent.
@@ -276,6 +278,7 @@ end
 There are a few configuration parameters.
 
 - `Payrix.api_key=` - Use this to set the API key.
+- `Payrix.region=` - Use this to set the appropriate API. Set to `:us` or `:ca`.
 - `Payrix.environment=` - Use this to set the request environment. Set to `:sandbox` or `:production`.
 
 ## Development

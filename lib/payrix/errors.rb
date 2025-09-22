@@ -46,6 +46,10 @@ module Payrix
   class InvalidEnvironmentError < Error
   end
 
+  # A pre-flight error indicating that the region set is not valid.
+  class InvalidRegionError < Error
+  end
+
   # An error returned when the API returns an invalid authentication error.
   class InvalidAuthenticationError < Error
   end

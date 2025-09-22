@@ -24,6 +24,22 @@ module Payrix
     production: :production,
   }.freeze
 
+  REGIONS = {
+    us: :us,
+    ca: :ca,
+  }.freeze
+
+  ENDPOINTS = {
+    REGIONS.fetch(:us) => {
+      ENVIRONMENTS.fetch(:sandbox) => 'https://test-api.payrix.com',
+      ENVIRONMENTS.fetch(:production) => 'https://api.payrix.com',
+    },
+    REGIONS.fetch(:ca) => {
+      ENVIRONMENTS.fetch(:sandbox) => 'https://test-api.payrixcanada.com',
+      ENVIRONMENTS.fetch(:production) => 'https://api.payrixcanada.com',
+    },
+  }.freeze
+
   class << self
     attr_writer :configuration
   end
@@ -34,6 +50,10 @@ module Payrix
 
   def self.api_key=(api_key)
     configuration.api_key = api_key
+  end
+
+  def self.region=(region)
+    configuration.region = region
   end
 
   def self.environment=(environment)

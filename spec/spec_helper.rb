@@ -4,6 +4,8 @@ require 'payrix'
 require 'webmock/rspec'
 require 'pry'
 
+Payrix.region = :us
+
 RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
