@@ -277,7 +277,7 @@ end
 There are a few configuration parameters.
 
 - `Payrix.api_key=` - Use this to set the API key.
-- `Payrix.region=` - Use this to set the appropriate API. Set to `:us`.
+- `Payrix.region=` - Use this to set the appropriate API. Set to `:us` or `:ca`.
 - `Payrix.environment=` - Use this to set the request environment. Set to `:sandbox` or `:production`.
 
 ## Development

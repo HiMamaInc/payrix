@@ -26,12 +26,17 @@ module Payrix
 
   REGIONS = {
     us: :us,
+    ca: :ca,
   }.freeze
 
   ENDPOINTS = {
     REGIONS.fetch(:us) => {
       ENVIRONMENTS.fetch(:sandbox) => 'https://test-api.payrix.com',
       ENVIRONMENTS.fetch(:production) => 'https://api.payrix.com',
+    },
+    REGIONS.fetch(:ca) => {
+      ENVIRONMENTS.fetch(:sandbox) => 'https://test-api.payrixcanada.com',
+      ENVIRONMENTS.fetch(:production) => 'https://api.payrixcanada.com',
     },
   }.freeze
 

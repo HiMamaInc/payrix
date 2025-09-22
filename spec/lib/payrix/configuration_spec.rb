@@ -97,6 +97,26 @@ RSpec.describe Payrix::Configuration do
       end
     end
 
+    context "when set to 'ca'" do
+      it 'sets the region to CA' do
+        configuration = described_class.new
+
+        configuration.region = 'ca'
+
+        expect(configuration.region).to eq(:ca)
+      end
+    end
+
+    context 'when set to :ca' do
+      it 'sets the region to CA' do
+        configuration = described_class.new
+
+        configuration.region = :ca
+
+        expect(configuration.region).to eq(:ca)
+      end
+    end
+
     context 'when set to an unsupported value' do
       it 'raises Payrix::InvalidRegionError' do
         configuration = described_class.new
@@ -215,6 +235,104 @@ RSpec.describe Payrix::Configuration do
           configuration.environment = :production
 
           expect(configuration.url(:production)).to eq('https://api.payrix.com')
+        end
+      end
+    end
+
+    describe 'region is CA' do
+      context 'when environment is not configured and nothing is passed' do
+        it 'returns the sandbox URL https://test-api.payrixcanada.com' do
+          configuration = described_class.new
+
+          configuration.region = :ca
+
+          expect(configuration.url).to eq('https://test-api.payrixcanada.com')
+        end
+      end
+
+      context 'when environment is not configured and sandbox is passed' do
+        it 'returns the sandbox URL https://test-api.payrixcanada.com' do
+          configuration = described_class.new
+
+          configuration.region = :ca
+
+          expect(configuration.url(:sandbox)).to eq('https://test-api.payrixcanada.com')
+        end
+      end
+
+      context 'when environment is not configured and production is passed' do
+        it 'returns the production URL https://api.payrixcanada.com' do
+          configuration = described_class.new
+
+          configuration.region = :ca
+
+          expect(configuration.url(:production)).to eq('https://api.payrixcanada.com')
+        end
+      end
+
+      context 'when environment is set to sandbox and nothing is passed' do
+        it 'returns the sandbox URL https://test-api.payrixcanada.com' do
+          configuration = described_class.new
+
+          configuration.region = :ca
+          configuration.environment = :sandbox
+
+          expect(configuration.url).to eq('https://test-api.payrixcanada.com')
+        end
+      end
+
+      context 'when environment is set to sandbox and sandbox is passed' do
+        it 'returns the sandbox URL https://test-api.payrixcanada.com' do
+          configuration = described_class.new
+
+          configuration.region = :ca
+          configuration.environment = :sandbox
+
+          expect(configuration.url(:sandbox)).to eq('https://test-api.payrixcanada.com')
+        end
+      end
+
+      context 'when environment is set to sandbox and production is passed' do
+        it 'returns the production URL https://api.payrixcanada.com' do
+          configuration = described_class.new
+
+          configuration.region = :ca
+          configuration.environment = :sandbox
+
+          expect(configuration.url(:production)).to eq('https://api.payrixcanada.com')
+        end
+      end
+
+      context 'when environment is set to production and nothing is passed' do
+        it 'returns the production URL https://api.payrixcanada.com' do
+          configuration = described_class.new
+
+          configuration.region = :ca
+          configuration.environment = :production
+
+          expect(configuration.url).to eq('https://api.payrixcanada.com')
+        end
+      end
+
+      context 'when environment is set to production and sandbox is passed' do
+        it 'returns the sandbox URL https://test-api.payrixcanada.com' do
+          configuration = described_class.new
+
+          configuration.region = :ca
+          configuration.environment = :production
+
+          expect(configuration.url(:sandbox)).to eq('https://test-api.payrixcanada.com')
+        end
+      end
+
+      context 'when environment is set to production and production is passed' do
+        it 'returns the production URL https://api.payrixcanada.com' do
+          configuration = described_class.new
+
+          configuration.region = :ca
+          configuration.environment = :production
+
+          expect(configuration.url(:production)).to eq('https://api.payrixcanada.com')
         end
       end
     end
