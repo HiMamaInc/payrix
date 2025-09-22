@@ -45,6 +45,7 @@ require 'bundler/setup'
 require 'payrix'
 
 Payrix.api_key = '928b...'
+Payrix.region = :us
 
 # Retrieve a single transaction
 Payrix::Txn.retrieve('t1_txn_64026b07cc6a79dd5cfd0da')
@@ -276,6 +277,7 @@ end
 There are a few configuration parameters.
 
 - `Payrix.api_key=` - Use this to set the API key.
+- `Payrix.region=` - Use this to set the appropriate API. Set to `:us`.
 - `Payrix.environment=` - Use this to set the request environment. Set to `:sandbox` or `:production`.
 
 ## Development

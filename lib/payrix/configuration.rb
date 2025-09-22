@@ -26,16 +26,13 @@ module Payrix
     end
 
     def url(environment_override = nil)
+      region = @region
       environment = environment_override || @environment
 
+      validate_region!(region)
       validate_environment!(environment)
 
-      case environment.to_sym
-      when Payrix::ENVIRONMENTS.fetch(:sandbox)
-        'https://test-api.payrix.com'
-      when Payrix::ENVIRONMENTS.fetch(:production)
-        'https://api.payrix.com'
-      end
+      Payrix::ENDPOINTS[region.to_sym][environment.to_sym]
     end
 
     private

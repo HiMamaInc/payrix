@@ -28,6 +28,13 @@ module Payrix
     us: :us,
   }.freeze
 
+  ENDPOINTS = {
+    REGIONS.fetch(:us) => {
+      ENVIRONMENTS.fetch(:sandbox) => 'https://test-api.payrix.com',
+      ENVIRONMENTS.fetch(:production) => 'https://api.payrix.com',
+    },
+  }.freeze
+
   class << self
     attr_writer :configuration
   end
