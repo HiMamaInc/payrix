@@ -11,6 +11,7 @@ module Payrix
     class Request # rubocop:disable Style/Documentation - Legacy file, which will be removed eventually
       include Singleton
 
+      # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength
       def send_http(method, base_url, endpoint, data = {}, headers = {}, timeout = 30)
         conn = Faraday.new(url: base_url) do |connection|
           connection.response :follow_redirects, limit: 3
@@ -52,6 +53,7 @@ module Payrix
           raise Payrix::Exceptions::InvalidResponse, 'Invalid response object'
         end
       end
+      # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength
     end
   end
 end
