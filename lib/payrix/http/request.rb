@@ -24,7 +24,12 @@ module Payrix
         end
 
         begin
+          start_time = Time.now
           response = conn.send(method.downcase.to_sym, endpoint, data)
+          end_time = Time.now
+          duration = ((end_time - start_time) * 1000).round(2)
+
+          puts "[#{end_time}] (#{duration}ms) #{method.upcase} #{base_url}/#{endpoint}"
 
           body = response.body
           status = response.status
