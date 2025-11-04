@@ -45,6 +45,7 @@ require 'bundler/setup'
 require 'payrix'
 
 Payrix.api_key = '928b...'
+Payrix.log_requests = true  # Enable request logging (optional)
 
 # Retrieve a single transaction
 Payrix::Txn.retrieve('t1_txn_64026b07cc6a79dd5cfd0da')
@@ -275,6 +276,7 @@ There are a few configuration parameters.
 
 - `Payrix.api_key=` - Use this to set the API key.
 - `Payrix.test_mode=` - Set `true` to use the Sandbox environment, and `false` use the Production environment.
+- `Payrix.log_requests=` - Set `true` to enable request logging to STDOUT (default: `false`).
 
 ## Development
 

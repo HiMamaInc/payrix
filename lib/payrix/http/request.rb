@@ -29,7 +29,9 @@ module Payrix
           end_time = Time.now
           duration = ((end_time - start_time) * 1000).round(2)
 
-          puts "[#{end_time}] (#{duration}ms) #{method.upcase} #{base_url}/#{endpoint}"
+          if Payrix.configuration.log_requests
+            puts "[#{end_time}] (#{duration}ms) #{method.upcase} #{base_url}/#{endpoint}"
+          end
 
           body = response.body
           status = response.status

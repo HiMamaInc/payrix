@@ -35,6 +35,10 @@ module Payrix
     configuration.test_mode = test_mode
   end
 
+  def self.log_requests=(log_requests)
+    configuration.log_requests = log_requests
+  end
+
   def self.configure
     yield(configuration)
   end

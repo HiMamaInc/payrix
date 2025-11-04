@@ -1,3 +1,7 @@
+## Unreleased
+
+- Add `log_requests` configuration option to enable/disable API request logging to STDOUT.
+
 ## 1.0.0 (2023-11-27)
 
 - Interact with the Payrix API!
