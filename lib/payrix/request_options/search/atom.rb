@@ -22,12 +22,10 @@ module Payrix
         def construct(prefix = '')
           raise ArgumentError, 'Prefix parameter must be a string' unless prefix.is_a?(String)
 
-          field = Payrix::Util.camel_case(@field.to_s)
-
           if prefix == ''
-            "#{field}[#{@operator}]=#{@value}"
+            "#{format_field}[#{@operator}]=#{@value}"
           else
-            "#{prefix}[#{field}][#{@operator}]=#{@value}"
+            "#{prefix}#{format_field}[#{@operator}]=#{@value}"
           end
         end
 
@@ -51,6 +49,24 @@ module Payrix
           return if @value.is_a?(String) && @value != ''
 
           raise ArgumentError, 'Value parameter must be a non-empty string'
+        end
+
+        def format_field
+          parts =
+            case @field
+            when Symbol
+              [@field.to_s]
+            when String
+              @field.split('.')
+            when Array
+              @field.map(&:to_s)
+            else
+              raise ArgumentError, "Invalid field type: #{@field.class}"
+            end
+
+          parts
+            .map { |part| "[#{Payrix::Util.camel_case(part)}]" }
+            .join
         end
       end
     end
