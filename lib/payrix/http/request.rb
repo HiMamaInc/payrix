@@ -16,7 +16,7 @@ module Payrix
           connection.response :follow_redirects, limit: 3
 
           connection.headers = headers
-          connection.options.timeout = timeout
+          connection.options.timeout = 60
           connection.options.open_timeout = timeout
 
           connection.request :json
