@@ -22,10 +22,14 @@ module Payrix
         def construct(prefix = '')
           raise ArgumentError, 'Prefix parameter must be a string' unless prefix.is_a?(String)
 
-          if prefix == ''
-            "#{format_field}[#{@operator}]=#{@value}"
+          formatted_field = rendered_field(prefix)
+
+          if prefix.empty?
+            "#{formatted_field}[#{@operator}]=#{@value}"
+          elsif formatted_field.start_with?('[')
+            "#{prefix}#{formatted_field}[#{@operator}]=#{@value}"
           else
-            "#{prefix}#{format_field}[#{@operator}]=#{@value}"
+            "#{prefix}[#{formatted_field}][#{@operator}]=#{@value}"
           end
         end
 
@@ -51,22 +55,18 @@ module Payrix
           raise ArgumentError, 'Value parameter must be a non-empty string'
         end
 
-        def format_field
-          parts =
-            case @field
-            when Symbol
-              [@field.to_s]
-            when String
-              @field.split('.')
-            when Array
-              @field.map(&:to_s)
-            else
-              raise ArgumentError, "Invalid field type: #{@field.class}"
-            end
+        def rendered_field(prefix)
+          return Payrix::Util.camel_case(@field.to_s) unless @field.is_a?(String) && @field.include?('.')
 
-          parts
-            .map { |part| "[#{Payrix::Util.camel_case(part)}]" }
-            .join
+          dot_field(prefix.empty?)
+        end
+
+        def dot_field(unprefixed)
+          parts = @field.split('.').map { |part| Payrix::Util.camel_case(part) }
+
+          return parts.map { |part| "[#{part}]" }.join unless unprefixed
+
+          [parts.first, *parts.drop(1).map { |part| "[#{part}]" }].join
         end
       end
     end
