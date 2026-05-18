@@ -38,7 +38,7 @@ RSpec.describe Payrix::RequestOptions::Search::Atom do
       end
     end
 
-    context 'when the field is dot notation with empty segments at the binning' do
+    context 'when the field is dot notation with empty segments at the beginning' do
       it 'raises ArgumentError' do
         expect { described_class.new('.field', :operator, 'value') }.to raise_error(ArgumentError)
       end
@@ -272,7 +272,7 @@ RSpec.describe Payrix::RequestOptions::Search::Atom do
       end
     end
 
-    context 'when the field is a dotted string and the prefix is a non empty string' do
+    context 'when the field is a dotted string and the prefix is a non-empty string' do
       it 'returns a valid nested search argument with a prefix' do
         atom = described_class.new('a.field', :operator, 'value')
         expect(atom.construct('prefix')).to eq('prefix[a][field][operator]=value')
