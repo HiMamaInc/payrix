@@ -37,9 +37,16 @@ module Payrix
 
         def validate_field
           return if @field.is_a?(Symbol)
-          return if @field.is_a?(String) && @field != ''
+          raise ArgumentError, 'Field parameter must be a symbol or a non-empty string' unless valid_string_field?
+          raise ArgumentError, 'Field parameter must not contain empty dot notation segments' if empty_dot_segment?
+        end
 
-          raise ArgumentError, 'Field parameter must be a symbol or a non-empty string'
+        def valid_string_field?
+          @field.is_a?(String) && @field != ''
+        end
+
+        def empty_dot_segment?
+          @field.include?('.') && @field.split('.').any?(&:empty?)
         end
 
         def validate_operator

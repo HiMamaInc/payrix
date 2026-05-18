@@ -38,6 +38,18 @@ RSpec.describe Payrix::RequestOptions::Search::Atom do
       end
     end
 
+    context 'when the field is dot notation with empty segments at the binning' do
+      it 'raises ArgumentError' do
+        expect { described_class.new('.field', :operator, 'value') }.to raise_error(ArgumentError)
+      end
+    end
+
+    context 'when the field is dot notation with empty segments at middle' do
+      it 'raises ArgumentError' do
+        expect { described_class.new('a..field', :operator, 'value') }.to raise_error(ArgumentError)
+      end
+    end
+
     context 'when the operator is nil' do
       it 'raises ArgumentError' do
         expect { described_class.new(:field, nil, 'value') }.to raise_error(ArgumentError)
