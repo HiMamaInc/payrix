@@ -251,5 +251,20 @@ RSpec.describe Payrix::RequestOptions::Search::Atom do
         expect { atom.construct({}) }.to raise_error(ArgumentError)
       end
     end
+
+    context 'when the field is a dotted string' do
+      it 'returns a valid nested search argument' do
+        atom = described_class.new('a.field', :operator, 'value')
+
+        expect(atom.construct).to eq('a[field][operator]=value')
+      end
+    end
+
+    context 'when the field is a dotted string and the prefix is a non empty string' do
+      it 'returns a valid nested search argument with a prefix' do
+        atom = described_class.new('a.field', :operator, 'value')
+        expect(atom.construct('prefix')).to eq('prefix[a][field][operator]=value')
+      end
+    end
   end
 end
