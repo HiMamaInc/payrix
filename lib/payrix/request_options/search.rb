@@ -3,6 +3,7 @@
 require 'payrix/request_options/search/node'
 require 'payrix/request_options/search/atom'
 require 'payrix/request_options/search/equals'
+require 'payrix/request_options/search/in'
 require 'payrix/request_options/search/greater'
 require 'payrix/request_options/search/less'
 require 'payrix/request_options/search/compound'
@@ -31,6 +32,10 @@ module Payrix
 
       def self.equals(field, value)
         Equals.new(field, value)
+      end
+
+      def self.in(field, value)
+        In.new(field, value)
       end
 
       def self.greater(field, value)
