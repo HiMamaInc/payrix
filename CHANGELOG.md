@@ -3,6 +3,9 @@
 ### Added
 - Added support for nested search fields using dot notation in Payrix search query builder (e.g. `merchant.entity.login.division`)
 
+### Changed
+- Increased Payrix API timeout to 60 seconds to improve reliability for slower requests
+
 ### Breaking Changes
 
 - Change API for setting request environment.
