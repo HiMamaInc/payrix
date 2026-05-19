@@ -11,7 +11,7 @@ module Payrix
     class Request # rubocop:disable Style/Documentation - Legacy file, which will be removed eventually
       include Singleton
 
-      def send_http(method, base_url, endpoint, data = {}, headers = {}, timeout = 60)
+      def send_http(method, base_url, endpoint, data = {}, headers = {}, timeout = 30)
         conn = Faraday.new(url: base_url) do |connection|
           connection.response :follow_redirects, limit: 3
 
