@@ -99,6 +99,8 @@ Here is a list of all simple operators available.
 - `Payrix::Search.greater`
 - `Payrix::Search.less`
 
+> Note: Field names can be provided as either symbols (`:status`) or dot-notation strings (`'merchant.entity.login.division'`) when querying nested attributes.
+
 The interface of all operators follows `.operator(:field, value)`.
 
 Use compound operators to make combinations of simple and other compound operators.
