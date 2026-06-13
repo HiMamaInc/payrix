@@ -2,6 +2,8 @@
 
 module Payrix
   class Payment
+    RESOURCE_ENDPOINT = 'payments'
+
     METHOD_AMERICAN_EXPRESS = 1
     METHOD_VISA = 2
     METHOD_MASTERCARD = 3
