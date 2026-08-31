@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
   spec.files = Dir['lib/**/*.rb']
   spec.require_paths = ['lib']
   spec.metadata['rubygems_mfa_required'] = 'true'
-  spec.required_ruby_version = '>= 2.7.7'
+  spec.required_ruby_version = '>= 3.0.3'
 
   spec.add_runtime_dependency 'faraday', '~> 2.0.1'
   spec.add_runtime_dependency 'faraday-follow_redirects'
