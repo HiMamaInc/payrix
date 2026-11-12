@@ -17,6 +17,7 @@ Gem::Specification.new do |spec|
   spec.metadata['rubygems_mfa_required'] = 'true'
   spec.required_ruby_version = '>= 2.7.7'
 
+  spec.add_runtime_dependency 'base64' # Required by Faraday 2.0 on Ruby 3.4.
   spec.add_runtime_dependency 'faraday', '~> 2.0.1'
   spec.add_runtime_dependency 'faraday-follow_redirects'
 end
