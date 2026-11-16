@@ -21,6 +21,9 @@ module Payrix
         'SEARCH' => search,
       }
 
+      request_token = options[:request_token]
+      headers['REQUEST-TOKEN'] = request_token.to_s unless request_token.nil? || request_token.to_s.empty?
+
       json, status =
         Payrix::Http::Request
           .instance
