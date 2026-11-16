@@ -13,16 +13,7 @@ module Payrix
 
       data = Payrix::Util.recursive_camel_case(data)
 
-      api_key = options[:api_key] || Payrix.configuration.api_key
-      search = Payrix::RequestOptions::Search.construct(filters)
-      headers = {
-        'Content-Type' => 'application/json',
-        'APIKEY' => api_key,
-        'SEARCH' => search,
-      }
-
-      request_token = options[:request_token]
-      headers['REQUEST-TOKEN'] = request_token.to_s unless request_token.nil? || request_token.to_s.empty?
+      headers = request_headers(filters, options)
 
       json, status =
         Payrix::Http::Request
@@ -34,6 +25,21 @@ module Payrix
       raise ApiError.new('There are errors in the response', response.data, response.errors) if response.errors?
 
       response
+    end
+
+    private
+
+    def request_headers(filters, options)
+      headers = {
+        'Content-Type' => 'application/json',
+        'APIKEY' => options[:api_key] || Payrix.configuration.api_key,
+        'SEARCH' => Payrix::RequestOptions::Search.construct(filters),
+      }
+
+      request_token = options[:request_token]
+      headers['REQUEST-TOKEN'] = request_token.to_s unless request_token.to_s.empty?
+
+      headers
     end
   end
 end
