@@ -152,6 +152,70 @@ RSpec.describe Payrix::Client do
         expect(stub).to have_been_requested
         expect(response.data).to eq([])
       end
+
+      it 'sends the REQUEST-TOKEN header when a request token is provided' do
+        stub =
+          WebMock
+            .stub_request(:post, 'https://test-api.payrix.com/txns')
+            .with(
+              headers: {
+                'Content-Type' => 'application/json',
+                'Apikey' => 'default-key',
+                'Request-Token' => 'a12bc3d4e56f789g0h1ij23kl456789',
+              },
+              body: {
+                total: 100_00,
+              },
+            )
+            .and_return(
+              status: 200,
+              body: {
+                response: {
+                  data: [],
+                },
+              }.to_json,
+            )
+
+        client = described_class.new
+
+        response =
+          client
+            .request(
+              method: :post,
+              resource: 'txns',
+              data: {
+                total: 100_00,
+              },
+              options: {
+                request_token: 'a12bc3d4e56f789g0h1ij23kl456789',
+              },
+            )
+
+        expect(stub).to have_been_requested
+        expect(response.data).to eq([])
+      end
+
+      it 'omits the REQUEST-TOKEN header when no request token is provided' do
+        stub =
+          WebMock
+            .stub_request(:post, 'https://test-api.payrix.com/txns')
+            .with { |request| !request.headers.key?('Request-Token') }
+            .and_return(
+              status: 200,
+              body: {
+                response: {
+                  data: [],
+                },
+              }.to_json,
+            )
+
+        client = described_class.new
+
+        response = client.request(method: :post, resource: 'txns', data: { total: 100_00 })
+
+        expect(stub).to have_been_requested
+        expect(response.data).to eq([])
+      end
     end
 
     describe 'PUT' do
