@@ -97,6 +97,7 @@ merchants = Payrix::Merchants.list(filter)
 Here is a list of all simple operators available.
 
 - `Payrix::Search.equals`
+- `Payrix::Search.in` (accepts a single value or an array, e.g. `Payrix::Search.in(:merchant, %w[t1_mer_1 t1_mer_2])`)
 - `Payrix::Search.greater`
 - `Payrix::Search.less`
 
