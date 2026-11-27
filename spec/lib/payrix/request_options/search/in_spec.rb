@@ -50,6 +50,30 @@ RSpec.describe Payrix::RequestOptions::Search::In do
       end
     end
 
+    context 'with a nil value alongside non-blank values' do
+      it 'drops the nil element' do
+        search_in = described_class.new(:field, [nil, 'a'])
+
+        expect(search_in.construct).to eq('field[in]=a')
+      end
+    end
+
+    context 'with an empty string value alongside non-blank values' do
+      it 'drops the empty element' do
+        search_in = described_class.new(:field, ['', 'a'])
+
+        expect(search_in.construct).to eq('field[in]=a')
+      end
+    end
+
+    context 'with only blank elements' do
+      it 'falls back to the blank sentinel' do
+        search_in = described_class.new(:field, [nil, ''])
+
+        expect(search_in.construct).to eq("field[in]=''")
+      end
+    end
+
     context 'with a prefix' do
       it 'returns a valid nested search filter' do
         search_in = described_class.new(:merchant, ['a', 'b'])

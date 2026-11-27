@@ -6,7 +6,7 @@ module Payrix
       # A builder class that constructs a valid 'in' search filter.
       class In < Atom
         def initialize(field, values)
-          values = Array(values).map(&:to_s).join(',')
+          values = Array(values).compact.map(&:to_s).reject(&:empty?).join(',')
           values = "''" if values.empty?
 
           super(field, :in, values)

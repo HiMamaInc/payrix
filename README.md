@@ -103,6 +103,8 @@ Here is a list of all simple operators available.
 
 > Note: Field names can be provided as either symbols (`:status`) or dot-notation strings (`'merchant.entity.login.division'`) when querying nested attributes.
 
+> Note: `Payrix::Search.in` drops `nil` and empty-string elements before joining the remaining values with commas. If no values remain (`nil`, `''`, `[]`, or a list of only blanks), the operand is normalized to `''`, matching the other simple operators.
+
 The interface of all operators follows `.operator(:field, value)`.
 
 Use compound operators to make combinations of simple and other compound operators.
