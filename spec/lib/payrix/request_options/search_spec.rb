@@ -62,6 +62,16 @@ RSpec.describe Payrix::RequestOptions::Search do
     end
   end
 
+  describe '.in' do
+    it 'returns an In search node instance with the passed in arguments' do
+      search_in = described_class.in(:field, ['a', 'b'])
+
+      expect(search_in).to be_a(described_class::In)
+      expect(search_in.field).to eq(:field)
+      expect(search_in.value).to eq('a,b')
+    end
+  end
+
   describe '.greater' do
     it 'returns a Greater search node instance with the passed in arguments' do
       greater = described_class.greater(:field, 'value')

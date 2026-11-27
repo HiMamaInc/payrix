@@ -97,10 +97,13 @@ merchants = Payrix::Merchants.list(filter)
 Here is a list of all simple operators available.
 
 - `Payrix::Search.equals`
+- `Payrix::Search.in` (accepts a single value or an array, e.g. `Payrix::Search.in(:merchant, %w[t1_mer_1 t1_mer_2])`)
 - `Payrix::Search.greater`
 - `Payrix::Search.less`
 
 > Note: Field names can be provided as either symbols (`:status`) or dot-notation strings (`'merchant.entity.login.division'`) when querying nested attributes.
+
+> Note: `Payrix::Search.in` drops `nil` and empty-string elements before joining the remaining values with commas. If no values remain (`nil`, `''`, `[]`, or a list of only blanks), the operand is normalized to `''`, matching the other simple operators.
 
 The interface of all operators follows `.operator(:field, value)`.
 
